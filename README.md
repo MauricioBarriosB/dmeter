@@ -1,6 +1,6 @@
 # DMETER - React + TypeScript + Vite
 
-APP for DB analisis and audio performance.
+APP for analyze audio input from your microphone with real-time decibel monitoring. Track current, peak, average, and range dB values while viewing a live frequency spectrum visualization. All analysis sessions are automatically saved for review and comparison.
 
 [https://mauriciobarriosb.github.io/dmeter](https://mauriciobarriosb.github.io/dmeter) 
 
