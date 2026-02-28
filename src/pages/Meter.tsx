@@ -352,7 +352,7 @@ export default function Meter() {
           </h1>
         </div>
         <p className="text-lg text-default-600 font-normal">
-          Start DB analisis for audio performance.
+          Analyze audio input from your microphone with real-time decibel monitoring. Track current, peak, average, and range dB values while viewing a live frequency spectrum visualization. All analysis sessions are automatically saved for review and comparison.
         </p>
       </div>
 
