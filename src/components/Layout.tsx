@@ -20,12 +20,7 @@ import {
 
 
 const navItems = [
-  { name: "Home", href: "/home", icon: Home },
-  { name: "User Data", href: "/userdata", icon: Users },
   { name: "Meter", href: "/meter", icon: AudioWaveform },
-  { name: "Statistics", href: "/statistics", icon: BarChart3 },
-  { name: "Account", href: "/useraccount", icon: UserCircle },
-  { name: "Contact", href: "/contact", icon: Mail },
 ];
 
 interface LayoutProps {
