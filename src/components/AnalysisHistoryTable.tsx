@@ -1,5 +1,11 @@
-import { Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Trash2, Eye } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
+
+export interface FrequencyPeak {
+  frequency: number; // Hz
+  amplitude: number; // dB
+}
 
 export interface AnalysisRecord {
   id: string;
@@ -9,6 +15,7 @@ export interface AnalysisRecord {
   avgDb: number;
   minDb: number;
   maxDb: number;
+  spectrumPeaks?: FrequencyPeak[]; // Top frequencies with highest amplitudes
 }
 
 interface AnalysisHistoryTableProps {
@@ -42,6 +49,8 @@ export default function AnalysisHistoryTable({
   onClearHistory,
   isValid,
 }: AnalysisHistoryTableProps) {
+  const navigate = useNavigate();
+
   if (!isValid) return null;
 
   return (
@@ -109,15 +118,28 @@ export default function AnalysisHistoryTable({
                       </Chip>
                     </td>
                     <td className="p-3">
-                      <Button
-                        color="danger"
-                        variant="light"
-                        size="sm"
-                        isIconOnly
-                        onPress={() => onDeleteRecord(record.id)}
-                      >
-                        <Trash2 size={16} />
-                      </Button>
+                      <div className="flex gap-1">
+                        <Button
+                          color="primary"
+                          variant="light"
+                          size="sm"
+                          isIconOnly
+                          onPress={() => navigate(`/analysis/${record.id}`)}
+                          title="View Details"
+                        >
+                          <Eye size={16} />
+                        </Button>
+                        <Button
+                          color="danger"
+                          variant="light"
+                          size="sm"
+                          isIconOnly
+                          onPress={() => onDeleteRecord(record.id)}
+                          title="Delete"
+                        >
+                          <Trash2 size={16} />
+                        </Button>
+                      </div>
                     </td>
                   </tr>
                 ))}

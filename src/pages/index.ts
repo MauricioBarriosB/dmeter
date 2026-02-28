@@ -5,3 +5,4 @@ export { default as UserData } from "./UserData";
 export { default as Meter } from "./Meter";
 export { default as Statistics } from "./Statistics";
 export { default as UserAccount } from "./UserAccount";
+export { default as DetailAnalysis } from "./DetailAnalysis";

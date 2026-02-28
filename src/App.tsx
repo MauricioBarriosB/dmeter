@@ -8,6 +8,7 @@ import {
   Meter,
   Statistics,
   UserAccount,
+  DetailAnalysis,
 } from "./pages";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/meter" element={<Meter />} />
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/useraccount" element={<UserAccount />} />
+          <Route path="/analysis/:id" element={<DetailAnalysis />} />
         </Routes>
       </Layout>
     </BrowserRouter>

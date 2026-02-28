@@ -7,6 +7,30 @@ import {
   NavbarItem,
   Button,
 } from "@heroui/react";
+/*
+// Set this links to enable all pages:
+import {
+  Home,
+  Users,
+  AudioWaveform,
+  BarChart3,
+  UserCircle,
+  Mail,
+  Menu,
+  X,
+} from "lucide-react";
+
+
+const navItems = [
+  { name: "Home", href: "/home", icon: Home },
+  { name: "User Data", href: "/userdata", icon: Users },
+  { name: "Meter", href: "/meter", icon: AudioWaveform },
+  { name: "Statistics", href: "/statistics", icon: BarChart3 },
+  { name: "Account", href: "/useraccount", icon: UserCircle },
+  { name: "Contact", href: "/contact", icon: Mail },
+];
+*/
+
 import {
   AudioWaveform,
   Menu,

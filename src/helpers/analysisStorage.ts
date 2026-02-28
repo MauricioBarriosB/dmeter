@@ -7,7 +7,7 @@ clearAnalysisHistory() - Removes history from localStorage (available for future
 
 import type { AnalysisRecord } from "../components/AnalysisHistoryTable";
 
-const STORAGE_KEY = "dmeter_analysis_history";
+const STORAGE_KEY = "dmeter_analysis_history_20260228";
 
 export function loadAnalysisHistory(): AnalysisRecord[] {
   const stored = localStorage.getItem(STORAGE_KEY);

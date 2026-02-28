@@ -5,7 +5,7 @@ import AudioMotionAnalyzer from "audiomotion-analyzer";
 import SpectrumAnalyzer from "../components/SpectrumAnalyzer";
 import RealTimeValuesPanel from "../components/RealTimeValuesPanel";
 import AnalysisHistoryTable from "../components/AnalysisHistoryTable";
-import type { AnalysisRecord } from "../components/AnalysisHistoryTable";
+import type { AnalysisRecord, FrequencyPeak } from "../components/AnalysisHistoryTable";
 import {
   loadAnalysisHistory,
   saveAnalysisHistory,
@@ -23,7 +23,8 @@ interface RealTimeData {
 
 export default function Meter() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [history, setHistory] = useState<AnalysisRecord[]>([]);
+  const [history, setHistory] = useState<AnalysisRecord[]>(() => loadAnalysisHistory());
+  const isInitialMount = useRef(true);
   const [error, setError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const analyzerRef = useRef<AudioMotionAnalyzer | null>(null);
@@ -35,6 +36,7 @@ export default function Meter() {
   const [isValid, setisValid] = useState<boolean | null>(null);
   const dbSamplesRef = useRef<number[]>([]);
   const isAnalyzingRef = useRef<boolean>(false);
+  const spectrumMaxRef = useRef<Float32Array | null>(null);
     const [realTimeData, setRealTimeData] = useState<RealTimeData>({
     currentDb: -100,
     peakDb: -100,
@@ -45,7 +47,6 @@ export default function Meter() {
 
   // Setup on mount and cleanup on unmount
   useEffect(() => {
-    setHistory(loadAnalysisHistory());
     validateLicense().then(setisValid);
 
     return () => {
@@ -65,8 +66,12 @@ export default function Meter() {
     };
   }, []);
 
-  // Save history to localStorage when it changes
+  // Save history to localStorage when it changes (skip initial mount)
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     saveAnalysisHistory(history);
   }, [history]);
 
@@ -93,6 +98,25 @@ export default function Meter() {
 
     const currentDb = calculateDecibels(dataArray);
     dbSamplesRef.current.push(currentDb);
+
+    // Capture frequency data and track maximum amplitudes
+    const frequencyBinCount = analyserNodeRef.current.frequencyBinCount;
+    const frequencyData = new Uint8Array(frequencyBinCount);
+    analyserNodeRef.current.getByteFrequencyData(frequencyData);
+
+    // Initialize spectrum max array if needed
+    if (spectrumMaxRef.current?.length !== frequencyBinCount) {
+      spectrumMaxRef.current = new Float32Array(frequencyBinCount).fill(-100);
+    }
+
+    // Update max values for each frequency bin
+    for (let i = 0; i < frequencyBinCount; i++) {
+      // Convert byte (0-255) to dB (-100 to 0 range approximately)
+      const dbValue = (frequencyData[i] / 255) * 100 - 100;
+      if (dbValue > spectrumMaxRef.current[i]) {
+        spectrumMaxRef.current[i] = dbValue;
+      }
+    }
 
     setRealTimeData((prev) => {
       const newPeak = Math.max(prev.peakDb, currentDb);
@@ -234,6 +258,7 @@ export default function Meter() {
 
       // Reset tracking data
       dbSamplesRef.current = [];
+      spectrumMaxRef.current = null;
       startTimeRef.current = Date.now();
       setRealTimeData({
         currentDb: -100,
@@ -273,8 +298,34 @@ export default function Meter() {
     }
   };
 
+  const extractTopFrequencyPeaks = useCallback((): FrequencyPeak[] => {
+    if (!spectrumMaxRef.current || !audioContextRef.current) return [];
+
+    const sampleRate = audioContextRef.current.sampleRate;
+    const frequencyBinCount = spectrumMaxRef.current.length;
+    const frequencyResolution = sampleRate / (frequencyBinCount * 2);
+
+    // Create array with frequency and amplitude pairs
+    const peaks: FrequencyPeak[] = [];
+    for (let i = 0; i < frequencyBinCount; i++) {
+      const frequency = Math.round(i * frequencyResolution);
+      const amplitude = Math.round(spectrumMaxRef.current[i] * 10) / 10;
+      // Only include frequencies with significant amplitude (above noise floor)
+      if (amplitude > -80) {
+        peaks.push({ frequency, amplitude });
+      }
+    }
+
+    // Sort by amplitude (highest first) and take top 20
+    peaks.sort((a, b) => b.amplitude - a.amplitude);
+    return peaks.slice(0, 20);
+  }, []);
+
   const handleFinishAnalisis = () => {
     if (!isAnalyzing) return;
+
+    // Extract spectrum peaks before cleanup
+    const spectrumPeaks = extractTopFrequencyPeaks();
 
     // Stop animation loop
     if (animationRef.current) {
@@ -294,6 +345,7 @@ export default function Meter() {
       avgDb: realTimeData.avgDb,
       minDb: realTimeData.minDb,
       maxDb: realTimeData.maxDb,
+      spectrumPeaks,
     };
     setHistory((prev) => [record, ...prev]);
 
