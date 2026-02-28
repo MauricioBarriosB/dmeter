@@ -58,7 +58,7 @@ export default function Layout({ children }: LayoutProps) {
         <NavbarContent justify="start">
           <NavbarBrand>
             <NavLink to="/" className="flex items-center gap-1 font-bold text-inherit text-xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              <AudioWaveform size={20} />Dmeter
+              <AudioWaveform size={20} />DMeter
             </NavLink>
           </NavbarBrand>
         </NavbarContent>
