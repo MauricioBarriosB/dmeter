@@ -8,16 +8,9 @@ import {
   Button,
 } from "@heroui/react";
 import {
-  Home,
-  Users,
-  AudioWaveform,
-  BarChart3,
-  UserCircle,
-  Mail,
   Menu,
   X,
 } from "lucide-react";
-
 
 const navItems = [
   { name: "Meter", href: "/meter", icon: AudioWaveform },
