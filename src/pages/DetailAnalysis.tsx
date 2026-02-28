@@ -38,6 +38,7 @@ export default function DetailAnalysis() {
   const [record, setRecord] = useState<AnalysisRecord | null>(null);
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const [notFound, setNotFound] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     validateLicense().then(setIsValid);
@@ -51,6 +52,12 @@ export default function DetailAnalysis() {
       }
     }
   }, [id]);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Show loading while validating license
   if (isValid === null) {
@@ -258,21 +265,23 @@ export default function DetailAnalysis() {
                 </div>
               </div>
 
-              {/* X-axis labels (frequency) */}
-              <div className="flex ml-8">
-                <div className="flex-1 flex">
-                  {paddedPeaks.map((peak, index) => (
-                    <div key={index} className="flex-1 flex justify-center">
-                      <span
-                        className={`transform -rotate-45 origin-center whitespace-nowrap ${peak.amplitude === null ? 'text-gray-600' : 'text-gray-400'}`}
-                        style={{ fontSize: '9px' }}
-                      >
-                        {formatFrequency(peak.frequency)}
-                      </span>
-                    </div>
-                  ))}
+              {/* X-axis labels (frequency) - only show on wider screens */}
+              {windowWidth > 740 && (
+                <div className="flex ml-8">
+                  <div className="flex-1 flex">
+                    {paddedPeaks.map((peak, index) => (
+                      <div key={index} className="flex-1 flex justify-center">
+                        <span
+                          className={`transform -rotate-45 origin-center whitespace-nowrap ${peak.amplitude === null ? 'text-gray-600' : 'text-gray-400'}`}
+                          style={{ fontSize: '9px' }}
+                        >
+                          {formatFrequency(peak.frequency)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </CardBody>
         </Card>
