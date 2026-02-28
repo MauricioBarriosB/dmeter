@@ -23,8 +23,8 @@ interface RealTimeData {
 
 export default function Meter() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [history, setHistory] = useState<AnalysisRecord[]>(() => loadAnalysisHistory());
-  const isInitialMount = useRef(true);
+  const [history, setHistory] = useState<AnalysisRecord[]>([]);
+  const historyLoaded = useRef(false);
   const [error, setError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const analyzerRef = useRef<AudioMotionAnalyzer | null>(null);
@@ -48,6 +48,10 @@ export default function Meter() {
   // Setup on mount and cleanup on unmount
   useEffect(() => {
     validateLicense().then(setisValid);
+    loadAnalysisHistory().then((loaded) => {
+      setHistory(loaded);
+      historyLoaded.current = true;
+    });
 
     return () => {
       isAnalyzingRef.current = false;
@@ -66,10 +70,9 @@ export default function Meter() {
     };
   }, []);
 
-  // Save history to localStorage when it changes (skip initial mount)
+  // Save history to localStorage when it changes (skip until loaded)
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
+    if (!historyLoaded.current) {
       return;
     }
     saveAnalysisHistory(history);

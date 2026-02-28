@@ -25,13 +25,14 @@ export default function DetailAnalysis() {
   useEffect(() => {
     validateLicense().then(setIsValid);
     if (id) {
-      const history = loadAnalysisHistory();
-      const found = history.find((r) => r.id === id);
-      if (found) {
-        setRecord(found);
-      } else {
-        setNotFound(true);
-      }
+      loadAnalysisHistory().then((history) => {
+        const found = history.find((r) => r.id === id);
+        if (found) {
+          setRecord(found);
+        } else {
+          setNotFound(true);
+        }
+      });
     }
   }, [id]);
 
