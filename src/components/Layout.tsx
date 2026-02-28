@@ -8,6 +8,7 @@ import {
   Button,
 } from "@heroui/react";
 import {
+  AudioWaveform,
   Menu,
   X,
 } from "lucide-react";
