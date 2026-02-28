@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroui/react": "^2.8.9",
     "@tailwindcss/vite": "^4.2.1",
+    "audiomotion-analyzer": "^4.5.4",
     "framer-motion": "^12.34.3",
     "lucide-react": "^0.575.0",
     "react": "^19.2.0",
