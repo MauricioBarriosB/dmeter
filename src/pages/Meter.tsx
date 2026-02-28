@@ -43,10 +43,26 @@ export default function Meter() {
     maxDb: -100,
   });
 
-  // Load history from localStorage on mount
+  // Setup on mount and cleanup on unmount
   useEffect(() => {
     setHistory(loadAnalysisHistory());
     validateLicense().then(setisValid);
+
+    return () => {
+      isAnalyzingRef.current = false;
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      if (analyzerRef.current) {
+        analyzerRef.current.destroy();
+      }
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+      }
+    };
   }, []);
 
   // Save history to localStorage when it changes
@@ -311,25 +327,6 @@ export default function Meter() {
   const handleClearHistory = () => {
     setHistory([]);
   };
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      isAnalyzingRef.current = false;
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      if (analyzerRef.current) {
-        analyzerRef.current.destroy();
-      }
-      if (audioContextRef.current) {
-        audioContextRef.current.close();
-      }
-      if (streamRef.current) {
-        streamRef.current.getTracks().forEach((track) => track.stop());
-      }
-    };
-  }, []);
 
   // Show loading while validating license
   if (isValid === null) {
