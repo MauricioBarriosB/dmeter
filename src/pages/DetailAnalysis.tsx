@@ -50,7 +50,7 @@ export default function DetailAnalysis() {
   if (notFound) {
     return (
       <div className="max-w-4xl mx-auto">
-        <Button
+                <Button
           variant="light"
           startContent={<ArrowLeft size={20} />}
           onPress={() => navigate("/meter")}
@@ -83,7 +83,7 @@ export default function DetailAnalysis() {
     <div className="max-w-4xl mx-auto">
       {/* Header */}
       <div className="mb-8">
-        <Button
+                <Button
           variant="light"
           startContent={<ArrowLeft size={20} />}
           onPress={() => navigate("/meter")}
@@ -97,7 +97,7 @@ export default function DetailAnalysis() {
             className="text-4xl font-bold text-foreground"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Analysis Details
+            Frequency Peaks
           </h1>
         </div>
         <p className="text-lg text-default-600">
@@ -155,6 +155,26 @@ export default function DetailAnalysis() {
       {record.spectrumPeaks && record.spectrumPeaks.length > 0 && (
         <FrequencyPeaksTable spectrumPeaks={record.spectrumPeaks} />
       )}
+
+      
+      {/* Navigation */}
+      <div className="flex gap-4 justify-center pt-4">
+        <Button
+          color="default"
+          variant="flat"
+          startContent={<ArrowLeft size={20} />}
+          onPress={() => navigate("/meter")}
+        >
+          Back to Meter
+        </Button>
+        <Button
+          color="default"
+          variant="flat"
+          onPress={() => navigate(`/metrics/${record.id}`)}
+        >
+          View Advanced Metrics
+        </Button>
+      </div>
     </div>
   );
 }

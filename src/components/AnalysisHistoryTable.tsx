@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Trash2, Eye } from "lucide-react";
+import { Trash2, Eye, Activity } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
 
 export interface FrequencyPeak {
@@ -86,7 +86,7 @@ export default function AnalysisHistoryTable({
                   <th className="text-left p-3 font-semibold">Avg dB</th>
                   <th className="text-left p-3 font-semibold">Min dB</th>
                   <th className="text-left p-3 font-semibold">Max dB</th>
-                  <th className="text-left p-3 font-semibold">Actions</th>
+                  <th className="text-center p-3 font-semibold">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -118,17 +118,29 @@ export default function AnalysisHistoryTable({
                       </Chip>
                     </td>
                     <td className="p-3">
-                      <div className="flex gap-1">
+                      <div className="flex gap-1 justify-center">
+                        <Button
+                          color="secondary"
+                          variant="light"
+                          size="sm"
+                          isIconOnly
+                          onPress={() => navigate(`/metrics/${record.id}`)}
+                          title="View Metrics"
+                        >
+                          <Activity size={16} />
+                        </Button>
+
                         <Button
                           color="primary"
                           variant="light"
                           size="sm"
                           isIconOnly
                           onPress={() => navigate(`/analysis/${record.id}`)}
-                          title="View Details"
+                          title="View Peaks"
                         >
                           <Eye size={16} />
                         </Button>
+       
                         <Button
                           color="danger"
                           variant="light"

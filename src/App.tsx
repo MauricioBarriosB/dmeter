@@ -9,6 +9,7 @@ import {
   Statistics,
   UserAccount,
   DetailAnalysis,
+  DetailMetrics,
 } from "./pages";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/useraccount" element={<UserAccount />} />
           <Route path="/analysis/:id" element={<DetailAnalysis />} />
+          <Route path="/metrics/:id" element={<DetailMetrics />} />
         </Routes>
       </Layout>
     </BrowserRouter>
