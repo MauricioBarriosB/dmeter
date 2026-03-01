@@ -10,7 +10,6 @@ import {
 /*
 // Set this links to enable all pages:
 import {
-  Home,
   Users,
   AudioWaveform,
   BarChart3,
@@ -22,7 +21,6 @@ import {
 
 
 const navItems = [
-  { name: "Home", href: "/home", icon: Home },
   { name: "User Data", href: "/userdata", icon: Users },
   { name: "Meter", href: "/meter", icon: AudioWaveform },
   { name: "Statistics", href: "/statistics", icon: BarChart3 },
@@ -35,9 +33,11 @@ import {
   AudioWaveform,
   Menu,
   X,
+  Home,
 } from "lucide-react";
 
 const navItems = [
+  { name: "Home", href: "/home", icon: Home },
   { name: "Meter", href: "/meter", icon: AudioWaveform },
 ];
 
@@ -52,7 +52,7 @@ export default function Layout({ children }: LayoutProps) {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const isRouteActive = (href: string, isActive: boolean) => {
-    if (href === "/routes") {
+    if (href === "/home") {
       return isActive || location.pathname === "/";
     }
     return isActive;

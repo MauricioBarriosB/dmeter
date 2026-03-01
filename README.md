@@ -15,6 +15,7 @@ APP to analyze audio input from your microphone with real-time decibel monitorin
 
 ## Flow:
 
+- Go to the Meter page using the navigation menu to access the audio analysis tool.
 - Press Start analisis - Requests microphone permission, starts recording and visualization
 - While recording - See live spectrum and real-time dB values updating
 - Press Finish analisis - Stops recording, saves the analysis to history
