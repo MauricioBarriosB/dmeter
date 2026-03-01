@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Trash2, Eye, Activity } from "lucide-react";
+import { Trash2, BarChart3, Activity } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
 
 export interface FrequencyPeak {
@@ -138,7 +138,7 @@ export default function AnalysisHistoryTable({
                           onPress={() => navigate(`/analysis/${record.id}`)}
                           title="View Peaks"
                         >
-                          <Eye size={16} />
+                          <BarChart3 size={16} />
                         </Button>
        
                         <Button
