@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Play, Square, AudioWaveform } from "lucide-react";
-import { Button } from "@heroui/react";
+import {
+  Button,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
+  useDisclosure,
+} from "@heroui/react";
 import AudioMotionAnalyzer from "audiomotion-analyzer";
 import SpectrumAnalyzer from "../components/SpectrumAnalyzer";
 import RealTimeValuesPanel from "../components/RealTimeValuesPanel";
@@ -26,6 +35,10 @@ export default function Meter() {
   const [history, setHistory] = useState<AnalysisRecord[]>([]);
   const historyLoaded = useRef(false);
   const [error, setError] = useState<string | null>(null);
+  const [analysisName, setAnalysisName] = useState("");
+  const analysisNameRef = useRef("");
+  const { isOpen: isStartOpen, onOpen: onStartOpen, onOpenChange: onStartOpenChange } = useDisclosure();
+  const { isOpen: isFinishOpen, onOpen: onFinishOpen, onOpenChange: onFinishOpenChange } = useDisclosure();
   const containerRef = useRef<HTMLDivElement>(null);
   const analyzerRef = useRef<AudioMotionAnalyzer | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -342,6 +355,7 @@ export default function Meter() {
     // Save analysis record
     const record: AnalysisRecord = {
       id: crypto.randomUUID(),
+      name: analysisNameRef.current,
       date: new Date().toISOString(),
       duration,
       peakDb: realTimeData.peakDb,
@@ -351,6 +365,10 @@ export default function Meter() {
       spectrumPeaks,
     };
     setHistory((prev) => [record, ...prev]);
+
+    // Reset analysis name for next session
+    setAnalysisName("");
+    analysisNameRef.current = "";
 
     // Cleanup audiomotion-analyzer
     if (analyzerRef.current) {
@@ -417,7 +435,7 @@ export default function Meter() {
           color="success"
           size="lg"
           startContent={<Play size={20} />}
-          onPress={handleStartAnalisis}
+          onPress={onStartOpen}
           isDisabled={isAnalyzing}
           className="font-semibold"
         >
@@ -427,7 +445,7 @@ export default function Meter() {
           color="danger"
           size="lg"
           startContent={<Square size={20} />}
-          onPress={handleFinishAnalisis}
+          onPress={onFinishOpen}
           isDisabled={!isAnalyzing}
           className="font-semibold"
         >
@@ -455,6 +473,79 @@ export default function Meter() {
         onClearHistory={handleClearHistory}
         isValid={isValid ?? false}
       />
+
+      {/* Start Analysis Confirmation Modal */}
+      <Modal isOpen={isStartOpen} onOpenChange={onStartOpenChange} placement="center">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Start New Analysis
+              </ModalHeader>
+              <ModalBody>
+                <Input
+                  autoFocus
+                  label="Type the label analysis"
+                  placeholder="Enter analysis name..."
+                  variant="bordered"
+                  value={analysisName}
+                  onValueChange={setAnalysisName}
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Cancel
+                </Button>
+                <Button
+                  color="success"
+                  onPress={() => {
+                    analysisNameRef.current = analysisName.trim() || `Analysis ${new Date().toLocaleString()}`;
+                    onClose();
+                    handleStartAnalisis();
+                  }}
+                >
+                  Start Analysis
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+
+      {/* Finish Analysis Confirmation Modal */}
+      <Modal isOpen={isFinishOpen} onOpenChange={onFinishOpenChange} placement="center">
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Finish Analysis
+              </ModalHeader>
+              <ModalBody>
+                <p className="text-default-600">
+                  Are you sure you want to finish the current analysis?
+                </p>
+                <p className="text-sm text-default-500">
+                  Analysis: <span className="font-semibold">{analysisNameRef.current}</span>
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="default" variant="light" onPress={onClose}>
+                  Cancel
+                </Button>
+                <Button
+                  color="danger"
+                  onPress={() => {
+                    onClose();
+                    handleFinishAnalisis();
+                  }}
+                >
+                  Finish Analysis
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 }

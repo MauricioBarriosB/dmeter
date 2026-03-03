@@ -9,6 +9,7 @@ export interface FrequencyPeak {
 
 export interface AnalysisRecord {
   id: string;
+  name: string; // User-defined analysis label
   date: string;
   duration: number;
   peakDb: number;
@@ -80,6 +81,7 @@ export default function AnalysisHistoryTable({
             <table className="w-full">
               <thead>
                 <tr className="border-b border-default-200">
+                  <th className="text-left p-3 font-semibold">Name</th>
                   <th className="text-left p-3 font-semibold">Date</th>
                   <th className="text-left p-3 font-semibold">Duration</th>
                   <th className="text-left p-3 font-semibold">Peak dB</th>
@@ -95,6 +97,7 @@ export default function AnalysisHistoryTable({
                     key={record.id}
                     className="border-b border-default-100 hover:bg-default-50"
                   >
+                    <td className="p-3 font-medium">{record.name}</td>
                     <td className="p-3">{formatDate(record.date)}</td>
                     <td className="p-3">{formatDuration(record.duration)}</td>
                     <td className="p-3">

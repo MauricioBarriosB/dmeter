@@ -103,12 +103,15 @@ export default function DetailMetrics() {
         </Button>
         <div className="flex items-center gap-3 mb-3">
           <Activity size={40} className="text-secondary" />
-          <h1
-            className="text-4xl font-bold text-foreground"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
-            Advanced Metrics
-          </h1>
+          <div>
+            <h1
+              className="text-4xl font-bold text-foreground"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              {record.name}
+            </h1>
+            <p className="text-lg text-default-500">Advanced Metrics</p>
+          </div>
         </div>
         <p className="text-lg text-default-600">
           {formatDate(record.date)} • Duration: {formatDuration(record.duration)}

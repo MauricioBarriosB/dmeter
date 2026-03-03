@@ -93,12 +93,15 @@ export default function DetailAnalysis() {
         </Button>
         <div className="flex items-center gap-3 mb-3">
           <BarChart3 size={40} className="text-primary" />
-          <h1
-            className="text-4xl font-bold text-foreground"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
-            Frequency Peaks
-          </h1>
+          <div>
+            <h1
+              className="text-4xl font-bold text-foreground"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              {record.name}
+            </h1>
+            <p className="text-lg text-default-500">Frequency Peaks</p>
+          </div>
         </div>
         <p className="text-lg text-default-600">
           {formatDate(record.date)}
