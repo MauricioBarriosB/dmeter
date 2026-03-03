@@ -17,7 +17,8 @@ import {
   Target,
   AudioWaveform,
 } from "lucide-react";
-import { Card, CardBody, CardHeader, Chip, Divider } from "@heroui/react";
+import { Button, Card, CardBody, CardHeader, Chip, Divider } from "@heroui/react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -38,6 +39,19 @@ export default function Home() {
           monitoring. Track current, peak, average, and range dB values while
           viewing a live frequency spectrum visualization.
         </p>
+        <div className="flex justify-center mt-6">
+          <Button
+            as={Link}
+            to="/meter"
+            color="primary"
+            size="lg"
+            variant="shadow"
+            className="font-semibold text-lg px-8"
+            startContent={<Mic size={20} />}
+          >
+            Start Analysis
+          </Button>
+        </div>
       </div>
 
       {/* Features Section */}
