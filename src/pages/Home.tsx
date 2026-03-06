@@ -21,7 +21,6 @@ import {
     Ruler,
     Music,
     Thermometer,
-    Users,
     Layers,
     MessageSquare,
 } from "lucide-react";
