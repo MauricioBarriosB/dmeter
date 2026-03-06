@@ -56,3 +56,55 @@ export async function clearAnalysisHistory(): Promise<void> {
     if (!(await validateStorageKey())) return;
     localStorage.removeItem(storageKey);
 }
+
+// Acoustics Analysis Storage
+export interface AcousticsRecord {
+    id: string;
+    analysisName: string;
+    // Room Dimensions
+    roomHeight: string;
+    roomWidth: string;
+    roomDepth: string;
+    // Room Configuration
+    roomPurpose: string;
+    roofType: string;
+    // Multi-surface Materials
+    floorMaterial: string;
+    ceilingMaterial: string;
+    wallMaterial: string;
+    // Environmental Factors
+    temperature: string;
+    humidity: string;
+    occupancy: string;
+    // Additional Parameters
+    windowArea: string;
+    doorCount: string;
+    date: string;
+}
+
+const acousticsStorageKey = `${storageKey}_acoustics`;
+
+export async function loadAcousticsHistory(): Promise<AcousticsRecord[]> {
+    if (!(await validateStorageKey())) return [];
+
+    const stored = localStorage.getItem(acousticsStorageKey);
+    if (stored) {
+        try {
+            return JSON.parse(stored) as AcousticsRecord[];
+        } catch {
+            console.error("Failed to parse stored acoustics history");
+            return [];
+        }
+    }
+    return [];
+}
+
+export async function saveAcousticsHistory(history: AcousticsRecord[]): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.setItem(acousticsStorageKey, JSON.stringify(history));
+}
+
+export async function clearAcousticsHistory(): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.removeItem(acousticsStorageKey);
+}

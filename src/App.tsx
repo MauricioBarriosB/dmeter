@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import { Home, Contact, Login, UserData, Meter, Statistics, UserAccount, DetailAnalysis, DetailMetrics } from "./pages";
+import { Home, Contact, Login, UserData, Meter, Statistics, UserAccount, DetailAnalysis, DetailMetrics, Acoustics, DetailAcoustics } from "./pages";
 
 function App() {
     return (
@@ -17,6 +17,8 @@ function App() {
                     <Route path="/useraccount" element={<UserAccount />} />
                     <Route path="/analysis/:id" element={<DetailAnalysis />} />
                     <Route path="/metrics/:id" element={<DetailMetrics />} />
+                    <Route path="/acoustics" element={<Acoustics />} />
+                    <Route path="/acoustics/:id" element={<DetailAcoustics />} />
                 </Routes>
             </Layout>
         </BrowserRouter>

@@ -7,3 +7,5 @@ export { default as Statistics } from "./Statistics";
 export { default as UserAccount } from "./UserAccount";
 export { default as DetailAnalysis } from "./DetailAnalysis";
 export { default as DetailMetrics } from "./DetailMetrics";
+export { default as Acoustics } from "./Acoustics";
+export { default as DetailAcoustics } from "./DetailAcoustics";

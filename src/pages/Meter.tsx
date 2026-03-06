@@ -8,6 +8,7 @@ import AnalysisHistoryTable from "../components/AnalysisHistoryTable";
 import type { AnalysisRecord, FrequencyPeak } from "../components/AnalysisHistoryTable";
 import { loadAnalysisHistory, saveAnalysisHistory } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
+import { calculateDecibels } from "../helpers/decibelsHelper";
 import LicenseInvalid from "../components/LicenseInvalid";
 
 interface RealTimeData {
@@ -79,21 +80,6 @@ export default function Meter() {
         saveAnalysisHistory(history);
     }, [history]);
 
-    const calculateDecibels = useCallback((dataArray: Uint8Array): number => {
-        // Calculate RMS (Root Mean Square) for more accurate dB reading
-        let sum = 0;
-        for (const value of dataArray) {
-            const normalized = (value - 128) / 128;
-            sum += normalized * normalized;
-        }
-        const rms = Math.sqrt(sum / dataArray.length);
-
-        // Convert to decibels (dB)
-        // Using 20 * log10(rms) with a floor to avoid -Infinity
-        const db = rms > 0 ? 20 * Math.log10(rms) : -100;
-        return Math.max(-100, Math.min(0, db));
-    }, []);
-
     const updateAudioLevel = useCallback(() => {
         if (!analyserNodeRef.current || !isAnalyzingRef.current) return;
 
@@ -148,7 +134,7 @@ export default function Meter() {
         });
 
         animationRef.current = requestAnimationFrame(updateAudioLevel);
-    }, [calculateDecibels]);
+    }, []);
 
     const handleStartAnalisis = async () => {
         try {
