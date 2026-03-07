@@ -1,12 +1,15 @@
 # DMETER - React + TypeScript + Vite
 
-Audio analysis and room acoustics application. Features real-time decibel monitoring with microphone input, frequency spectrum visualization, and space acoustic analysis for room reverberation calculations. All analysis sessions are automatically saved for review and comparison.
+- Analyze audio input from your microphone with real-time decibel monitoring. Track current, peak, average, and range dB values while viewing a live frequency spectrum visualization.
+- DMeter also include features for calculate room acoustics with professional RT60, speech intelligibility metrics, and frequency-dependent analysis for audio engineers and acoustic consultants.
+- All analysis sessions are automatically saved for review and comparison.
 
 [https://mauriciobarriosb.github.io/dmeter](https://mauriciobarriosb.github.io/dmeter)
 
 ## Features:
 
 ### Audio Meter:
+
 - Web Audio API - Captures microphone input with disabled echo cancellation, noise suppression, and auto gain for accurate readings
 - audiomotion-analyzer - Shows a real-time spectrum visualization with rainbow gradient, LED bars, and peak detection
 - Real-time panel - Displays Current dB, Peak dB, Average dB, Min dB, and Max dB with color-coded chips
@@ -15,6 +18,7 @@ Audio analysis and room acoustics application. Features real-time decibel monito
 - Delete functionality - Delete individual records or clear all history
 
 ### Space Acoustics (Professional):
+
 - **13 Room Types** - Recording studio, control room, broadcast, home theater, classroom, conference, worship, auditorium, and more
 - **Multi-Surface Materials** - 17 material options with per-surface selection (floor, ceiling, walls)
 - **Environmental Factors** - Temperature, humidity, and occupancy calculations
@@ -24,12 +28,12 @@ Audio analysis and room acoustics application. Features real-time decibel monito
 - **Room Modes Analysis** - Axial modes with Schroeder frequency threshold
 - **Intelligent Recommendations** - Acoustic treatment suggestions based on analysis
 
-## Flow:
+## How to Use Meter:
 
-- Go to the Meter page using the navigation menu to access the audio analysis tool.
-- Press Start analisis - Requests microphone permission, starts recording and visualization
-- While recording - See live spectrum and real-time dB values updating
-- Press Finish analisis - Stops recording, saves the analysis to history
+1. **Navigate to Meter** - Go to the Meter page using the navigation menu.
+2. **Start Analysis** - Press "Start Analysis" to request microphone permission and begin recording.
+3. **While Recording** - See live spectrum and real-time dB values updating as you capture audio.
+4. **Finish Analysis** - Press "Finish Analysis" to stop recording and save to history.
 
 ## dB Color coding:
 
@@ -70,24 +74,33 @@ Complete breakdown of all calculated metrics including Peak Level, Average Level
 
 Professional room acoustic analysis designed for audio engineers and acoustic consultants. Features multi-surface materials, environmental factors, and frequency-dependent calculations.
 
+### How to Use Space Acoustics:
+
+1. **Configure Room** - Enter room dimensions (Length x Width x Height), select room type (e.g., Recording Studio, Control Room, Classroom) and ceiling style (Flat, Vault, Curved, etc.)
+2. **Select Materials** - Choose materials for floor, ceiling, and walls from 17 acoustic options. Each surface can have different materials with frequency-dependent absorption coefficients.
+3. **Set Environment** - Adjust temperature (affects speed of sound), humidity (affects air absorption), occupancy (people absorption), and number of windows/doors.
+4. **View Results** - Real-time calculations update automatically as you modify parameters. Review RT60, speech intelligibility metrics, room modes, and intelligent recommendations.
+
 ### Room Configuration:
 
 **13 Room Types:**
+
 - Recording Studio, Control Room, Broadcast Studio
 - Home Theater, Classroom, Conference Room
 - Worship Space, Auditorium, Concert Hall
 - Rehearsal Room, Parlor, Reading Room, Library
 
 **6 Ceiling Types:**
+
 - Flat, Vault, Rectangular, Pyramidal, Curved, Coffered
 
 ### Multi-Surface Materials (17 Options):
 
-| Category | Materials |
-|----------|-----------|
-| Hard Surfaces | Concrete, Brick, Plaster, Ceramic Tile, Glass |
-| Wood | Wood Paneling, Wood Floor |
-| Soft Materials | Carpet (Thin), Carpet (Heavy), Curtains (Light/Heavy) |
+| Category           | Materials                                                                              |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| Hard Surfaces      | Concrete, Brick, Plaster, Ceramic Tile, Glass                                          |
+| Wood               | Wood Paneling, Wood Floor                                                              |
+| Soft Materials     | Carpet (Thin), Carpet (Heavy), Curtains (Light/Heavy)                                  |
 | Acoustic Treatment | Acoustic Tile, Acoustic Foam, Acoustic Panel, Fabric Panel, Perforated Panel, Diffuser |
 
 Each surface (floor, ceiling, walls) can have different materials with frequency-dependent absorption coefficients at 125Hz, 250Hz, 500Hz, 1kHz, 2kHz, and 4kHz.
@@ -108,12 +121,12 @@ Each surface (floor, ceiling, walls) can have different materials with frequency
 
 ### Speech Intelligibility Metrics:
 
-| Metric | Description | Good Value |
-|--------|-------------|------------|
-| **STI** | Speech Transmission Index (estimated) | ≥ 0.60 |
-| **C50** | Speech Clarity (dB) | ≥ 2 dB |
-| **C80** | Music Clarity (dB) | 0-6 dB |
-| **D50** | Definition (%) | ≥ 50% |
+| Metric  | Description                           | Good Value |
+| ------- | ------------------------------------- | ---------- |
+| **STI** | Speech Transmission Index (estimated) | ≥ 0.60     |
+| **C50** | Speech Clarity (dB)                   | ≥ 2 dB     |
+| **C80** | Music Clarity (dB)                    | 0-6 dB     |
+| **D50** | Definition (%)                        | ≥ 50%      |
 
 ### Advanced Acoustic Parameters:
 
@@ -135,22 +148,23 @@ Modes below the Schroeder frequency are flagged as potentially problematic.
 
 ### Optimal RT60 by Room Purpose:
 
-| Room Type | Min RT60 | Ideal RT60 | Max RT60 |
-|-----------|----------|------------|----------|
-| Recording Studio | 0.2s | 0.3s | 0.4s |
-| Control Room | 0.25s | 0.3s | 0.4s |
-| Broadcast Studio | 0.3s | 0.4s | 0.5s |
-| Home Theater | 0.3s | 0.4s | 0.5s |
-| Classroom | 0.4s | 0.5s | 0.7s |
-| Conference Room | 0.4s | 0.5s | 0.7s |
-| Rehearsal Room | 0.4s | 0.6s | 0.8s |
-| Auditorium | 1.0s | 1.2s | 1.5s |
-| Worship Space | 1.2s | 1.5s | 2.0s |
-| Concert Hall | 1.5s | 1.8s | 2.2s |
+| Room Type        | Min RT60 | Ideal RT60 | Max RT60 |
+| ---------------- | -------- | ---------- | -------- |
+| Recording Studio | 0.2s     | 0.3s       | 0.4s     |
+| Control Room     | 0.25s    | 0.3s       | 0.4s     |
+| Broadcast Studio | 0.3s     | 0.4s       | 0.5s     |
+| Home Theater     | 0.3s     | 0.4s       | 0.5s     |
+| Classroom        | 0.4s     | 0.5s       | 0.7s     |
+| Conference Room  | 0.4s     | 0.5s       | 0.7s     |
+| Rehearsal Room   | 0.4s     | 0.6s       | 0.8s     |
+| Auditorium       | 1.0s     | 1.2s       | 1.5s     |
+| Worship Space    | 1.2s     | 1.5s       | 2.0s     |
+| Concert Hall     | 1.5s     | 1.8s       | 2.2s     |
 
 ### Intelligent Recommendations:
 
 The analysis provides automatic recommendations based on:
+
 - RT60 status relative to optimal range
 - Speech intelligibility scores
 - Bass ratio (warmth/brightness)
