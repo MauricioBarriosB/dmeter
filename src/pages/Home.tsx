@@ -6,16 +6,12 @@ import {
     History,
     Trash2,
     Play,
-    Radio,
-    Square,
     Gauge,
     Waves,
     BarChart3,
     Volume2,
     VolumeX,
-    Zap,
     Target,
-    AudioWaveform,
     Box,
     Clock,
     Ruler,
@@ -41,10 +37,17 @@ export default function Home() {
                         About DMeter
                     </h1>
                 </div>
-                <p className="text-lg text-default-600 font-normal">
-                    Analyze audio input from your microphone with real-time decibel monitoring. Track current, peak,
-                    average, and range dB values while viewing a live frequency spectrum visualization.
-                </p>
+                <ul className="text-lg text-default-600 font-normal list-disc ml-5 space-y-1">
+                    <li>
+                        Analyze audio input from your microphone with real-time decibel monitoring. Track current, peak,
+                        average, and range dB values while viewing a live frequency spectrum visualization.
+                    </li>
+                    <li>
+                        Calculate room acoustics with professional RT60, speech intelligibility metrics, and
+                        frequency-dependent analysis for audio engineers and acoustic consultants.
+                    </li>
+                    <li>All analysis sessions are automatically saved for review and comparison.</li>
+                </ul>
                 <div className="flex justify-center gap-4 mt-6">
                     <Button
                         as={Link}
@@ -74,10 +77,10 @@ export default function Home() {
             {/* Features Section */}
             <section className="mb-10">
                 <h2
-                    className="text-2xl font-bold mb-6 flex items-center gap-2"
+                    className="text-3xl font-bold mb-6 flex items-center gap-2"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
-                    <Zap size={24} className="text-warning" />
+                    <Mic size={24} className="text-warning" />
                     Audio Meter Features
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -169,76 +172,59 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* How to Use Section */}
+            {/* How to Use Meter Section */}
             <section className="mb-10">
                 <h2
                     className="text-2xl font-bold mb-6 flex items-center gap-2"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
                     <Play size={24} className="text-success" />
-                    How to Use
+                    How to Use Meter
                 </h2>
                 <Card className="bg-default-50">
                     <CardBody>
-                        <div className="flex flex-col gap-6">
-                            <div className="flex items-start gap-4">
-                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-secondary text-white font-bold shrink-0">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div className="flex items-start gap-3">
+                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white font-bold shrink-0 text-sm">
                                     1
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold flex items-center gap-2 mb-1">
-                                        <AudioWaveform size={18} className="text-secondary" />
-                                        Navigate to Meter
-                                    </h3>
-                                    <p className="text-default-600">
-                                        Go to the Meter page using the navigation menu to access the audio analysis
-                                        tool.
+                                    <h4 className="font-medium mb-1">Navigate to Meter</h4>
+                                    <p className="text-sm text-default-600">
+                                        Go to the Meter page using the navigation menu.
                                     </p>
                                 </div>
                             </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-success text-white font-bold shrink-0">
+                            <div className="flex items-start gap-3">
+                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-success text-white font-bold shrink-0 text-sm">
                                     2
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold flex items-center gap-2 mb-1">
-                                        <Play size={18} className="text-success" />
-                                        Start Analysis
-                                    </h3>
-                                    <p className="text-default-600">
-                                        Press "Start Analysis" to request microphone permission and begin recording with
-                                        visualization.
+                                    <h4 className="font-medium mb-1">Start Analysis</h4>
+                                    <p className="text-sm text-default-600">
+                                        Press "Start Analysis" to request microphone permission and begin recording.
                                     </p>
                                 </div>
                             </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold shrink-0">
+                            <div className="flex items-start gap-3">
+                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold shrink-0 text-sm">
                                     3
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold flex items-center gap-2 mb-1">
-                                        <Radio size={18} className="text-primary" />
-                                        While Recording
-                                    </h3>
-                                    <p className="text-default-600">
+                                    <h4 className="font-medium mb-1">While Recording</h4>
+                                    <p className="text-sm text-default-600">
                                         See live spectrum and real-time dB values updating as you capture audio.
                                     </p>
                                 </div>
                             </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-danger text-white font-bold shrink-0">
+                            <div className="flex items-start gap-3">
+                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-danger text-white font-bold shrink-0 text-sm">
                                     4
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold flex items-center gap-2 mb-1">
-                                        <Square size={18} className="text-danger" />
-                                        Finish Analysis
-                                    </h3>
-                                    <p className="text-default-600">
-                                        Press "Finish Analysis" to stop recording and save the analysis to history.
+                                    <h4 className="font-medium mb-1">Finish Analysis</h4>
+                                    <p className="text-sm text-default-600">
+                                        Press "Finish Analysis" to stop recording and save to history.
                                     </p>
                                 </div>
                             </div>
@@ -423,7 +409,7 @@ export default function Home() {
             {/* Space Acoustics Section */}
             <section className="mb-10">
                 <h2
-                    className="text-2xl font-bold mb-6 flex items-center gap-2"
+                    className="text-3xl font-bold mb-6 flex items-center gap-2"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
                     <Waves size={24} className="text-secondary" />
@@ -546,6 +532,75 @@ export default function Home() {
                             </ul>
                         </CardBody>
                     </Card>
+
+                    {/* How to Use Space Acoustics */}
+                    <Card className="bg-default-50 lg:col-span-2">
+                        <CardHeader className="pb-2">
+                            <h2 className="text-2xl font-semibold flex items-center gap-2">
+                                <Play size={20} className="text-success" />
+                                How to Use Space Acoustics
+                            </h2>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                <div className="flex items-start gap-3">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white font-bold shrink-0 text-sm">
+                                        1
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium mb-1">Configure Room</h4>
+                                        <p className="text-sm text-default-600">
+                                            Enter room dimensions (L x W x H), select room type and ceiling style.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-success text-white font-bold shrink-0 text-sm">
+                                        2
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium mb-1">Select Materials</h4>
+                                        <p className="text-sm text-default-600">
+                                            Choose materials for floor, ceiling, and walls from 17 acoustic options.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold shrink-0 text-sm">
+                                        3
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium mb-1">Set Environment</h4>
+                                        <p className="text-sm text-default-600">
+                                            Adjust temperature, humidity, occupancy, windows, and doors.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-warning text-white font-bold shrink-0 text-sm">
+                                        4
+                                    </div>
+                                    <div>
+                                        <h4 className="font-medium mb-1">View Results</h4>
+                                        <p className="text-sm text-default-600">
+                                            Real-time RT60, speech metrics, room modes, and recommendations update
+                                            automatically.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardBody>
+                    </Card>
+
+                    {/* Advanced Metrics Title */}
+                    <h3
+                        className="text-2xl font-bold flex items-center gap-2 lg:col-span-2 mt-4"
+                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    >
+                        <BarChart3 size={24} className="text-secondary" />
+                        Advanced Metrics
+                    </h3>
 
                     {/* Reverberation & Clarity */}
                     <Card className="bg-default-50 lg:col-span-2">
