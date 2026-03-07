@@ -49,7 +49,17 @@ export default function Layout({ children }: LayoutProps) {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
+        <div
+            className="min-h-screen flex flex-col bg-background"
+            style={{
+                backgroundImage: `
+                    linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+                `,
+                backgroundSize: "20px 20px",
+                backgroundAttachment: "fixed",
+            }}
+        >
             {/* Header */}
             <Navbar
                 maxWidth="full"
@@ -139,7 +149,7 @@ export default function Layout({ children }: LayoutProps) {
             <main className="flex-1 p-6 lg:p-8">{children}</main>
 
             {/* Footer */}
-            <footer className="border-t border-default-100 py-6 px-8">
+            <footer className="border-t border-default-100 py-6 px-8 bg-gray-950">
                 <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-default-600">
                         © {new Date().getFullYear()} DMeter. All rights reserved.
