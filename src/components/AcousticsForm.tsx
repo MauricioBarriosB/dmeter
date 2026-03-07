@@ -28,7 +28,6 @@ const roomPurposeOptions = [
     { key: "home_theater", label: "Home Theater" },
     { key: "classroom", label: "Classroom" },
     { key: "conference", label: "Conference Room" },
-    { key: "worship", label: "Worship Space" },
     { key: "auditorium", label: "Auditorium" },
     { key: "parlor", label: "Parlor" },
     { key: "reading", label: "Reading Room" },

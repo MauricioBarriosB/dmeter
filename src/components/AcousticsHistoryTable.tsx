@@ -25,7 +25,6 @@ const getPurposeLabel = (key: string) => {
         home_theater: "Home Theater",
         classroom: "Classroom",
         conference: "Conference Room",
-        worship: "Worship Space",
         auditorium: "Auditorium",
         parlor: "Parlor",
         reading: "Reading Room",

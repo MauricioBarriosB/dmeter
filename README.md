@@ -19,7 +19,7 @@
 
 ### Space Acoustics (Professional):
 
-- **13 Room Types** - Recording studio, control room, broadcast, home theater, classroom, conference, worship, auditorium, and more
+- **12 Room Types** - Recording studio, control room, broadcast, home theater, classroom, conference, auditorium, and more
 - **Multi-Surface Materials** - 17 material options with per-surface selection (floor, ceiling, walls)
 - **Environmental Factors** - Temperature, humidity, and occupancy calculations
 - **Frequency-Dependent RT60** - Analysis at 6 octave bands (125Hz to 4kHz)
@@ -83,12 +83,12 @@ Professional room acoustic analysis designed for audio engineers and acoustic co
 
 ### Room Configuration:
 
-**13 Room Types:**
+**12 Room Types:**
 
 - Recording Studio, Control Room, Broadcast Studio
 - Home Theater, Classroom, Conference Room
-- Worship Space, Auditorium, Concert Hall
-- Rehearsal Room, Parlor, Reading Room, Library
+- Auditorium, Concert Hall, Rehearsal Room
+- Parlor, Reading Room, Library
 
 **6 Ceiling Types:**
 
@@ -158,7 +158,6 @@ Modes below the Schroeder frequency are flagged as potentially problematic.
 | Conference Room  | 0.4s     | 0.5s       | 0.7s     |
 | Rehearsal Room   | 0.4s     | 0.6s       | 0.8s     |
 | Auditorium       | 1.0s     | 1.2s       | 1.5s     |
-| Worship Space    | 1.2s     | 1.5s       | 2.0s     |
 | Concert Hall     | 1.5s     | 1.8s       | 2.2s     |
 
 ### Intelligent Recommendations:

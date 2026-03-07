@@ -433,10 +433,10 @@ export default function Home() {
                         <CardBody className="pt-4">
                             <ul className="space-y-3">
                                 <li>
-                                    <span className="font-medium">13 Room Types</span>
+                                    <span className="font-medium">12 Room Types</span>
                                     <p className="text-sm text-default-600">
                                         Recording studio, control room, broadcast, home theater, classroom, conference,
-                                        worship, auditorium, and more.
+                                        auditorium, and more.
                                     </p>
                                 </li>
                                 <li>
