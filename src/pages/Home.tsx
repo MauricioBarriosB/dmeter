@@ -64,7 +64,7 @@ export default function Home() {
                         className="font-semibold text-lg px-8"
                         startContent={<Mic size={20} />}
                     >
-                        Audio Meter
+                        Meter
                     </Button>
                     <Button
                         as={Link}
@@ -75,7 +75,7 @@ export default function Home() {
                         className="font-semibold text-lg px-8"
                         startContent={<Waves size={20} />}
                     >
-                        Space Acoustics
+                        Acoustics
                     </Button>
                     <Button
                         as={Link}
@@ -86,7 +86,7 @@ export default function Home() {
                         className="font-semibold text-lg px-8"
                         startContent={<FileText size={20} />}
                     >
-                        Materials Reports
+                        Materials
                     </Button>
                 </div>
             </div>
