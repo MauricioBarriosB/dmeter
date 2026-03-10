@@ -7,7 +7,9 @@
 
 [https://mauriciobarriosb.github.io/dmeter](https://mauriciobarriosb.github.io/dmeter)
 
-# Audio Meter Features:
+---
+
+# Audio Meter Features
 
 - Web Audio API - Captures microphone input with disabled echo cancellation, noise suppression, and auto gain for accurate readings
 - audiomotion-analyzer - Shows a real-time spectrum visualization with rainbow gradient, LED bars, and peak detection
@@ -15,17 +17,6 @@
 - localStorage persistence - All analysis records are saved and persist across browser sessions
 - History table - Shows all previous analyses with date, duration, and all dB values
 - Delete functionality - Delete individual records or clear all history
-
-### Space Acoustics (Professional):
-
-- **12 Room Types** - Recording studio, control room, broadcast, home theater, classroom, conference, auditorium, and more
-- **Multi-Surface Materials** - 17 material options with per-surface selection (floor, ceiling, walls)
-- **Environmental Factors** - Temperature, humidity, and occupancy calculations
-- **Frequency-Dependent RT60** - Analysis at 6 octave bands (125Hz to 4kHz)
-- **Speech Intelligibility** - STI estimation, C50, C80, D50 metrics
-- **Professional Metrics** - EDT, Bass Ratio, Critical Distance, Mean Free Path
-- **Room Modes Analysis** - Axial modes with Schroeder frequency threshold
-- **Intelligent Recommendations** - Acoustic treatment suggestions based on analysis
 
 ## dB Color coding:
 
