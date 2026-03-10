@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Play, Square, AudioWaveform } from "lucide-react";
+import { Play, Square, AudioWaveform, HelpCircle } from "lucide-react";
 import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Input, useDisclosure } from "@heroui/react";
 import AudioMotionAnalyzer from "audiomotion-analyzer";
 import SpectrumAnalyzer from "../components/SpectrumAnalyzer";
@@ -28,6 +28,7 @@ export default function Meter() {
     const analysisNameRef = useRef("");
     const { isOpen: isStartOpen, onOpen: onStartOpen, onOpenChange: onStartOpenChange } = useDisclosure();
     const { isOpen: isFinishOpen, onOpen: onFinishOpen, onOpenChange: onFinishOpenChange } = useDisclosure();
+    const { isOpen: isHelpOpen, onOpen: onHelpOpen, onOpenChange: onHelpOpenChange } = useDisclosure();
     const containerRef = useRef<HTMLDivElement>(null);
     const analyzerRef = useRef<AudioMotionAnalyzer | null>(null);
     const audioContextRef = useRef<AudioContext | null>(null);
@@ -392,6 +393,76 @@ export default function Meter() {
                     average, and range dB values while viewing a live frequency spectrum visualization. All analysis
                     sessions are automatically saved for review and comparison.
                 </p>
+                <Button
+                    onPress={onHelpOpen}
+                    color="success"
+                    variant="flat"
+                    className="mt-4"
+                    startContent={<HelpCircle size={18} />}
+                >
+                    How to Use
+                </Button>
+
+                <Modal isOpen={isHelpOpen} onOpenChange={onHelpOpenChange} size="3xl">
+                    <ModalContent>
+                        {() => (
+                            <>
+                                <ModalHeader className="flex items-center gap-2">
+                                    <Play size={20} className="text-success" />
+                                    How to Use Meter
+                                </ModalHeader>
+                                <ModalBody className="pb-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                        <div className="flex items-start gap-3">
+                                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white font-bold shrink-0 text-sm">
+                                                1
+                                            </div>
+                                            <div>
+                                                <h4 className="font-medium mb-1">Navigate to Meter</h4>
+                                                <p className="text-sm text-default-600">
+                                                    Go to the Meter page using the navigation menu.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-success text-white font-bold shrink-0 text-sm">
+                                                2
+                                            </div>
+                                            <div>
+                                                <h4 className="font-medium mb-1">Start Analysis</h4>
+                                                <p className="text-sm text-default-600">
+                                                    Press "Start Analysis" to request microphone permission and begin recording.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold shrink-0 text-sm">
+                                                3
+                                            </div>
+                                            <div>
+                                                <h4 className="font-medium mb-1">While Recording</h4>
+                                                <p className="text-sm text-default-600">
+                                                    See live spectrum and real-time dB values updating as you capture audio.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-danger text-white font-bold shrink-0 text-sm">
+                                                4
+                                            </div>
+                                            <div>
+                                                <h4 className="font-medium mb-1">View Results</h4>
+                                                <p className="text-sm text-default-600">
+                                                    Check the Analysis History table to review saved recordings and metrics.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ModalBody>
+                            </>
+                        )}
+                    </ModalContent>
+                </Modal>
             </div>
 
             {/* Control Buttons */}

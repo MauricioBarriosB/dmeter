@@ -5,7 +5,6 @@ import {
     Database,
     History,
     Trash2,
-    Play,
     Gauge,
     Waves,
     BarChart3,
@@ -19,6 +18,9 @@ import {
     Thermometer,
     Layers,
     MessageSquare,
+    FileText,
+    Package,
+    Shield,
 } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip, Divider } from "@heroui/react";
 import { Link } from "react-router-dom";
@@ -46,7 +48,11 @@ export default function Home() {
                         Calculate room acoustics with professional RT60, speech intelligibility metrics, and
                         frequency-dependent analysis for audio engineers and acoustic consultants.
                     </li>
-                    <li>All analysis sessions are automatically saved for review and comparison.</li>
+                    <li>
+                        Generate comprehensive materials reports for building professional acoustic spaces with 12 build
+                        types, 15 acoustic treatment options, and 19 insulation materials.
+                    </li>
+                    <li>All analysis sessions and reports are automatically saved for review and comparison.</li>
                 </ul>
                 <div className="flex justify-center gap-4 mt-6">
                     <Button
@@ -70,6 +76,17 @@ export default function Home() {
                         startContent={<Waves size={20} />}
                     >
                         Space Acoustics
+                    </Button>
+                    <Button
+                        as={Link}
+                        to="/materials"
+                        color="danger"
+                        size="lg"
+                        variant="shadow"
+                        className="font-semibold text-lg px-8"
+                        startContent={<FileText size={20} />}
+                    >
+                        Materials Reports
                     </Button>
                 </div>
             </div>
@@ -170,67 +187,6 @@ export default function Home() {
                         </CardBody>
                     </Card>
                 </div>
-            </section>
-
-            {/* How to Use Meter Section */}
-            <section className="mb-10">
-                <h2
-                    className="text-2xl font-bold mb-6 flex items-center gap-2"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                    <Play size={24} className="text-success" />
-                    How to Use Meter
-                </h2>
-                <Card className="bg-default-50">
-                    <CardBody>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <div className="flex items-start gap-3">
-                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white font-bold shrink-0 text-sm">
-                                    1
-                                </div>
-                                <div>
-                                    <h4 className="font-medium mb-1">Navigate to Meter</h4>
-                                    <p className="text-sm text-default-600">
-                                        Go to the Meter page using the navigation menu.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-success text-white font-bold shrink-0 text-sm">
-                                    2
-                                </div>
-                                <div>
-                                    <h4 className="font-medium mb-1">Start Analysis</h4>
-                                    <p className="text-sm text-default-600">
-                                        Press "Start Analysis" to request microphone permission and begin recording.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold shrink-0 text-sm">
-                                    3
-                                </div>
-                                <div>
-                                    <h4 className="font-medium mb-1">While Recording</h4>
-                                    <p className="text-sm text-default-600">
-                                        See live spectrum and real-time dB values updating as you capture audio.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-danger text-white font-bold shrink-0 text-sm">
-                                    4
-                                </div>
-                                <div>
-                                    <h4 className="font-medium mb-1">Finish Analysis</h4>
-                                    <p className="text-sm text-default-600">
-                                        Press "Finish Analysis" to stop recording and save to history.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </CardBody>
-                </Card>
             </section>
 
             {/* dB Color Coding Section */}
@@ -533,66 +489,6 @@ export default function Home() {
                         </CardBody>
                     </Card>
 
-                    {/* How to Use Space Acoustics */}
-                    <Card className="bg-default-50 lg:col-span-2">
-                        <CardHeader className="pb-2">
-                            <h2 className="text-2xl font-semibold flex items-center gap-2">
-                                <Play size={20} className="text-success" />
-                                How to Use Space Acoustics
-                            </h2>
-                        </CardHeader>
-                        <Divider />
-                        <CardBody className="pt-4">
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                <div className="flex items-start gap-3">
-                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary text-white font-bold shrink-0 text-sm">
-                                        1
-                                    </div>
-                                    <div>
-                                        <h4 className="font-medium mb-1">Configure Room</h4>
-                                        <p className="text-sm text-default-600">
-                                            Enter room dimensions (L x W x H), select room type and ceiling style.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-success text-white font-bold shrink-0 text-sm">
-                                        2
-                                    </div>
-                                    <div>
-                                        <h4 className="font-medium mb-1">Select Materials</h4>
-                                        <p className="text-sm text-default-600">
-                                            Choose materials for floor, ceiling, and walls from 17 acoustic options.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold shrink-0 text-sm">
-                                        3
-                                    </div>
-                                    <div>
-                                        <h4 className="font-medium mb-1">Set Environment</h4>
-                                        <p className="text-sm text-default-600">
-                                            Adjust temperature, humidity, occupancy, windows, and doors.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-warning text-white font-bold shrink-0 text-sm">
-                                        4
-                                    </div>
-                                    <div>
-                                        <h4 className="font-medium mb-1">View Results</h4>
-                                        <p className="text-sm text-default-600">
-                                            Real-time RT60, speech metrics, room modes, and recommendations update
-                                            automatically.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </CardBody>
-                    </Card>
-
                     {/* Advanced Metrics Title */}
                     <h3
                         className="text-2xl font-bold flex items-center gap-2 lg:col-span-2 mt-4"
@@ -712,6 +608,262 @@ export default function Home() {
                                     </p>
                                 </li>
                             </ul>
+                        </CardBody>
+                    </Card>
+                </div>
+            </section>
+
+            <Divider className="my-10" />
+
+            {/* Materials Reports Section */}
+            <section className="mb-10">
+                <h2
+                    className="text-3xl font-bold mb-6 flex items-center gap-2"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                    <FileText size={24} className="text-primary" />
+                    Materials Features
+                </h2>
+                <p className="text-default-600 mb-6">
+                    Generate comprehensive material lists for building audio studios, home studios, rehearsal rooms, and
+                    professional acoustic spaces. Choose from 12 build types and 34 specialized materials.
+                </p>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Build Types */}
+                    <Card className="bg-default-50">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Box size={20} className="text-primary" />
+                                12 Build Types
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <div className="grid grid-cols-2 gap-2">
+                                {[
+                                    "Recording Studio",
+                                    "Home Studio",
+                                    "Rehearsal Room",
+                                    "Control Room",
+                                    "Broadcast Studio",
+                                    "Podcast Room",
+                                    "Voiceover Booth",
+                                    "Mixing Room",
+                                    "Mastering Suite",
+                                    "Live Room",
+                                    "Isolation Booth",
+                                    "Home Theater",
+                                ].map((type) => (
+                                    <div
+                                        key={type}
+                                        className="p-2 rounded-lg bg-primary/5 border border-primary/10 text-sm"
+                                    >
+                                        {type}
+                                    </div>
+                                ))}
+                            </div>
+                        </CardBody>
+                    </Card>
+
+                    {/* Acoustic Treatment */}
+                    <Card className="bg-default-50">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Package size={20} className="text-secondary" />
+                                15 Acoustic Treatment Options
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex items-start gap-2">
+                                    <span className="font-medium text-secondary">Panels:</span>
+                                    <span className="text-default-600">
+                                        Acoustic Foam, Fabric-Wrapped Panels, Wooden Slats, Perforated Wood
+                                    </span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <span className="font-medium text-secondary">Bass Control:</span>
+                                    <span className="text-default-600">Bass Traps, Corner Bass Traps</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <span className="font-medium text-secondary">Diffusion:</span>
+                                    <span className="text-default-600">Diffuser Panels</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <span className="font-medium text-secondary">Ceiling:</span>
+                                    <span className="text-default-600">Acoustic Tiles, Cloud Panels</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                    <span className="font-medium text-secondary">Portable:</span>
+                                    <span className="text-default-600">
+                                        Vocal Booth, Reflection Filter, Isolation Pads
+                                    </span>
+                                </li>
+                            </ul>
+                        </CardBody>
+                    </Card>
+
+                    {/* Insulation Materials */}
+                    <Card className="bg-default-50 lg:col-span-2">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Shield size={20} className="text-warning" />
+                                19 Insulation & Soundproofing Materials
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div className="p-4 rounded-lg bg-warning/10 border border-warning/20">
+                                    <h4 className="font-medium text-warning mb-2">Wall Insulation</h4>
+                                    <p className="text-sm text-default-600">
+                                        Rockwool, Fiberglass, Mass Loaded Vinyl, Green Glue, Resilient Channels,
+                                        Soundproof Drywall, Double Layer Drywall
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-success/10 border border-success/20">
+                                    <h4 className="font-medium text-success mb-2">Floor & Ceiling</h4>
+                                    <p className="text-sm text-default-600">
+                                        Floating Floor System, Carpet with Acoustic Underlay, Rubber Flooring, Suspended
+                                        Acoustic Ceiling
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
+                                    <h4 className="font-medium text-primary mb-2">Openings & HVAC</h4>
+                                    <p className="text-sm text-default-600">
+                                        Soundproof Door, Door Seals, Window Plugs, Double Glazing, Studio Glass,
+                                        Acoustic Ventilation
+                                    </p>
+                                </div>
+                            </div>
+                        </CardBody>
+                    </Card>
+
+                    {/* Absorption Coefficients Analysis */}
+                    <h3
+                        className="text-2xl font-bold flex items-center gap-2 lg:col-span-2 mt-4"
+                        style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    >
+                        <BarChart3 size={24} className="text-secondary" />
+                        17 Surface Materials - Absorption Analysis
+                    </h3>
+
+                    {/* Hard Surfaces */}
+                    <Card className="bg-default-50">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Layers size={20} className="text-danger" />
+                                Hard Surfaces (Low Absorption)
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex justify-between">
+                                    <span>Concrete/Painted</span>
+                                    <span className="text-danger font-medium">0.01 - 0.03</span>
+                                </li>
+                                <li className="flex justify-between">
+                                    <span>Brick (Unglazed)</span>
+                                    <span className="text-danger font-medium">0.03 - 0.07</span>
+                                </li>
+                                <li className="flex justify-between">
+                                    <span>Plaster/Gypsum</span>
+                                    <span className="text-danger font-medium">0.02 - 0.05</span>
+                                </li>
+                                <li className="flex justify-between">
+                                    <span>Ceramic Tile</span>
+                                    <span className="text-danger font-medium">0.01 - 0.02</span>
+                                </li>
+                                <li className="flex justify-between">
+                                    <span>Glass</span>
+                                    <span className="text-warning font-medium">0.04 - 0.35</span>
+                                </li>
+                            </ul>
+                        </CardBody>
+                    </Card>
+
+                    {/* Wood & Fabric */}
+                    <Card className="bg-default-50">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Layers size={20} className="text-warning" />
+                                Wood & Fabric (Medium Absorption)
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <ul className="space-y-2 text-sm">
+                                <li className="flex justify-between">
+                                    <span>Wood Paneling</span>
+                                    <span className="text-warning font-medium">0.06 - 0.15</span>
+                                </li>
+                                <li className="flex justify-between">
+                                    <span>Wood Floor</span>
+                                    <span className="text-warning font-medium">0.06 - 0.15</span>
+                                </li>
+                                <li className="flex justify-between">
+                                    <span>Carpet (Thin)</span>
+                                    <span className="text-warning font-medium">0.05 - 0.50</span>
+                                </li>
+                                <li className="flex justify-between">
+                                    <span>Carpet (Heavy)</span>
+                                    <span className="text-success font-medium">0.10 - 0.65</span>
+                                </li>
+                                <li className="flex justify-between">
+                                    <span>Curtains (Light)</span>
+                                    <span className="text-warning font-medium">0.05 - 0.45</span>
+                                </li>
+                                <li className="flex justify-between">
+                                    <span>Curtains (Heavy)</span>
+                                    <span className="text-success font-medium">0.15 - 0.70</span>
+                                </li>
+                            </ul>
+                        </CardBody>
+                    </Card>
+
+                    {/* Acoustic Treatment */}
+                    <Card className="bg-default-50 lg:col-span-2">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Layers size={20} className="text-success" />
+                                Acoustic Treatment (High Absorption)
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <div className="p-3 rounded-lg bg-success/10 border border-success/20">
+                                    <h4 className="font-medium text-success mb-1">Acoustic Ceiling Tile</h4>
+                                    <p className="text-sm text-default-600">0.50 - 0.80 coefficient</p>
+                                </div>
+                                <div className="p-3 rounded-lg bg-success/10 border border-success/20">
+                                    <h4 className="font-medium text-success mb-1">Acoustic Foam</h4>
+                                    <p className="text-sm text-default-600">0.10 - 0.90 coefficient</p>
+                                </div>
+                                <div className="p-3 rounded-lg bg-success/10 border border-success/20">
+                                    <h4 className="font-medium text-success mb-1">Acoustic Panel</h4>
+                                    <p className="text-sm text-default-600">0.30 - 0.85 coefficient</p>
+                                </div>
+                                <div className="p-3 rounded-lg bg-success/10 border border-success/20">
+                                    <h4 className="font-medium text-success mb-1">Fabric-wrapped Panel</h4>
+                                    <p className="text-sm text-default-600">0.20 - 0.85 coefficient</p>
+                                </div>
+                                <div className="p-3 rounded-lg bg-success/10 border border-success/20">
+                                    <h4 className="font-medium text-success mb-1">Perforated Panel</h4>
+                                    <p className="text-sm text-default-600">0.35 - 0.90 coefficient</p>
+                                </div>
+                                <div className="p-3 rounded-lg bg-secondary/10 border border-secondary/20">
+                                    <h4 className="font-medium text-secondary mb-1">Diffuser Panel</h4>
+                                    <p className="text-sm text-default-600">0.15 - 0.60 coefficient</p>
+                                </div>
+                            </div>
+                            <p className="text-xs text-default-500 mt-4">
+                                Absorption coefficients vary by frequency (125Hz - 4kHz). Higher values indicate more
+                                sound absorption.
+                            </p>
                         </CardBody>
                     </Card>
                 </div>

@@ -23,12 +23,13 @@ const navItems = [
 ];
 */
 
-import { AudioWaveform, Menu, X, Home, Waves } from "lucide-react";
+import { AudioWaveform, Menu, X, Home, Waves, FileText } from "lucide-react";
 
 const navItems = [
     { name: "Home", href: "/home", icon: Home },
     { name: "Meter", href: "/meter", icon: AudioWaveform },
     { name: "Acoustics", href: "/acoustics", icon: Waves },
+    { name: "Materials", href: "/materials", icon: FileText },
 ];
 
 interface LayoutProps {

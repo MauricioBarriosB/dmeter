@@ -108,3 +108,41 @@ export async function clearAcousticsHistory(): Promise<void> {
     if (!(await validateStorageKey())) return;
     localStorage.removeItem(acousticsStorageKey);
 }
+
+// Materials Reports Storage
+export interface MaterialsReportRecord {
+    id: string;
+    reportName: string;
+    buildType: string;
+    buildTypeLabel: string;
+    selectedMaterials: string[];
+    selectedMaterialsLabels: string[];
+    createdAt: string;
+}
+
+const materialsStorageKey = `${storageKey}_materials`;
+
+export async function loadMaterialsHistory(): Promise<MaterialsReportRecord[]> {
+    if (!(await validateStorageKey())) return [];
+
+    const stored = localStorage.getItem(materialsStorageKey);
+    if (stored) {
+        try {
+            return JSON.parse(stored) as MaterialsReportRecord[];
+        } catch {
+            console.error("Failed to parse stored materials history");
+            return [];
+        }
+    }
+    return [];
+}
+
+export async function saveMaterialsHistory(history: MaterialsReportRecord[]): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.setItem(materialsStorageKey, JSON.stringify(history));
+}
+
+export async function clearMaterialsHistory(): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.removeItem(materialsStorageKey);
+}
