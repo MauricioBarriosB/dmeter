@@ -7,9 +7,7 @@
 
 [https://mauriciobarriosb.github.io/dmeter](https://mauriciobarriosb.github.io/dmeter)
 
-## Features:
-
-### Audio Meter:
+# Audio Meter Features:
 
 - Web Audio API - Captures microphone input with disabled echo cancellation, noise suppression, and auto gain for accurate readings
 - audiomotion-analyzer - Shows a real-time spectrum visualization with rainbow gradient, LED bars, and peak detection
@@ -64,7 +62,7 @@ Complete breakdown of all calculated metrics including Peak Level, Average Level
 
 ---
 
-## Space Acoustics (Professional)
+# Space Acoustics Features
 
 Professional room acoustic analysis designed for audio engineers and acoustic consultants. Features multi-surface materials, environmental factors, and frequency-dependent calculations.
 
@@ -158,7 +156,7 @@ The analysis provides automatic recommendations based on:
 
 ---
 
-## Materials Features
+# Materials Features
 
 Generate comprehensive material lists for building audio studios, home studios, rehearsal rooms, and professional acoustic spaces. Choose from 12 build types and 34 specialized materials.
 
@@ -170,21 +168,21 @@ Generate comprehensive material lists for building audio studios, home studios, 
 
 ### 15 Acoustic Treatment Options:
 
-| Category      | Materials                                              |
-| ------------- | ------------------------------------------------------ |
-| Panels        | Acoustic Foam, Fabric-Wrapped Panels, Wooden Slats, Perforated Wood |
-| Bass Control  | Bass Traps, Corner Bass Traps                          |
-| Diffusion     | Diffuser Panels                                        |
-| Ceiling       | Acoustic Tiles, Cloud Panels                           |
-| Portable      | Vocal Booth, Reflection Filter, Isolation Pads, Decoupling Mounts, Acoustic Curtains |
+| Category     | Materials                                                                            |
+| ------------ | ------------------------------------------------------------------------------------ |
+| Panels       | Acoustic Foam, Fabric-Wrapped Panels, Wooden Slats, Perforated Wood                  |
+| Bass Control | Bass Traps, Corner Bass Traps                                                        |
+| Diffusion    | Diffuser Panels                                                                      |
+| Ceiling      | Acoustic Tiles, Cloud Panels                                                         |
+| Portable     | Vocal Booth, Reflection Filter, Isolation Pads, Decoupling Mounts, Acoustic Curtains |
 
 ### 19 Insulation & Soundproofing Materials:
 
-| Category        | Materials                                                                                     |
-| --------------- | --------------------------------------------------------------------------------------------- |
+| Category        | Materials                                                                                                         |
+| --------------- | ----------------------------------------------------------------------------------------------------------------- |
 | Wall Insulation | Rockwool, Fiberglass, Mass Loaded Vinyl, Green Glue, Resilient Channels, Soundproof Drywall, Double Layer Drywall |
-| Floor & Ceiling | Floating Floor System, Carpet with Acoustic Underlay, Rubber Flooring, Suspended Acoustic Ceiling |
-| Openings & HVAC | Soundproof Door, Door Seals, Window Plugs, Double Glazing, Studio Glass, Acoustic Ventilation, Cable Management |
+| Floor & Ceiling | Floating Floor System, Carpet with Acoustic Underlay, Rubber Flooring, Suspended Acoustic Ceiling                 |
+| Openings & HVAC | Soundproof Door, Door Seals, Window Plugs, Double Glazing, Studio Glass, Acoustic Ventilation, Cable Management   |
 
 ### 17 Surface Materials - Absorption Analysis:
 
