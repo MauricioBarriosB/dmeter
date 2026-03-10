@@ -1,8 +1,9 @@
 # DMETER - React + TypeScript + Vite
 
 - Analyze audio input from your microphone with real-time decibel monitoring. Track current, peak, average, and range dB values while viewing a live frequency spectrum visualization.
-- DMeter also include features for calculate room acoustics with professional RT60, speech intelligibility metrics, and frequency-dependent analysis for audio engineers and acoustic consultants.
-- All analysis sessions are automatically saved for review and comparison.
+- Calculate room acoustics with professional RT60, speech intelligibility metrics, and frequency-dependent analysis for audio engineers and acoustic consultants.
+- Generate comprehensive materials reports for building professional acoustic spaces with 12 build types, 15 acoustic treatment options, and 19 insulation materials.
+- All analysis sessions and reports are automatically saved for review and comparison.
 
 [https://mauriciobarriosb.github.io/dmeter](https://mauriciobarriosb.github.io/dmeter)
 
@@ -27,13 +28,6 @@
 - **Professional Metrics** - EDT, Bass Ratio, Critical Distance, Mean Free Path
 - **Room Modes Analysis** - Axial modes with Schroeder frequency threshold
 - **Intelligent Recommendations** - Acoustic treatment suggestions based on analysis
-
-## How to Use Meter:
-
-1. **Navigate to Meter** - Go to the Meter page using the navigation menu.
-2. **Start Analysis** - Press "Start Analysis" to request microphone permission and begin recording.
-3. **While Recording** - See live spectrum and real-time dB values updating as you capture audio.
-4. **Finish Analysis** - Press "Finish Analysis" to stop recording and save to history.
 
 ## dB Color coding:
 
@@ -73,13 +67,6 @@ Complete breakdown of all calculated metrics including Peak Level, Average Level
 ## Space Acoustics (Professional)
 
 Professional room acoustic analysis designed for audio engineers and acoustic consultants. Features multi-surface materials, environmental factors, and frequency-dependent calculations.
-
-### How to Use Space Acoustics:
-
-1. **Configure Room** - Enter room dimensions (Length x Width x Height), select room type (e.g., Recording Studio, Control Room, Classroom) and ceiling style (Flat, Vault, Curved, etc.)
-2. **Select Materials** - Choose materials for floor, ceiling, and walls from 17 acoustic options. Each surface can have different materials with frequency-dependent absorption coefficients.
-3. **Set Environment** - Adjust temperature (affects speed of sound), humidity (affects air absorption), occupancy (people absorption), and number of windows/doors.
-4. **View Results** - Real-time calculations update automatically as you modify parameters. Review RT60, speech intelligibility metrics, room modes, and intelligent recommendations.
 
 ### Room Configuration:
 
@@ -168,3 +155,69 @@ The analysis provides automatic recommendations based on:
 - Speech intelligibility scores
 - Bass ratio (warmth/brightness)
 - Modal region issues
+
+---
+
+## Materials Features
+
+Generate comprehensive material lists for building audio studios, home studios, rehearsal rooms, and professional acoustic spaces. Choose from 12 build types and 34 specialized materials.
+
+### 12 Build Types:
+
+- Recording Studio, Home Studio, Rehearsal Room, Control Room
+- Broadcast Studio, Podcast Room, Voiceover Booth, Mixing Room
+- Mastering Suite, Live Room, Isolation Booth, Home Theater
+
+### 15 Acoustic Treatment Options:
+
+| Category      | Materials                                              |
+| ------------- | ------------------------------------------------------ |
+| Panels        | Acoustic Foam, Fabric-Wrapped Panels, Wooden Slats, Perforated Wood |
+| Bass Control  | Bass Traps, Corner Bass Traps                          |
+| Diffusion     | Diffuser Panels                                        |
+| Ceiling       | Acoustic Tiles, Cloud Panels                           |
+| Portable      | Vocal Booth, Reflection Filter, Isolation Pads, Decoupling Mounts, Acoustic Curtains |
+
+### 19 Insulation & Soundproofing Materials:
+
+| Category        | Materials                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------- |
+| Wall Insulation | Rockwool, Fiberglass, Mass Loaded Vinyl, Green Glue, Resilient Channels, Soundproof Drywall, Double Layer Drywall |
+| Floor & Ceiling | Floating Floor System, Carpet with Acoustic Underlay, Rubber Flooring, Suspended Acoustic Ceiling |
+| Openings & HVAC | Soundproof Door, Door Seals, Window Plugs, Double Glazing, Studio Glass, Acoustic Ventilation, Cable Management |
+
+### 17 Surface Materials - Absorption Analysis:
+
+#### Hard Surfaces (Low Absorption):
+
+| Material         | Absorption Coefficient Range |
+| ---------------- | ---------------------------- |
+| Concrete/Painted | 0.01 - 0.03                  |
+| Brick (Unglazed) | 0.03 - 0.07                  |
+| Plaster/Gypsum   | 0.02 - 0.05                  |
+| Ceramic Tile     | 0.01 - 0.02                  |
+| Glass            | 0.04 - 0.35                  |
+
+#### Wood & Fabric (Medium Absorption):
+
+| Material         | Absorption Coefficient Range |
+| ---------------- | ---------------------------- |
+| Wood Paneling    | 0.06 - 0.15                  |
+| Wood Floor       | 0.06 - 0.15                  |
+| Carpet (Thin)    | 0.05 - 0.50                  |
+| Carpet (Heavy)   | 0.10 - 0.65                  |
+| Curtains (Light) | 0.05 - 0.45                  |
+| Curtains (Heavy) | 0.15 - 0.70                  |
+
+#### Acoustic Treatment (High Absorption):
+
+| Material              | Absorption Coefficient Range |
+| --------------------- | ---------------------------- |
+| Acoustic Ceiling Tile | 0.50 - 0.80                  |
+| Acoustic Foam         | 0.10 - 0.90                  |
+| Acoustic Panel        | 0.30 - 0.85                  |
+| Fabric-wrapped Panel  | 0.20 - 0.85                  |
+| Perforated Panel      | 0.35 - 0.90                  |
+| Diffuser Panel        | 0.15 - 0.60                  |
+
+> Absorption coefficients vary by frequency (125Hz - 4kHz). Higher values indicate more sound absorption.
