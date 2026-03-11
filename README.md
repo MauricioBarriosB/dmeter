@@ -244,6 +244,9 @@ Generate comprehensive instrument lists for musical ensembles, bands, and orches
 
 ### Report Management:
 
-- Create, edit, and delete instrument reports
-- All reports saved to localStorage for persistence
-- View report history with ensemble type, genre, and selected instruments
+| Feature            | Description                                                                 |
+| ------------------ | --------------------------------------------------------------------------- |
+| Create & Edit      | Generate new instrument reports or edit existing ones with form validation  |
+| Persistent Storage | All reports automatically saved to localStorage across browser sessions     |
+| History & Review   | View complete report history with ensemble type, genre, and instruments     |
+| Delete & Clear     | Remove individual reports or clear entire history with confirmation         |
