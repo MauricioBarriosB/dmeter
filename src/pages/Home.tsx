@@ -22,7 +22,7 @@ import {
     Package,
     Shield,
 } from "lucide-react";
-import { Button, Card, CardBody, CardHeader, Chip, Divider } from "@heroui/react";
+import { Accordion, AccordionItem, Button, Card, CardBody, CardHeader, Chip, Divider } from "@heroui/react";
 import { Link } from "react-router-dom";
 
 export default function Home() {
@@ -107,16 +107,20 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Features Section */}
-            <section className="mb-10">
-                <h2
-                    className="text-3xl font-bold mb-6 flex items-center gap-2"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            {/* Features Accordion */}
+            <Accordion variant="splitted" selectionMode="multiple" defaultExpandedKeys={["meter"]}>
+                {/* Audio Meter Features */}
+                <AccordionItem
+                    key="meter"
+                    aria-label="Audio Meter Features"
+                    title={
+                        <span className="flex items-center gap-2 text-xl font-bold">
+                            <Mic size={24} className="text-warning" />
+                            Audio Meter Features
+                        </span>
+                    }
                 >
-                    <Mic size={24} className="text-warning" />
-                    Audio Meter Features
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
                     <Card className="bg-default-50">
                         <CardBody className="flex flex-row items-start gap-4">
                             <div className="p-2 rounded-lg bg-primary/10">
@@ -203,17 +207,12 @@ export default function Home() {
                         </CardBody>
                     </Card>
                 </div>
-            </section>
 
-            {/* dB Color Coding Section */}
-            <section className="mb-10">
-                <h2
-                    className="text-2xl font-bold mb-6 flex items-center gap-2"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                    <Gauge size={24} className="text-primary" />
-                    dB Color Coding
-                </h2>
+                    {/* dB Color Coding */}
+                    <h3 className="text-2xl font-bold mb-4 mt-6 flex items-center gap-2">
+                        <Gauge size={24} className="text-primary" />
+                        dB Color Coding
+                    </h3>
                 <Card className="bg-default-50">
                     <CardBody>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -259,22 +258,17 @@ export default function Home() {
                         </div>
                     </CardBody>
                 </Card>
-            </section>
 
-            {/* Advanced Metrics Section */}
-            <section className="mb-10">
-                <h2
-                    className="text-2xl font-bold mb-6 flex items-center gap-2"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                    <BarChart3 size={24} className="text-secondary" />
-                    Advanced Metrics
-                </h2>
-                <p className="text-default-600 mb-6">
-                    Access advanced metrics by clicking the Activity icon in the Analysis History table.
-                </p>
+                    {/* Advanced Metrics */}
+                    <h3 className="text-2xl font-bold mb-4 mt-6 flex items-center gap-2">
+                        <BarChart3 size={24} className="text-secondary" />
+                        Advanced Metrics
+                    </h3>
+                    <p className="text-default-600 mb-4">
+                        Access advanced metrics by clicking the Activity icon in the Analysis History table.
+                    </p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Loudness Analysis */}
                     <Card className="bg-default-50">
                         <CardHeader className="pb-2">
@@ -374,26 +368,26 @@ export default function Home() {
                         </CardBody>
                     </Card>
                 </div>
-            </section>
+                </AccordionItem>
 
-            <Divider className="my-10" />
-
-            {/* Space Acoustics Section */}
-            <section className="mb-10">
-                <h2
-                    className="text-3xl font-bold mb-6 flex items-center gap-2"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                {/* Space Acoustics Features */}
+                <AccordionItem
+                    key="acoustics"
+                    aria-label="Space Acoustics Features"
+                    title={
+                        <span className="flex items-center gap-2 text-xl font-bold">
+                            <Waves size={24} className="text-secondary" />
+                            Space Acoustics Features
+                        </span>
+                    }
                 >
-                    <Waves size={24} className="text-secondary" />
-                    Space Acoustics Features
-                </h2>
-                <p className="text-default-600 mb-6">
-                    Professional room acoustic analysis with multi-surface materials, environmental factors, and
-                    frequency-dependent calculations. Designed for audio engineers and acoustic consultants.
-                </p>
+                    <p className="text-default-600 mb-4">
+                        Professional room acoustic analysis with multi-surface materials, environmental factors, and
+                        frequency-dependent calculations. Designed for audio engineers and acoustic consultants.
+                    </p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Room Configuration */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {/* Room Configuration */}
                     <Card className="bg-default-50">
                         <CardHeader className="pb-2">
                             <h3 className="font-semibold flex items-center gap-2">
@@ -627,27 +621,27 @@ export default function Home() {
                         </CardBody>
                     </Card>
                 </div>
-            </section>
+                </AccordionItem>
 
-            <Divider className="my-10" />
-
-            {/* Materials Reports Section */}
-            <section className="mb-10">
-                <h2
-                    className="text-3xl font-bold mb-6 flex items-center gap-2"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                {/* Materials Features */}
+                <AccordionItem
+                    key="materials"
+                    aria-label="Materials Features"
+                    title={
+                        <span className="flex items-center gap-2 text-xl font-bold">
+                            <FileText size={24} className="text-primary" />
+                            Materials Features
+                        </span>
+                    }
                 >
-                    <FileText size={24} className="text-primary" />
-                    Materials Features
-                </h2>
-                <p className="text-default-600 mb-6">
-                    Generate comprehensive material lists for building audio studios, home studios, rehearsal rooms, and
-                    professional acoustic spaces. Choose from 12 build types and 59 specialized materials across 8
-                    categories.
-                </p>
+                    <p className="text-default-600 mb-4">
+                        Generate comprehensive material lists for building audio studios, home studios, rehearsal rooms,
+                        and professional acoustic spaces. Choose from 12 build types and 59 specialized materials across
+                        8 categories.
+                    </p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Build Types */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {/* Build Types */}
                     <Card className="bg-default-50">
                         <CardHeader className="pb-2">
                             <h3 className="font-semibold flex items-center gap-2">
@@ -893,20 +887,20 @@ export default function Home() {
                         </CardBody>
                     </Card>
                 </div>
-            </section>
+                </AccordionItem>
 
-            <Divider className="my-10" />
-
-            {/* Instruments Reports Section */}
-            <section className="mb-10">
-                <h2
-                    className="text-3xl font-bold mb-6 flex items-center gap-2"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                {/* Instruments Features */}
+                <AccordionItem
+                    key="instruments"
+                    aria-label="Instruments Features"
+                    title={
+                        <span className="flex items-center gap-2 text-xl font-bold">
+                            <Music size={24} className="text-success" />
+                            Instruments Features
+                        </span>
+                    }
                 >
-                    <Music size={24} className="text-success" />
-                    Instruments Features
-                </h2>
-                <p className="text-default-600 mb-6">
+                <p className="text-default-600 mb-4">
                     Generate comprehensive instrument lists for musical ensembles, bands, and orchestras. Select your
                     ensemble type, genre, and choose from a wide variety of instruments across 8 categories.
                 </p>
@@ -1083,7 +1077,8 @@ export default function Home() {
                         </CardBody>
                     </Card>
                 </div>
-            </section>
+                </AccordionItem>
+            </Accordion>
         </div>
     );
 }
