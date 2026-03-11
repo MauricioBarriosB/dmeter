@@ -37,10 +37,10 @@ jobs:
             - name: Build
               run: npm run build
               env:
-                VITE_GET_INSTANCE: ${{ secrets.VITE_GET_INSTANCE }}
-                VITE_VALID_LICENSE_HASH: ${{ secrets.VITE_VALID_LICENSE_HASH }}
-                VITE_STORAGE_KEY: ${{ secrets.VITE_STORAGE_KEY }}
-                VITE_STORAGE_KEY_HASH: ${{ secrets.VITE_STORAGE_KEY_HASH }}
+                  VITE_GET_INSTANCE: ${{ secrets.VITE_GET_INSTANCE }}
+                  VITE_VALID_LICENSE_HASH: ${{ secrets.VITE_VALID_LICENSE_HASH }}
+                  VITE_STORAGE_KEY: ${{ secrets.VITE_STORAGE_KEY }}
+                  VITE_STORAGE_KEY_HASH: ${{ secrets.VITE_STORAGE_KEY_HASH }}
 
             - name: Setup Pages
               uses: actions/configure-pages@v5
@@ -59,4 +59,4 @@ jobs:
         steps:
             - name: Deploy to GitHub Pages
               id: deployment
-              uses: actions/deploy-pages@v5
+              uses: actions/deploy-pages@v4
