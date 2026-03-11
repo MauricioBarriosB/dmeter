@@ -3,8 +3,8 @@ import { Waves, Play, HelpCircle } from "lucide-react";
 import { Button, Modal, ModalContent, ModalHeader, ModalBody, useDisclosure } from "@heroui/react";
 import { loadAcousticsHistory, saveAcousticsHistory, type AcousticsRecord } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
-import AcousticsForm from "../components/AcousticsForm";
-import AcousticsHistoryTable from "../components/AcousticsHistoryTable";
+import AcousticsForm from "../components/acoustics/AcousticsForm";
+import AcousticsHistoryTable from "../components/acoustics/AcousticsHistoryTable";
 import UnauthorizedAlert from "../components/globals/UnauthorizedAlert";
 
 export default function Acoustics() {
