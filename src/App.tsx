@@ -16,6 +16,8 @@ const Acoustics = lazy(() => import("./pages/Acoustics"));
 const DetailAcoustics = lazy(() => import("./pages/DetailAcoustics"));
 const Materials = lazy(() => import("./pages/Materials"));
 const DetailMaterials = lazy(() => import("./pages/DetailMaterials"));
+const Instruments = lazy(() => import("./pages/Instruments"));
+const DetailInstruments = lazy(() => import("./pages/DetailInstruments"));
 
 function PageLoader() {
     return (
@@ -48,6 +50,8 @@ function App() {
                         <Route path="/acoustics/:id" element={<DetailAcoustics />} />
                         <Route path="/materials" element={<Materials />} />
                         <Route path="/materials/:id" element={<DetailMaterials />} />
+                        <Route path="/instruments" element={<Instruments />} />
+                        <Route path="/instruments/:id" element={<DetailInstruments />} />
                     </Routes>
                 </Suspense>
             </Layout>

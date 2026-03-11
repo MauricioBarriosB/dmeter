@@ -23,13 +23,14 @@ const navItems = [
 ];
 */
 
-import { AudioWaveform, Menu, X, Home, Waves, FileText } from "lucide-react";
+import { AudioWaveform, Menu, X, Home, Waves, FileText, Music } from "lucide-react";
 
 const navItems = [
     { name: "Home", href: "/home", icon: Home },
     { name: "Meter", href: "/meter", icon: AudioWaveform },
     { name: "Acoustics", href: "/acoustics", icon: Waves },
     { name: "Materials", href: "/materials", icon: FileText },
+    { name: "Instruments", href: "/instruments", icon: Music },
 ];
 
 interface LayoutProps {
@@ -150,7 +151,7 @@ export default function Layout({ children }: LayoutProps) {
             <main className="flex-1 p-6 lg:p-8">{children}</main>
 
             {/* Footer */}
-            <footer className="border-t border-default-100 py-6 px-8 bg-gray-950">
+            <footer className="border-t border-default-100 py-6 px-8 bg-black">
                 <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-default-600">
                         © {new Date().getFullYear()} DMeter. All rights reserved.

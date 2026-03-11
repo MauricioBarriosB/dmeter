@@ -6,6 +6,7 @@ import type { AnalysisRecord } from "../components/AnalysisHistoryTable";
 import { loadAnalysisHistory } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
 import { formatDate, formatDuration, formatFrequency } from "../helpers/spectrumPeaksHelper";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
 import {
     calculateCrestFactor,
     calculateDynamicRange,
@@ -16,7 +17,6 @@ import {
     calculateBandEnergy,
     getBrightnessClassification,
 } from "../helpers/advancedMetrics";
-import LicenseInvalid from "../components/LicenseInvalid";
 
 export default function DetailMetrics() {
     const { id } = useParams<{ id: string }>();
@@ -39,15 +39,7 @@ export default function DetailMetrics() {
         }
     }, [id]);
 
-    if (isValid === null) {
-        return (
-            <div className="flex items-center justify-center min-h-100">
-                <p className="text-lg text-default-500">Loading...</p>
-            </div>
-        );
-    }
-
-    if (!isValid) return <LicenseInvalid />;
+    if (!isValid) return <UnauthorizedAlert />;
 
     if (notFound) {
         return (

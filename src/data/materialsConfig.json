@@ -1,0 +1,133 @@
+{
+  "buildTypes": [
+    { "key": "recording_studio", "label": "Recording Studio" },
+    { "key": "home_studio", "label": "Home Studio" },
+    { "key": "rehearsal_room", "label": "Rehearsal Room" },
+    { "key": "control_room", "label": "Control Room" },
+    { "key": "broadcast_studio", "label": "Broadcast Studio" },
+    { "key": "podcast_room", "label": "Podcast Room" },
+    { "key": "voiceover_booth", "label": "Voiceover Booth" },
+    { "key": "mixing_room", "label": "Mixing Room" },
+    { "key": "mastering_suite", "label": "Mastering Suite" },
+    { "key": "live_room", "label": "Live Room" },
+    { "key": "isolation_booth", "label": "Isolation Booth" },
+    { "key": "home_theater", "label": "Home Theater" }
+  ],
+  "categories": [
+    {
+      "key": "absorption",
+      "label": "Absorption Panels",
+      "color": "secondary",
+      "options": [
+        { "key": "acoustic_foam", "label": "Acoustic Foam Panels" },
+        { "key": "acoustic_panels", "label": "Fabric-Wrapped Acoustic Panels" },
+        { "key": "wooden_slats", "label": "Wooden Slat Panels" },
+        { "key": "perforated_panels", "label": "Perforated Wood Panels" },
+        { "key": "acoustic_fabric", "label": "Acoustic Fabric (Guilford of Maine)" }
+      ]
+    },
+    {
+      "key": "bass",
+      "label": "Bass Control",
+      "color": "danger",
+      "options": [
+        { "key": "bass_traps", "label": "Bass Traps" },
+        { "key": "corner_bass_traps", "label": "Corner Bass Traps" },
+        { "key": "helmholtz_resonators", "label": "Helmholtz Resonators" },
+        { "key": "membrane_absorbers", "label": "Membrane Absorbers" }
+      ]
+    },
+    {
+      "key": "diffusion",
+      "label": "Diffusion",
+      "color": "warning",
+      "options": [
+        { "key": "diffusers", "label": "Diffuser Panels" },
+        { "key": "qrd_diffusers", "label": "QRD Diffusers (Quadratic Residue)" },
+        { "key": "skyline_diffusers", "label": "Skyline Diffusers (2D)" },
+        { "key": "polycylindrical_diffusers", "label": "Polycylindrical Diffusers" }
+      ]
+    },
+    {
+      "key": "ceiling_portable",
+      "label": "Ceiling & Portable",
+      "color": "success",
+      "options": [
+        { "key": "acoustic_ceiling_tiles", "label": "Acoustic Ceiling Tiles" },
+        { "key": "cloud_panels", "label": "Ceiling Cloud Panels" },
+        { "key": "acoustic_baffles", "label": "Acoustic Baffles (Hanging)" },
+        { "key": "acoustic_curtains", "label": "Acoustic Curtains" },
+        { "key": "gobo_panels", "label": "Gobo Panels (Portable Barriers)" },
+        { "key": "portable_booth", "label": "Portable Vocal Booth" },
+        { "key": "reflection_filter", "label": "Microphone Reflection Filter" },
+        { "key": "isolation_pads", "label": "Monitor Isolation Pads" },
+        { "key": "decoupling_mounts", "label": "Decoupling Mounts" }
+      ]
+    },
+    {
+      "key": "wall_systems",
+      "label": "Wall Systems",
+      "color": "primary",
+      "options": [
+        { "key": "concrete_blocks", "label": "Concrete Blocks (CMU)" },
+        { "key": "staggered_stud_wall", "label": "Staggered Stud Wall System" },
+        { "key": "double_stud_wall", "label": "Double Stud Wall System" },
+        { "key": "plywood_osb", "label": "Plywood / OSB Sheathing" },
+        { "key": "mdf_panels", "label": "MDF Panels" },
+        { "key": "rockwool", "label": "Rockwool / Mineral Wool Insulation" },
+        { "key": "fiberglass", "label": "Fiberglass Insulation" },
+        { "key": "mass_loaded_vinyl", "label": "Mass Loaded Vinyl (MLV)" },
+        { "key": "green_glue", "label": "Green Glue Compound" },
+        { "key": "resilient_channels", "label": "Resilient Channels" },
+        { "key": "soundproof_drywall", "label": "Soundproof Drywall" },
+        { "key": "double_drywall", "label": "Double Layer Drywall" }
+      ]
+    },
+    {
+      "key": "sealing",
+      "label": "Sealing & Openings",
+      "color": "default",
+      "options": [
+        { "key": "acoustic_caulk", "label": "Acoustic Caulk / Sealant" },
+        { "key": "acoustical_sealant", "label": "Acoustical Sealant (Non-Hardening)" },
+        { "key": "weatherstripping", "label": "Weatherstripping" },
+        { "key": "putty_pads", "label": "Putty Pads (Electrical Boxes)" },
+        { "key": "door_seals", "label": "Door Seals & Sweeps" },
+        { "key": "automatic_door_bottom", "label": "Automatic Door Bottom (Drop Seal)" },
+        { "key": "soundproof_door", "label": "Soundproof Studio Door" },
+        { "key": "window_plugs", "label": "Window Plugs / Inserts" },
+        { "key": "double_glazing", "label": "Double Glazed Windows" },
+        { "key": "studio_glass", "label": "Studio Grade Glass" }
+      ]
+    },
+    {
+      "key": "floor",
+      "label": "Floor & Vibration",
+      "color": "secondary",
+      "options": [
+        { "key": "carpet_underlay", "label": "Carpet with Acoustic Underlay" },
+        { "key": "rubber_flooring", "label": "Rubber Flooring" },
+        { "key": "cork_underlayment", "label": "Cork Underlayment" },
+        { "key": "neoprene_pads", "label": "Neoprene Isolation Pads" },
+        { "key": "sorbothane_pads", "label": "Sorbothane Isolation Pads" },
+        { "key": "spring_isolators", "label": "Spring Isolators (Floor)" },
+        { "key": "joist_isolators", "label": "Joist Isolators (Ceiling/Floor)" },
+        { "key": "floating_floor", "label": "Floating Floor System" },
+        { "key": "drum_riser", "label": "Drum Riser (Floating Platform)" }
+      ]
+    },
+    {
+      "key": "hvac",
+      "label": "Ceiling & HVAC",
+      "color": "warning",
+      "options": [
+        { "key": "suspended_ceiling", "label": "Suspended Acoustic Ceiling" },
+        { "key": "isolation_hangers", "label": "Isolation Hangers (Duct/Pipe)" },
+        { "key": "duct_silencers", "label": "Duct Silencers / Mufflers" },
+        { "key": "flexible_duct", "label": "Flexible Duct (Noise Reduction)" },
+        { "key": "acoustic_ventilation", "label": "Acoustic Ventilation / HVAC" },
+        { "key": "cable_management", "label": "Cable Management Systems" }
+      ]
+    }
+  ]
+}

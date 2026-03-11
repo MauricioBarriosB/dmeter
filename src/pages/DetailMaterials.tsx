@@ -4,333 +4,47 @@ import { ArrowLeft, FileText, Hammer } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
 import { loadMaterialsHistory, type MaterialsReportRecord } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
-import LicenseInvalid from "../components/LicenseInvalid";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import materialDataJson from "../data/materialData.json";
 
 const formatDate = (isoString: string) => {
     const date = new Date(isoString);
     return date.toLocaleString();
 };
 
+type MaterialCategory =
+    | "Absorption Panels"
+    | "Bass Control"
+    | "Diffusion"
+    | "Ceiling & Portable"
+    | "Wall Systems"
+    | "Sealing & Openings"
+    | "Floor & Vibration"
+    | "Ceiling & HVAC";
+
 interface MaterialProperties {
-    category: "Acoustic Treatment" | "Insulation Materials";
-    nrc: number; // Noise Reduction Coefficient (0-1)
-    stc: number | null; // Sound Transmission Class
-    density: string; // kg/m³ or description
-    thickness: string; // typical thickness
-    fireRating: string; // fire resistance class
-    application: string; // primary use
+    category: MaterialCategory;
+    nrc: number;
+    stc: number | null;
+    density: string;
+    thickness: string;
+    fireRating: string;
+    application: string;
 }
 
-const materialData: Record<string, MaterialProperties> = {
-    // Acoustic Treatment
-    acoustic_foam: {
-        category: "Acoustic Treatment",
-        nrc: 0.8,
-        stc: null,
-        density: "28-32 kg/m³",
-        thickness: "25-100 mm",
-        fireRating: "Class B",
-        application: "Mid-high frequency absorption",
-    },
-    acoustic_panels: {
-        category: "Acoustic Treatment",
-        nrc: 0.85,
-        stc: null,
-        density: "48-96 kg/m³",
-        thickness: "50-100 mm",
-        fireRating: "Class A",
-        application: "Broadband absorption",
-    },
-    bass_traps: {
-        category: "Acoustic Treatment",
-        nrc: 0.9,
-        stc: null,
-        density: "48-96 kg/m³",
-        thickness: "100-300 mm",
-        fireRating: "Class A",
-        application: "Low frequency absorption",
-    },
-    corner_bass_traps: {
-        category: "Acoustic Treatment",
-        nrc: 0.95,
-        stc: null,
-        density: "48-96 kg/m³",
-        thickness: "300-600 mm",
-        fireRating: "Class A",
-        application: "Corner low frequency control",
-    },
-    diffusers: {
-        category: "Acoustic Treatment",
-        nrc: 0.15,
-        stc: null,
-        density: "Variable",
-        thickness: "50-200 mm",
-        fireRating: "Class A-B",
-        application: "Sound scattering/diffusion",
-    },
-    acoustic_curtains: {
-        category: "Acoustic Treatment",
-        nrc: 0.55,
-        stc: 20,
-        density: "300-500 g/m²",
-        thickness: "3-10 mm",
-        fireRating: "Class B",
-        application: "Variable absorption/isolation",
-    },
-    acoustic_ceiling_tiles: {
-        category: "Acoustic Treatment",
-        nrc: 0.7,
-        stc: 35,
-        density: "80-150 kg/m³",
-        thickness: "15-25 mm",
-        fireRating: "Class A",
-        application: "Ceiling absorption",
-    },
-    cloud_panels: {
-        category: "Acoustic Treatment",
-        nrc: 0.85,
-        stc: null,
-        density: "48-80 kg/m³",
-        thickness: "50-100 mm",
-        fireRating: "Class A",
-        application: "Suspended ceiling absorption",
-    },
-    wooden_slats: {
-        category: "Acoustic Treatment",
-        nrc: 0.45,
-        stc: null,
-        density: "Variable",
-        thickness: "20-40 mm",
-        fireRating: "Class B-C",
-        application: "Aesthetic absorption/diffusion",
-    },
-    perforated_panels: {
-        category: "Acoustic Treatment",
-        nrc: 0.65,
-        stc: null,
-        density: "Variable",
-        thickness: "12-25 mm",
-        fireRating: "Class A",
-        application: "Tuned absorption",
-    },
-    acoustic_fabric: {
-        category: "Acoustic Treatment",
-        nrc: 0.1,
-        stc: null,
-        density: "200-400 g/m²",
-        thickness: "1-3 mm",
-        fireRating: "Class A",
-        application: "Panel covering",
-    },
-    isolation_pads: {
-        category: "Acoustic Treatment",
-        nrc: 0.2,
-        stc: null,
-        density: "Variable",
-        thickness: "20-50 mm",
-        fireRating: "Class B",
-        application: "Vibration isolation",
-    },
-    decoupling_mounts: {
-        category: "Acoustic Treatment",
-        nrc: 0.05,
-        stc: null,
-        density: "Variable",
-        thickness: "20-80 mm",
-        fireRating: "Class A",
-        application: "Structural decoupling",
-    },
-    portable_booth: {
-        category: "Acoustic Treatment",
-        nrc: 0.75,
-        stc: 25,
-        density: "Variable",
-        thickness: "50-150 mm",
-        fireRating: "Class B",
-        application: "Portable vocal isolation",
-    },
-    reflection_filter: {
-        category: "Acoustic Treatment",
-        nrc: 0.6,
-        stc: null,
-        density: "Variable",
-        thickness: "100-200 mm",
-        fireRating: "Class B",
-        application: "Microphone reflection control",
-    },
-    // Insulation Materials
-    rockwool: {
-        category: "Insulation Materials",
-        nrc: 0.95,
-        stc: 45,
-        density: "40-200 kg/m³",
-        thickness: "50-150 mm",
-        fireRating: "Class A1",
-        application: "Thermal/acoustic insulation",
-    },
-    fiberglass: {
-        category: "Insulation Materials",
-        nrc: 0.9,
-        stc: 42,
-        density: "12-48 kg/m³",
-        thickness: "50-150 mm",
-        fireRating: "Class A",
-        application: "Thermal/acoustic insulation",
-    },
-    mass_loaded_vinyl: {
-        category: "Insulation Materials",
-        nrc: 0.05,
-        stc: 27,
-        density: "4-8 kg/m²",
-        thickness: "1-6 mm",
-        fireRating: "Class A",
-        application: "Sound barrier/mass loading",
-    },
-    green_glue: {
-        category: "Insulation Materials",
-        nrc: 0.02,
-        stc: 9,
-        density: "1.4 kg/L",
-        thickness: "0.5-1 mm",
-        fireRating: "Class A",
-        application: "Damping compound",
-    },
-    resilient_channels: {
-        category: "Insulation Materials",
-        nrc: 0,
-        stc: 5,
-        density: "Steel",
-        thickness: "13 mm",
-        fireRating: "Class A",
-        application: "Wall decoupling",
-    },
-    soundproof_drywall: {
-        category: "Insulation Materials",
-        nrc: 0.05,
-        stc: 50,
-        density: "12-15 kg/m²",
-        thickness: "12-16 mm",
-        fireRating: "Class A",
-        application: "High-mass wall barrier",
-    },
-    double_drywall: {
-        category: "Insulation Materials",
-        nrc: 0.05,
-        stc: 45,
-        density: "20-25 kg/m²",
-        thickness: "25-32 mm",
-        fireRating: "Class A",
-        application: "Mass-loaded wall system",
-    },
-    acoustic_caulk: {
-        category: "Insulation Materials",
-        nrc: 0,
-        stc: null,
-        density: "1.5 kg/L",
-        thickness: "Variable",
-        fireRating: "Class A",
-        application: "Gap sealing",
-    },
-    door_seals: {
-        category: "Insulation Materials",
-        nrc: 0,
-        stc: 5,
-        density: "Variable",
-        thickness: "10-25 mm",
-        fireRating: "Class B",
-        application: "Door gap sealing",
-    },
-    soundproof_door: {
-        category: "Insulation Materials",
-        nrc: 0.1,
-        stc: 45,
-        density: "30-50 kg/m²",
-        thickness: "45-60 mm",
-        fireRating: "Class A",
-        application: "Sound isolation",
-    },
-    carpet_underlay: {
-        category: "Insulation Materials",
-        nrc: 0.55,
-        stc: 20,
-        density: "100-200 kg/m³",
-        thickness: "8-12 mm",
-        fireRating: "Class B",
-        application: "Floor impact isolation",
-    },
-    rubber_flooring: {
-        category: "Insulation Materials",
-        nrc: 0.15,
-        stc: 25,
-        density: "1000-1200 kg/m³",
-        thickness: "4-10 mm",
-        fireRating: "Class B",
-        application: "Impact/vibration isolation",
-    },
-    floating_floor: {
-        category: "Insulation Materials",
-        nrc: 0.1,
-        stc: 55,
-        density: "Variable",
-        thickness: "50-150 mm",
-        fireRating: "Class A",
-        application: "Complete floor decoupling",
-    },
-    suspended_ceiling: {
-        category: "Insulation Materials",
-        nrc: 0.75,
-        stc: 40,
-        density: "Variable",
-        thickness: "100-300 mm",
-        fireRating: "Class A",
-        application: "Ceiling isolation system",
-    },
-    window_plugs: {
-        category: "Insulation Materials",
-        nrc: 0.6,
-        stc: 35,
-        density: "Variable",
-        thickness: "50-150 mm",
-        fireRating: "Class B",
-        application: "Window sound blocking",
-    },
-    double_glazing: {
-        category: "Insulation Materials",
-        nrc: 0.05,
-        stc: 32,
-        density: "25 kg/m²",
-        thickness: "20-40 mm",
-        fireRating: "Class A",
-        application: "Window sound reduction",
-    },
-    studio_glass: {
-        category: "Insulation Materials",
-        nrc: 0.03,
-        stc: 48,
-        density: "40-60 kg/m²",
-        thickness: "30-50 mm",
-        fireRating: "Class A",
-        application: "High isolation viewing",
-    },
-    cable_management: {
-        category: "Insulation Materials",
-        nrc: 0,
-        stc: null,
-        density: "Variable",
-        thickness: "Variable",
-        fireRating: "Class A",
-        application: "Cable organization",
-    },
-    acoustic_ventilation: {
-        category: "Insulation Materials",
-        nrc: 0.3,
-        stc: 30,
-        density: "Variable",
-        thickness: "200-500 mm",
-        fireRating: "Class A",
-        application: "Silent air circulation",
-    },
-};
+const categoryColors: Record<MaterialCategory, "secondary" | "danger" | "warning" | "success" | "primary" | "default"> =
+    {
+        "Absorption Panels": "secondary",
+        "Bass Control": "danger",
+        Diffusion: "warning",
+        "Ceiling & Portable": "success",
+        "Wall Systems": "primary",
+        "Sealing & Openings": "default",
+        "Floor & Vibration": "secondary",
+        "Ceiling & HVAC": "warning",
+    };
+
+const materialData = materialDataJson as Record<string, MaterialProperties>;
 
 const getNrcColor = (nrc: number): "success" | "warning" | "danger" | "default" => {
     if (nrc >= 0.7) return "success";
@@ -367,15 +81,7 @@ export default function DetailMaterials() {
         }
     }, [id]);
 
-    if (isValid === null) {
-        return (
-            <div className="flex items-center justify-center min-h-100">
-                <p className="text-lg text-default-500">Validating license...</p>
-            </div>
-        );
-    }
-
-    if (!isValid) return <LicenseInvalid />;
+    if (!isValid) return <UnauthorizedAlert />;
 
     if (notFound) {
         return (
@@ -504,13 +210,7 @@ export default function DetailMaterials() {
                                             <td className="p-3 text-default-500">{index + 1}</td>
                                             <td className="p-3 font-medium">{record.selectedMaterialsLabels[index]}</td>
                                             <td className="p-3">
-                                                <Chip
-                                                    size="sm"
-                                                    variant="flat"
-                                                    color={
-                                                        data.category === "Acoustic Treatment" ? "secondary" : "primary"
-                                                    }
-                                                >
+                                                <Chip size="sm" variant="flat" color={categoryColors[data.category]}>
                                                     {data.category}
                                                 </Chip>
                                             </td>

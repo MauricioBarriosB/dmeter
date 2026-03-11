@@ -52,16 +52,21 @@ export default function Home() {
                         Generate comprehensive materials reports for building professional acoustic spaces with 12 build
                         types, 15 acoustic treatment options, and 19 insulation materials.
                     </li>
+                    <li>
+                        Create instrument lists for musical ensembles with 12 ensemble types, 14 genres, and 100+
+                        instruments across 8 categories including rock, strings, woodwinds, brass, percussion, keyboards,
+                        electronic, and ethnic instruments.
+                    </li>
                     <li>All analysis sessions and reports are automatically saved for review and comparison.</li>
                 </ul>
-                <div className="flex justify-center gap-4 mt-6">
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
                     <Button
                         as={Link}
                         to="/meter"
                         color="primary"
                         size="lg"
                         variant="shadow"
-                        className="font-semibold text-lg px-8"
+                        className="font-semibold text-lg px-8 w-full sm:w-auto"
                         startContent={<Mic size={20} />}
                     >
                         Meter
@@ -72,7 +77,7 @@ export default function Home() {
                         color="secondary"
                         size="lg"
                         variant="shadow"
-                        className="font-semibold text-lg px-8"
+                        className="font-semibold text-lg px-8 w-full sm:w-auto"
                         startContent={<Waves size={20} />}
                     >
                         Acoustics
@@ -83,10 +88,21 @@ export default function Home() {
                         color="danger"
                         size="lg"
                         variant="shadow"
-                        className="font-semibold text-lg px-8"
+                        className="font-semibold text-lg px-8 w-full sm:w-auto"
                         startContent={<FileText size={20} />}
                     >
                         Materials
+                    </Button>
+                    <Button
+                        as={Link}
+                        to="/instruments"
+                        color="success"
+                        size="lg"
+                        variant="shadow"
+                        className="font-semibold text-lg px-8 text-white w-full sm:w-auto bg-green-600"
+                        startContent={<Music size={20} />}
+                    >
+                        Instruments
                     </Button>
                 </div>
             </div>
@@ -626,7 +642,8 @@ export default function Home() {
                 </h2>
                 <p className="text-default-600 mb-6">
                     Generate comprehensive material lists for building audio studios, home studios, rehearsal rooms, and
-                    professional acoustic spaces. Choose from 12 build types and 34 specialized materials.
+                    professional acoustic spaces. Choose from 12 build types and 59 specialized materials across 8
+                    categories.
                 </p>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -666,75 +683,84 @@ export default function Home() {
                         </CardBody>
                     </Card>
 
-                    {/* Acoustic Treatment */}
+                    {/* Acoustic Treatment - 4 Categories */}
                     <Card className="bg-default-50">
                         <CardHeader className="pb-2">
                             <h3 className="font-semibold flex items-center gap-2">
                                 <Package size={20} className="text-secondary" />
-                                15 Acoustic Treatment Options
+                                22 Acoustic Treatment Options
                             </h3>
                         </CardHeader>
                         <Divider />
                         <CardBody className="pt-4">
-                            <ul className="space-y-2 text-sm">
-                                <li className="flex items-start gap-2">
-                                    <span className="font-medium text-secondary">Panels:</span>
-                                    <span className="text-default-600">
-                                        Acoustic Foam, Fabric-Wrapped Panels, Wooden Slats, Perforated Wood
-                                    </span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="font-medium text-secondary">Bass Control:</span>
-                                    <span className="text-default-600">Bass Traps, Corner Bass Traps</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="font-medium text-secondary">Diffusion:</span>
-                                    <span className="text-default-600">Diffuser Panels</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="font-medium text-secondary">Ceiling:</span>
-                                    <span className="text-default-600">Acoustic Tiles, Cloud Panels</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                    <span className="font-medium text-secondary">Portable:</span>
-                                    <span className="text-default-600">
-                                        Vocal Booth, Reflection Filter, Isolation Pads
-                                    </span>
-                                </li>
-                            </ul>
+                            <div className="grid grid-cols-1 gap-3">
+                                <div className="p-3 rounded-lg bg-secondary/10 border border-secondary/20">
+                                    <h4 className="font-medium text-secondary text-sm mb-1">Absorption Panels (5)</h4>
+                                    <p className="text-xs text-default-600">
+                                        Acoustic Foam, Fabric-Wrapped Panels, Wooden Slats, Perforated Wood, Acoustic
+                                        Fabric
+                                    </p>
+                                </div>
+                                <div className="p-3 rounded-lg bg-danger/10 border border-danger/20">
+                                    <h4 className="font-medium text-danger text-sm mb-1">Bass Control (4)</h4>
+                                    <p className="text-xs text-default-600">
+                                        Bass Traps, Corner Bass Traps, Helmholtz Resonators, Membrane Absorbers
+                                    </p>
+                                </div>
+                                <div className="p-3 rounded-lg bg-warning/10 border border-warning/20">
+                                    <h4 className="font-medium text-warning text-sm mb-1">Diffusion (4)</h4>
+                                    <p className="text-xs text-default-600">
+                                        Diffuser Panels, QRD Diffusers, Skyline Diffusers, Polycylindrical Diffusers
+                                    </p>
+                                </div>
+                                <div className="p-3 rounded-lg bg-success/10 border border-success/20">
+                                    <h4 className="font-medium text-success text-sm mb-1">Ceiling & Portable (9)</h4>
+                                    <p className="text-xs text-default-600">
+                                        Ceiling Tiles, Cloud Panels, Baffles, Curtains, Gobos, Vocal Booth, Reflection
+                                        Filter, Isolation Pads
+                                    </p>
+                                </div>
+                            </div>
                         </CardBody>
                     </Card>
 
-                    {/* Insulation Materials */}
+                    {/* Construction & Soundproofing - 4 Categories */}
                     <Card className="bg-default-50 lg:col-span-2">
                         <CardHeader className="pb-2">
                             <h3 className="font-semibold flex items-center gap-2">
-                                <Shield size={20} className="text-warning" />
-                                19 Insulation & Soundproofing Materials
+                                <Shield size={20} className="text-primary" />
+                                37 Construction & Soundproofing Materials
                             </h3>
                         </CardHeader>
                         <Divider />
                         <CardBody className="pt-4">
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div className="p-4 rounded-lg bg-warning/10 border border-warning/20">
-                                    <h4 className="font-medium text-warning mb-2">Wall Insulation</h4>
-                                    <p className="text-sm text-default-600">
-                                        Rockwool, Fiberglass, Mass Loaded Vinyl, Green Glue, Resilient Channels,
-                                        Soundproof Drywall, Double Layer Drywall
-                                    </p>
-                                </div>
-                                <div className="p-4 rounded-lg bg-success/10 border border-success/20">
-                                    <h4 className="font-medium text-success mb-2">Floor & Ceiling</h4>
-                                    <p className="text-sm text-default-600">
-                                        Floating Floor System, Carpet with Acoustic Underlay, Rubber Flooring, Suspended
-                                        Acoustic Ceiling
-                                    </p>
-                                </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                 <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
-                                    <h4 className="font-medium text-primary mb-2">Openings & HVAC</h4>
+                                    <h4 className="font-medium text-primary mb-2">Wall Systems (12)</h4>
                                     <p className="text-sm text-default-600">
-                                        Soundproof Door, Door Seals, Window Plugs, Double Glazing, Studio Glass,
-                                        Acoustic Ventilation
+                                        Concrete Blocks, Staggered/Double Stud Walls, Plywood, MDF, Rockwool,
+                                        Fiberglass, MLV, Green Glue, Resilient Channels, Drywall
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-default/10 border border-default/20">
+                                    <h4 className="font-medium text-default-700 mb-2">Sealing & Openings (10)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Acoustic Caulk, Sealants, Weatherstripping, Putty Pads, Door Seals, Soundproof
+                                        Doors, Window Plugs, Double Glazing, Studio Glass
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-secondary/10 border border-secondary/20">
+                                    <h4 className="font-medium text-secondary mb-2">Floor & Vibration (9)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Carpet Underlay, Rubber/Cork Flooring, Neoprene/Sorbothane Pads, Spring/Joist
+                                        Isolators, Floating Floor, Drum Riser
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-warning/10 border border-warning/20">
+                                    <h4 className="font-medium text-warning mb-2">Ceiling & HVAC (6)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Suspended Ceiling, Isolation Hangers, Duct Silencers, Flexible Duct, Acoustic
+                                        Ventilation, Cable Management
                                     </p>
                                 </div>
                             </div>
@@ -864,6 +890,163 @@ export default function Home() {
                                 Absorption coefficients vary by frequency (125Hz - 4kHz). Higher values indicate more
                                 sound absorption.
                             </p>
+                        </CardBody>
+                    </Card>
+                </div>
+            </section>
+
+            <Divider className="my-10" />
+
+            {/* Instruments Reports Section */}
+            <section className="mb-10">
+                <h2
+                    className="text-3xl font-bold mb-6 flex items-center gap-2"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                    <Music size={24} className="text-success" />
+                    Instruments Features
+                </h2>
+                <p className="text-default-600 mb-6">
+                    Generate comprehensive instrument lists for musical ensembles, bands, and orchestras. Select your
+                    ensemble type, genre, and choose from a wide variety of instruments across 8 categories.
+                </p>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Ensemble Types */}
+                    <Card className="bg-default-50">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Music size={20} className="text-success" />
+                                12 Ensemble Types
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <div className="grid grid-cols-2 gap-2">
+                                {[
+                                    "Symphony Orchestra",
+                                    "Big Band",
+                                    "Jazz Quartet",
+                                    "String Quartet",
+                                    "Rock Band",
+                                    "Choir",
+                                    "Chamber Orchestra",
+                                    "Wind Ensemble",
+                                    "Brass Band",
+                                    "Marching Band",
+                                    "Pop/Electronic",
+                                    "World Music Ensemble",
+                                ].map((type) => (
+                                    <div
+                                        key={type}
+                                        className="p-2 rounded-lg bg-success/5 border border-success/10 text-sm"
+                                    >
+                                        {type}
+                                    </div>
+                                ))}
+                            </div>
+                        </CardBody>
+                    </Card>
+
+                    {/* Musical Genres */}
+                    <Card className="bg-default-50">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Waves size={20} className="text-secondary" />
+                                14 Musical Genres
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <div className="grid grid-cols-2 gap-2">
+                                {[
+                                    "Classical",
+                                    "Jazz",
+                                    "Rock",
+                                    "Pop",
+                                    "Blues",
+                                    "Country",
+                                    "Electronic",
+                                    "Folk",
+                                    "R&B/Soul",
+                                    "Metal",
+                                    "Reggae",
+                                    "Latin",
+                                    "Hip Hop",
+                                    "World Music",
+                                ].map((genre) => (
+                                    <div
+                                        key={genre}
+                                        className="p-2 rounded-lg bg-secondary/5 border border-secondary/10 text-sm"
+                                    >
+                                        {genre}
+                                    </div>
+                                ))}
+                            </div>
+                        </CardBody>
+                    </Card>
+
+                    {/* Instrument Categories */}
+                    <Card className="bg-default-50 lg:col-span-2">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Layers size={20} className="text-primary" />
+                                100+ Instruments Across 8 Categories
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                <div className="p-4 rounded-lg bg-danger/10 border border-danger/20">
+                                    <h4 className="font-medium text-danger mb-2">Rock & Metal (25)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Electric/Lead/Rhythm Guitars, Bass, Drum Kit components, Amplifiers, Pedals
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
+                                    <h4 className="font-medium text-primary mb-2">Strings (11)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Violin, Viola, Cello, Double Bass, Acoustic/Classical Guitar, Harp, Banjo,
+                                        Mandolin, Ukulele
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-secondary/10 border border-secondary/20">
+                                    <h4 className="font-medium text-secondary mb-2">Woodwinds (7)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Flute, Clarinet, Oboe, Bassoon, Saxophone, Recorder, Piccolo
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-success/10 border border-success/20">
+                                    <h4 className="font-medium text-success mb-2">Brass (6)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Trumpet, Trombone, French Horn, Tuba, Cornet, Euphonium
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-warning/10 border border-warning/20">
+                                    <h4 className="font-medium text-warning mb-2">Percussion (15)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Drum Kit, Timpani, Xylophone, Marimba, Vibraphone, Congas, Bongos, Cajon
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-default/10 border border-default/20">
+                                    <h4 className="font-medium text-default-700 mb-2">Keyboards (6)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Piano, Organ, Synthesizer, Electric Piano, Harpsichord, Accordion
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
+                                    <h4 className="font-medium text-primary mb-2">Electronic (6)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Drum Machine, Sampler, DJ Mixer, Turntable, Effects Processor, MIDI Controller
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-warning/10 border border-warning/20">
+                                    <h4 className="font-medium text-warning mb-2">Ethnic (28)</h4>
+                                    <p className="text-sm text-default-600">
+                                        Sitar, Tabla, Erhu, Koto, Djembe, Kalimba, Didgeridoo, Oud, Bouzouki, Bagpipes
+                                    </p>
+                                </div>
+                            </div>
                         </CardBody>
                     </Card>
                 </div>

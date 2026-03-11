@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FileText, Play, HelpCircle } from "lucide-react";
+import { Music, Play, HelpCircle } from "lucide-react";
 import {
     Button,
     Card,
@@ -15,86 +15,90 @@ import {
     ModalBody,
     useDisclosure,
 } from "@heroui/react";
-import { type MaterialsReportRecord } from "../helpers/analysisStorage";
+import { type InstrumentsReportRecord } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
-import { usePersistentMaterialsHistory } from "../hooks/usePersistentMaterialsHistory";
-import MaterialsHistoryTable from "../components/MaterialsHistoryTable";
+import { usePersistentInstrumentsHistory } from "../hooks/usePersistentInstrumentsHistory";
+import InstrumentsHistoryTable from "../components/IntrumentsHistoryTable";
 import UnauthorizedAlert from "../components/UnauthorizedAlert";
-import materialsConfigJson from "../data/materialsConfig.json";
+import instrumentsConfigJson from "../data/instrumentsConfig.json";
 
 type CategoryColor = "secondary" | "danger" | "warning" | "success" | "primary" | "default";
 
-interface MaterialOption {
+interface InstrumentOption {
     key: string;
     label: string;
 }
 
-interface MaterialCategory {
+interface InstrumentCategory {
     key: string;
     label: string;
     color: CategoryColor;
-    options: MaterialOption[];
+    options: InstrumentOption[];
 }
 
-const buildTypeOptions = materialsConfigJson.buildTypes;
-const materialCategories = materialsConfigJson.categories as MaterialCategory[];
-const allMaterialsOptions = materialCategories.flatMap((cat) => cat.options);
+const ensembleTypes = instrumentsConfigJson.ensembleTypes;
+const genreTypes = instrumentsConfigJson.genreTypes;
+const instrumentCategories = instrumentsConfigJson.categories as InstrumentCategory[];
+const allInstrumentOptions = instrumentCategories.flatMap((cat) => cat.options);
 
-interface MaterialsFormData {
+interface InstrumentsFormData {
     reportName: string;
-    buildType: string;
-    selectedMaterials: string[];
+    ensembleType: string;
+    genre: string;
+    selectedInstruments: string[];
 }
 
-const initialFormData: MaterialsFormData = {
+const initialFormData: InstrumentsFormData = {
     reportName: "",
-    buildType: "",
-    selectedMaterials: [],
+    ensembleType: "",
+    genre: "",
+    selectedInstruments: [],
 };
 
-export default function Materials() {
-    const [formData, setFormData] = useState<MaterialsFormData>(initialFormData);
+export default function Instruments() {
+    const [formData, setFormData] = useState<InstrumentsFormData>(initialFormData);
+    const [editRecord, setEditRecord] = useState<InstrumentsReportRecord | null>(null);
     const [isValid, setisValid] = useState<boolean | null>(null);
-    const [editRecord, setEditRecord] = useState<MaterialsReportRecord | null>(null);
-    const { history, addRecord, updateRecord, deleteRecord, clearHistory } = usePersistentMaterialsHistory();
+    const { history, addRecord, updateRecord, deleteRecord, clearHistory } = usePersistentInstrumentsHistory();
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-    useEffect(() => {
-        validateLicense().then(setisValid);
-    }, []);
 
     useEffect(() => {
         if (editRecord) {
             setFormData({
                 reportName: editRecord.reportName,
-                buildType: editRecord.buildType,
-                selectedMaterials: editRecord.selectedMaterials,
+                ensembleType: editRecord.ensembleType,
+                genre: editRecord.genre,
+                selectedInstruments: editRecord.selectedInstruments,
             });
         } else {
             setFormData(initialFormData);
         }
     }, [editRecord]);
 
-    const handleInputChange = (field: keyof MaterialsFormData, value: string | string[]) => {
+    useEffect(() => {
+        validateLicense().then(setisValid);
+    }, []);
+
+    const handleInputChange = (field: keyof InstrumentsFormData, value: string | string[]) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
 
     const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
 
-        const record: MaterialsReportRecord = {
+        const record: InstrumentsReportRecord = {
             id: editRecord?.id || crypto.randomUUID(),
             reportName: formData.reportName.trim() || `Report ${new Date().toLocaleString()}`,
-            buildType: formData.buildType,
-            buildTypeLabel: buildTypeOptions.find((opt) => opt.key === formData.buildType)?.label || "",
-            selectedMaterials: formData.selectedMaterials,
-            selectedMaterialsLabels: formData.selectedMaterials.map(
-                (key) => allMaterialsOptions.find((opt) => opt.key === key)?.label || key,
+            ensembleType: formData.ensembleType,
+            ensembleTypeLabel: ensembleTypes.find((opt) => opt.key === formData.ensembleType)?.label || "",
+            genre: formData.genre,
+            genreLabel: genreTypes.find((opt) => opt.key === formData.genre)?.label || "",
+            selectedInstruments: formData.selectedInstruments,
+            selectedInstrumentsLabels: formData.selectedInstruments.map(
+                (key) => allInstrumentOptions.find((opt) => opt.key === key)?.label || key,
             ),
             createdAt: editRecord?.createdAt || new Date().toISOString(),
         };
-
-        console.log("Materials Report Submitted:", record);
 
         if (editRecord) {
             updateRecord(record);
@@ -106,7 +110,7 @@ export default function Materials() {
         setFormData(initialFormData);
     };
 
-    const handleEditRecord = (record: MaterialsReportRecord) => {
+    const handleEditRecord = (record: InstrumentsReportRecord) => {
         setEditRecord(record);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
@@ -134,17 +138,17 @@ export default function Materials() {
         <div className="max-w-7xl mx-auto">
             <div className="mb-10">
                 <div className="flex items-center gap-3 mb-3">
-                    <FileText size={40} className="text-primary" />
+                    <Music size={40} className="text-primary" />
                     <h1
                         className="text-5xl font-bold text-foreground"
                         style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                     >
-                        Materials Reports
+                        Instruments Reports
                     </h1>
                 </div>
                 <p className="text-lg text-default-600 font-normal">
-                    Generate comprehensive material lists for building audio studios, home studios, rehearsal rooms, and
-                    professional acoustic spaces.
+                    Generate comprehensive instrument lists for musical ensembles, bands, and orchestras. Select your
+                    ensemble type, genre, and choose from a wide variety of instruments.
                 </p>
                 <Button
                     onPress={onOpen}
@@ -162,7 +166,7 @@ export default function Materials() {
                             <>
                                 <ModalHeader className="flex items-center gap-2">
                                     <Play size={20} className="text-success" />
-                                    How to Use Materials Reports
+                                    How to Use Instruments Reports
                                 </ModalHeader>
                                 <ModalBody className="pb-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -173,7 +177,7 @@ export default function Materials() {
                                             <div>
                                                 <h4 className="font-medium mb-1">Enter Report Name</h4>
                                                 <p className="text-sm text-default-600">
-                                                    Give your materials report a descriptive name for easy
+                                                    Give your instruments report a descriptive name for easy
                                                     identification.
                                                 </p>
                                             </div>
@@ -183,10 +187,10 @@ export default function Materials() {
                                                 2
                                             </div>
                                             <div>
-                                                <h4 className="font-medium mb-1">Select Build Type</h4>
+                                                <h4 className="font-medium mb-1">Select Ensemble & Genre</h4>
                                                 <p className="text-sm text-default-600">
-                                                    Choose the type of space you want to build from 12 professional
-                                                    options.
+                                                    Choose your ensemble type and musical genre to categorize your
+                                                    report.
                                                 </p>
                                             </div>
                                         </div>
@@ -195,10 +199,10 @@ export default function Materials() {
                                                 3
                                             </div>
                                             <div>
-                                                <h4 className="font-medium mb-1">Choose Materials</h4>
+                                                <h4 className="font-medium mb-1">Choose Instruments</h4>
                                                 <p className="text-sm text-default-600">
-                                                    Select acoustic treatment and insulation materials from the
-                                                    available options.
+                                                    Select instruments from various categories: strings, woodwinds,
+                                                    brass, percussion, keyboards, and electronic.
                                                 </p>
                                             </div>
                                         </div>
@@ -207,10 +211,10 @@ export default function Materials() {
                                                 4
                                             </div>
                                             <div>
-                                                <h4 className="font-medium mb-1">View Results</h4>
+                                                <h4 className="font-medium mb-1">Generate Report</h4>
                                                 <p className="text-sm text-default-600">
-                                                    Check the History table to review saved reports and edit them if
-                                                    needed.
+                                                    Submit your selections to generate a comprehensive instruments
+                                                    report.
                                                 </p>
                                             </div>
                                         </div>
@@ -228,7 +232,7 @@ export default function Materials() {
                 </CardHeader>
                 <CardBody>
                     <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <Input
                                 label="Report Name"
                                 placeholder="Enter report name"
@@ -238,26 +242,41 @@ export default function Materials() {
                             />
 
                             <Select
-                                label="Build Type"
-                                placeholder="Select the type of space you want to build"
-                                selectedKeys={formData.buildType ? [formData.buildType] : []}
+                                label="Ensemble Type"
+                                placeholder="Select ensemble type"
+                                selectedKeys={formData.ensembleType ? [formData.ensembleType] : []}
                                 onSelectionChange={(keys) => {
                                     const selected = Array.from(keys)[0] as string;
-                                    handleInputChange("buildType", selected || "");
+                                    handleInputChange("ensembleType", selected || "");
                                 }}
                                 isRequired
                             >
-                                {buildTypeOptions.map((option) => (
+                                {ensembleTypes.map((option) => (
+                                    <SelectItem key={option.key}>{option.label}</SelectItem>
+                                ))}
+                            </Select>
+
+                            <Select
+                                label="Genre"
+                                placeholder="Select musical genre"
+                                selectedKeys={formData.genre ? [formData.genre] : []}
+                                onSelectionChange={(keys) => {
+                                    const selected = Array.from(keys)[0] as string;
+                                    handleInputChange("genre", selected || "");
+                                }}
+                                isRequired
+                            >
+                                {genreTypes.map((option) => (
                                     <SelectItem key={option.key}>{option.label}</SelectItem>
                                 ))}
                             </Select>
                         </div>
 
                         <Divider />
-                        <h3 className="text-lg font-semibold text-default-700">Acoustic Treatment</h3>
+                        <h3 className="text-lg font-semibold text-default-700">Musical Instruments</h3>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {materialCategories.slice(0, 4).map((category) => (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {instrumentCategories.map((category) => (
                                 <Select
                                     key={category.key}
                                     label={category.label}
@@ -266,17 +285,17 @@ export default function Materials() {
                                     size="sm"
                                     selectedKeys={
                                         new Set(
-                                            formData.selectedMaterials.filter((m) =>
+                                            formData.selectedInstruments.filter((m) =>
                                                 category.options.some((o) => o.key === m),
                                             ),
                                         )
                                     }
                                     onSelectionChange={(keys) => {
                                         const selected = Array.from(keys) as string[];
-                                        const otherSelected = formData.selectedMaterials.filter(
+                                        const otherSelected = formData.selectedInstruments.filter(
                                             (m) => !category.options.some((o) => o.key === m),
                                         );
-                                        handleInputChange("selectedMaterials", [...otherSelected, ...selected]);
+                                        handleInputChange("selectedInstruments", [...otherSelected, ...selected]);
                                     }}
                                 >
                                     {category.options.map((option) => (
@@ -286,47 +305,14 @@ export default function Materials() {
                             ))}
                         </div>
 
-                        <Divider />
-                        <h3 className="text-lg font-semibold text-default-700">Construction & Soundproofing</h3>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {materialCategories.slice(4, 8).map((category) => (
-                                <Select
-                                    key={category.key}
-                                    label={category.label}
-                                    placeholder={`Select ${category.label.toLowerCase()}`}
-                                    selectionMode="multiple"
-                                    size="sm"
-                                    selectedKeys={
-                                        new Set(
-                                            formData.selectedMaterials.filter((m) =>
-                                                category.options.some((o) => o.key === m),
-                                            ),
-                                        )
-                                    }
-                                    onSelectionChange={(keys) => {
-                                        const selected = Array.from(keys) as string[];
-                                        const otherSelected = formData.selectedMaterials.filter(
-                                            (m) => !category.options.some((o) => o.key === m),
-                                        );
-                                        handleInputChange("selectedMaterials", [...otherSelected, ...selected]);
-                                    }}
-                                >
-                                    {category.options.map((option) => (
-                                        <SelectItem key={option.key}>{option.label}</SelectItem>
-                                    ))}
-                                </Select>
-                            ))}
-                        </div>
-
-                        {formData.selectedMaterials.length > 0 && (
+                        {formData.selectedInstruments.length > 0 && (
                             <>
                                 <Divider />
-                                <h3 className="text-lg font-semibold text-default-700">Items selectons</h3>
+                                <h3 className="text-lg font-semibold text-default-700">Selected Instruments</h3>
                                 <div className="flex flex-wrap gap-2">
-                                    {formData.selectedMaterials.map((key) => {
-                                        const material = allMaterialsOptions.find((opt) => opt.key === key);
-                                        const category = materialCategories.find((cat) =>
+                                    {formData.selectedInstruments.map((key) => {
+                                        const instrument = allInstrumentOptions.find((opt) => opt.key === key);
+                                        const category = instrumentCategories.find((cat) =>
                                             cat.options.some((o) => o.key === key),
                                         );
                                         const colorClasses: Record<string, string> = {
@@ -340,7 +326,7 @@ export default function Materials() {
                                         const colorClass = colorClasses[category?.color ?? "default"];
                                         return (
                                             <span key={key} className={`px-3 py-1 text-sm rounded-full ${colorClass}`}>
-                                                {material?.label}
+                                                {instrument?.label}
                                             </span>
                                         );
                                     })}
@@ -368,7 +354,7 @@ export default function Materials() {
                 </CardBody>
             </Card>
 
-            <MaterialsHistoryTable
+            <InstrumentsHistoryTable
                 history={history}
                 onDeleteRecord={handleDeleteRecord}
                 onClearHistory={handleClearHistory}

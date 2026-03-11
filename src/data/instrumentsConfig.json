@@ -1,0 +1,194 @@
+{
+    "ensembleTypes": [
+        { "key": "orchestra", "label": "Symphony Orchestra" },
+        { "key": "big_band", "label": "Big Band" },
+        { "key": "jazz_quartet", "label": "Jazz Quartet" },
+        { "key": "string_quartet", "label": "String Quartet" },
+        { "key": "rock_band", "label": "Rock Band" },
+        { "key": "choir", "label": "Choir" },
+        { "key": "chamber_orchestra", "label": "Chamber Orchestra" },
+        { "key": "wind_ensemble", "label": "Wind Ensemble" },
+        { "key": "brass_band", "label": "Brass Band" },
+        { "key": "marching_band", "label": "Marching Band" },
+        { "key": "pop_electronic", "label": "Pop/Electronic" },
+        { "key": "world_music", "label": "World Music Ensemble" }
+    ],
+    "genreTypes": [
+        { "key": "classical", "label": "Classical" },
+        { "key": "jazz", "label": "Jazz" },
+        { "key": "rock", "label": "Rock" },
+        { "key": "pop", "label": "Pop" },
+        { "key": "blues", "label": "Blues" },
+        { "key": "country", "label": "Country" },
+        { "key": "electronic", "label": "Electronic" },
+        { "key": "folk", "label": "Folk" },
+        { "key": "rnb_soul", "label": "R&B/Soul" },
+        { "key": "metal", "label": "Metal" },
+        { "key": "reggae", "label": "Reggae" },
+        { "key": "latin", "label": "Latin" },
+        { "key": "hip_hop", "label": "Hip Hop" },
+        { "key": "world", "label": "World Music" }
+    ],
+    "categories": [
+        {
+            "key": "rock_metal",
+            "label": "Rock & Metal",
+            "color": "danger",
+            "options": [
+                { "key": "electric_guitar", "label": "Electric Guitar" },
+                { "key": "lead_guitar", "label": "Lead Guitar" },
+                { "key": "rhythm_guitar", "label": "Rhythm Guitar" },
+                { "key": "7_string_guitar", "label": "7-String Guitar" },
+                { "key": "8_string_guitar", "label": "8-String Guitar" },
+                { "key": "electric_bass", "label": "Electric Bass" },
+                { "key": "5_string_bass", "label": "5-String Bass" },
+                { "key": "fretless_bass", "label": "Fretless Bass" },
+                { "key": "drum_kit_rock", "label": "Drum Kit (Rock)" },
+                { "key": "drum_snare", "label": "Drum Snare" },
+                { "key": "drum_bass", "label": "Drum Bass/Kick" },
+                { "key": "drum_double_bass", "label": "Drum Double Bass" },
+                { "key": "drum_toms", "label": "Drum Toms" },
+                { "key": "drum_floor_tom", "label": "Drum Floor Tom" },
+                { "key": "drum_hi_hat", "label": "Drum Hi-Hat" },
+                { "key": "drum_crash_cymbal", "label": "Drum Crash Cymbal" },
+                { "key": "drum_ride_cymbal", "label": "Drum Ride Cymbal" },
+                { "key": "drum_china_cymbal", "label": "Drum China Cymbal" },
+                { "key": "drum_splash_cymbal", "label": "Drum Splash Cymbal" },
+                { "key": "guitar_amp", "label": "Guitar Amplifier" },
+                { "key": "bass_amp", "label": "Bass Amplifier" },
+                { "key": "distortion_pedal", "label": "Distortion Pedal" },
+                { "key": "wah_pedal", "label": "Wah Pedal" },
+                { "key": "overdrive_pedal", "label": "Overdrive Pedal" },
+                { "key": "pedalboard", "label": "Pedalboard" }
+            ]
+        },
+        {
+            "key": "strings",
+            "label": "Strings",
+            "color": "primary",
+            "options": [
+                { "key": "violin", "label": "Violin" },
+                { "key": "viola", "label": "Viola" },
+                { "key": "cello", "label": "Cello" },
+                { "key": "double_bass", "label": "Double Bass" },
+                { "key": "acoustic_guitar", "label": "Acoustic Guitar" },
+                { "key": "classical_guitar", "label": "Classical Guitar" },
+                { "key": "12_string_guitar", "label": "12-String Guitar" },
+                { "key": "harp", "label": "Harp" },
+                { "key": "banjo", "label": "Banjo" },
+                { "key": "mandolin", "label": "Mandolin" },
+                { "key": "ukulele", "label": "Ukulele" }
+            ]
+        },
+        {
+            "key": "woodwinds",
+            "label": "Woodwinds",
+            "color": "secondary",
+            "options": [
+                { "key": "flute", "label": "Flute" },
+                { "key": "clarinet", "label": "Clarinet" },
+                { "key": "oboe", "label": "Oboe" },
+                { "key": "bassoon", "label": "Bassoon" },
+                { "key": "saxophone", "label": "Saxophone" },
+                { "key": "recorder", "label": "Recorder" },
+                { "key": "piccolo", "label": "Piccolo" }
+            ]
+        },
+        {
+            "key": "brass",
+            "label": "Brass",
+            "color": "success",
+            "options": [
+                { "key": "trumpet", "label": "Trumpet" },
+                { "key": "trombone", "label": "Trombone" },
+                { "key": "french_horn", "label": "French Horn" },
+                { "key": "tuba", "label": "Tuba" },
+                { "key": "cornet", "label": "Cornet" },
+                { "key": "euphonium", "label": "Euphonium" }
+            ]
+        },
+        {
+            "key": "percussion",
+            "label": "Percussion",
+            "color": "warning",
+            "options": [
+                { "key": "drums", "label": "Drum Kit" },
+                { "key": "electronic_drums", "label": "Electronic Drums" },
+                { "key": "timpani", "label": "Timpani" },
+                { "key": "snare_drum", "label": "Snare Drum" },
+                { "key": "bass_drum", "label": "Bass Drum" },
+                { "key": "cymbals", "label": "Cymbals" },
+                { "key": "hi_hat", "label": "Hi-Hat" },
+                { "key": "tom_toms", "label": "Tom-Toms" },
+                { "key": "xylophone", "label": "Xylophone" },
+                { "key": "marimba", "label": "Marimba" },
+                { "key": "vibraphone", "label": "Vibraphone" },
+                { "key": "congas", "label": "Congas" },
+                { "key": "bongos", "label": "Bongos" },
+                { "key": "tambourine", "label": "Tambourine" },
+                { "key": "cajon", "label": "Cajon" }
+            ]
+        },
+        {
+            "key": "keyboards",
+            "label": "Keyboards",
+            "color": "default",
+            "options": [
+                { "key": "piano", "label": "Piano" },
+                { "key": "organ", "label": "Organ" },
+                { "key": "synthesizer", "label": "Synthesizer" },
+                { "key": "electric_piano", "label": "Electric Piano" },
+                { "key": "harpsichord", "label": "Harpsichord" },
+                { "key": "accordion", "label": "Accordion" }
+            ]
+        },
+        {
+            "key": "electronic",
+            "label": "Electronic",
+            "color": "primary",
+            "options": [
+                { "key": "drum_machine", "label": "Drum Machine" },
+                { "key": "sampler", "label": "Sampler" },
+                { "key": "dj_mixer", "label": "DJ Mixer" },
+                { "key": "turntable", "label": "Turntable" },
+                { "key": "effects_processor", "label": "Effects Processor" },
+                { "key": "midi_controller", "label": "MIDI Controller" }
+            ]
+        },
+        {
+            "key": "ethnic",
+            "label": "Ethnic",
+            "color": "warning",
+            "options": [
+                { "key": "sitar", "label": "Sitar (India)" },
+                { "key": "tabla", "label": "Tabla (India)" },
+                { "key": "tanpura", "label": "Tanpura (India)" },
+                { "key": "sarod", "label": "Sarod (India)" },
+                { "key": "bansuri", "label": "Bansuri (India)" },
+                { "key": "erhu", "label": "Erhu (China)" },
+                { "key": "pipa", "label": "Pipa (China)" },
+                { "key": "guzheng", "label": "Guzheng (China)" },
+                { "key": "dizi", "label": "Dizi (China)" },
+                { "key": "shamisen", "label": "Shamisen (Japan)" },
+                { "key": "koto", "label": "Koto (Japan)" },
+                { "key": "shakuhachi", "label": "Shakuhachi (Japan)" },
+                { "key": "taiko", "label": "Taiko (Japan)" },
+                { "key": "djembe", "label": "Djembe (Africa)" },
+                { "key": "kalimba", "label": "Kalimba (Africa)" },
+                { "key": "kora", "label": "Kora (Africa)" },
+                { "key": "balafon", "label": "Balafon (Africa)" },
+                { "key": "didgeridoo", "label": "Didgeridoo (Australia)" },
+                { "key": "oud", "label": "Oud (Middle East)" },
+                { "key": "darbuka", "label": "Darbuka (Middle East)" },
+                { "key": "ney", "label": "Ney (Middle East)" },
+                { "key": "bouzouki", "label": "Bouzouki (Greece)" },
+                { "key": "pan_flute", "label": "Pan Flute (Andes)" },
+                { "key": "charango", "label": "Charango (Andes)" },
+                { "key": "steel_drum", "label": "Steel Drum (Caribbean)" },
+                { "key": "gamelan", "label": "Gamelan (Indonesia)" },
+                { "key": "bagpipes", "label": "Bagpipes (Scotland)" },
+                { "key": "bodhrán", "label": "Bodhrán (Ireland)" }
+            ]
+        }
+    ]
+}

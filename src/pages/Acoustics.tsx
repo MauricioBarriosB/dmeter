@@ -5,7 +5,7 @@ import { loadAcousticsHistory, saveAcousticsHistory, type AcousticsRecord } from
 import { validateLicense } from "../helpers/licenseValidator";
 import AcousticsForm from "../components/AcousticsForm";
 import AcousticsHistoryTable from "../components/AcousticsHistoryTable";
-import LicenseInvalid from "../components/LicenseInvalid";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
 
 export default function Acoustics() {
     const [history, setHistory] = useState<AcousticsRecord[]>([]);
@@ -57,15 +57,7 @@ export default function Acoustics() {
         setEditRecord(null);
     };
 
-    if (isValid === null) {
-        return (
-            <div className="flex items-center justify-center min-h-100">
-                <p className="text-lg text-default-500">Validating license...</p>
-            </div>
-        );
-    }
-
-    if (!isValid) return <LicenseInvalid />;
+    if (!isValid) return <UnauthorizedAlert />;
 
     return (
         <div className="max-w-7xl mx-auto">
@@ -110,7 +102,8 @@ export default function Acoustics() {
                                             <div>
                                                 <h4 className="font-medium mb-1">Configure Room</h4>
                                                 <p className="text-sm text-default-600">
-                                                    Enter room dimensions (L x W x H), select room type and ceiling style.
+                                                    Enter room dimensions (L x W x H), select room type and ceiling
+                                                    style.
                                                 </p>
                                             </div>
                                         </div>
@@ -121,7 +114,8 @@ export default function Acoustics() {
                                             <div>
                                                 <h4 className="font-medium mb-1">Select Materials</h4>
                                                 <p className="text-sm text-default-600">
-                                                    Choose materials for floor, ceiling, and walls from 17 acoustic options.
+                                                    Choose materials for floor, ceiling, and walls from 17 acoustic
+                                                    options.
                                                 </p>
                                             </div>
                                         </div>
@@ -143,7 +137,8 @@ export default function Acoustics() {
                                             <div>
                                                 <h4 className="font-medium mb-1">View Results</h4>
                                                 <p className="text-sm text-default-600">
-                                                    Check the History table to review saved analyses and compare results.
+                                                    Check the History table to review saved analyses and compare
+                                                    results.
                                                 </p>
                                             </div>
                                         </div>
@@ -155,11 +150,7 @@ export default function Acoustics() {
                 </Modal>
             </div>
 
-            <AcousticsForm
-                onSubmit={handleFormSubmit}
-                editRecord={editRecord}
-                onCancelEdit={handleCancelEdit}
-            />
+            <AcousticsForm onSubmit={handleFormSubmit} editRecord={editRecord} onCancelEdit={handleCancelEdit} />
 
             <AcousticsHistoryTable
                 history={history}

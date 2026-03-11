@@ -9,7 +9,7 @@ import type { AnalysisRecord, FrequencyPeak } from "../components/AnalysisHistor
 import { loadAnalysisHistory, saveAnalysisHistory } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
 import { calculateDecibels } from "../helpers/decibelsHelper";
-import LicenseInvalid from "../components/LicenseInvalid";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
 
 interface RealTimeData {
     currentDb: number;
@@ -365,16 +365,7 @@ export default function Meter() {
         setHistory([]);
     };
 
-    // Show loading while validating license
-    if (isValid === null) {
-        return (
-            <div className="flex items-center justify-center min-h-100">
-                <p className="text-lg text-default-500">Loading...</p>
-            </div>
-        );
-    }
-
-    if (!isValid) return <LicenseInvalid />;
+    if (!isValid) return <UnauthorizedAlert />;
 
     return (
         <div className="max-w-7xl mx-auto">
@@ -431,7 +422,8 @@ export default function Meter() {
                                             <div>
                                                 <h4 className="font-medium mb-1">Start Analysis</h4>
                                                 <p className="text-sm text-default-600">
-                                                    Press "Start Analysis" to request microphone permission and begin recording.
+                                                    Press "Start Analysis" to request microphone permission and begin
+                                                    recording.
                                                 </p>
                                             </div>
                                         </div>
@@ -442,7 +434,8 @@ export default function Meter() {
                                             <div>
                                                 <h4 className="font-medium mb-1">While Recording</h4>
                                                 <p className="text-sm text-default-600">
-                                                    See live spectrum and real-time dB values updating as you capture audio.
+                                                    See live spectrum and real-time dB values updating as you capture
+                                                    audio.
                                                 </p>
                                             </div>
                                         </div>
@@ -453,7 +446,8 @@ export default function Meter() {
                                             <div>
                                                 <h4 className="font-medium mb-1">View Results</h4>
                                                 <p className="text-sm text-default-600">
-                                                    Check the Analysis History table to review saved recordings and metrics.
+                                                    Check the Analysis History table to review saved recordings and
+                                                    metrics.
                                                 </p>
                                             </div>
                                         </div>

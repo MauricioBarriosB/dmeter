@@ -146,3 +146,43 @@ export async function clearMaterialsHistory(): Promise<void> {
     if (!(await validateStorageKey())) return;
     localStorage.removeItem(materialsStorageKey);
 }
+
+// Instruments Reports Storage
+export interface InstrumentsReportRecord {
+    id: string;
+    reportName: string;
+    ensembleType: string;
+    ensembleTypeLabel: string;
+    genre: string;
+    genreLabel: string;
+    selectedInstruments: string[];
+    selectedInstrumentsLabels: string[];
+    createdAt: string;
+}
+
+const instrumentsStorageKey = `${storageKey}_instruments`;
+
+export async function loadInstrumentsHistory(): Promise<InstrumentsReportRecord[]> {
+    if (!(await validateStorageKey())) return [];
+
+    const stored = localStorage.getItem(instrumentsStorageKey);
+    if (stored) {
+        try {
+            return JSON.parse(stored) as InstrumentsReportRecord[];
+        } catch {
+            console.error("Failed to parse stored instruments history");
+            return [];
+        }
+    }
+    return [];
+}
+
+export async function saveInstrumentsHistory(history: InstrumentsReportRecord[]): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.setItem(instrumentsStorageKey, JSON.stringify(history));
+}
+
+export async function clearInstrumentsHistory(): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.removeItem(instrumentsStorageKey);
+}

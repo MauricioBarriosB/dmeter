@@ -57,7 +57,7 @@ export default function AnalysisHistoryTable({
     return (
         <Card>
             <CardHeader className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold">Analysis History</h2>
+                <h2 className="text-xl font-semibold">Meter Analysis History</h2>
                 {history.length > 0 && (
                     <Button
                         color="danger"

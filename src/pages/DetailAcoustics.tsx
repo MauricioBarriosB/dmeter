@@ -4,7 +4,7 @@ import { ArrowLeft, Waves } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip, Progress, Divider } from "@heroui/react";
 import { loadAcousticsHistory, type AcousticsRecord } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
-import LicenseInvalid from "../components/LicenseInvalid";
+import UnauthorizedAlert from "../components/UnauthorizedAlert";
 import {
     FREQ_BANDS,
     purposeLabels,
@@ -47,25 +47,24 @@ export default function DetailAcoustics() {
         }
     }, [id]);
 
-    if (isValid === null) {
-        return (
-            <div className="flex items-center justify-center min-h-100">
-                <p className="text-lg text-default-500">Validating license...</p>
-            </div>
-        );
-    }
-
-    if (!isValid) return <LicenseInvalid />;
+    if (!isValid) return <UnauthorizedAlert />;
 
     if (notFound) {
         return (
             <div className="max-w-4xl mx-auto">
-                <Button variant="light" startContent={<ArrowLeft size={20} />} onPress={() => navigate("/acoustics")} className="mb-6">
+                <Button
+                    variant="light"
+                    startContent={<ArrowLeft size={20} />}
+                    onPress={() => navigate("/acoustics")}
+                    className="mb-6"
+                >
                     Back to Acoustics
                 </Button>
                 <Card>
                     <CardBody>
-                        <p className="text-center text-default-500 py-8">Analysis not found. It may have been deleted.</p>
+                        <p className="text-center text-default-500 py-8">
+                            Analysis not found. It may have been deleted.
+                        </p>
                     </CardBody>
                 </Card>
             </div>
@@ -87,13 +86,21 @@ export default function DetailAcoustics() {
         <div className="max-w-5xl mx-auto">
             {/* Header */}
             <div className="mb-8">
-                <Button variant="light" startContent={<ArrowLeft size={20} />} onPress={() => navigate("/acoustics")} className="mb-4">
+                <Button
+                    variant="light"
+                    startContent={<ArrowLeft size={20} />}
+                    onPress={() => navigate("/acoustics")}
+                    className="mb-4"
+                >
                     Back to Acoustics
                 </Button>
                 <div className="flex items-center gap-3 mb-3">
                     <Waves size={40} className="text-primary" />
                     <div>
-                        <h1 className="text-4xl font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                        <h1
+                            className="text-4xl font-bold text-foreground"
+                            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                        >
                             {record.analysisName}
                         </h1>
                         <p className="text-lg text-default-500">Professional Acoustic Analysis Report</p>
@@ -104,12 +111,16 @@ export default function DetailAcoustics() {
 
             {/* Room Configuration */}
             <Card className="mb-6">
-                <CardHeader><h2 className="text-xl font-semibold">Room Configuration</h2></CardHeader>
+                <CardHeader>
+                    <h2 className="text-xl font-semibold">Room Configuration</h2>
+                </CardHeader>
                 <CardBody>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                         <div>
                             <p className="text-sm text-default-500 mb-1">Dimensions (H×W×D)</p>
-                            <p className="text-lg font-semibold">{record.roomHeight}×{record.roomWidth}×{record.roomDepth} m</p>
+                            <p className="text-lg font-semibold">
+                                {record.roomHeight}×{record.roomWidth}×{record.roomDepth} m
+                            </p>
                         </div>
                         <div>
                             <p className="text-sm text-default-500 mb-1">Volume</p>
@@ -128,11 +139,15 @@ export default function DetailAcoustics() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div>
                             <p className="text-sm text-default-500 mb-1">Purpose</p>
-                            <Chip color="primary" size="sm">{purposeLabels[record.roomPurpose] || record.roomPurpose}</Chip>
+                            <Chip color="primary" size="sm">
+                                {purposeLabels[record.roomPurpose] || record.roomPurpose}
+                            </Chip>
                         </div>
                         <div>
                             <p className="text-sm text-default-500 mb-1">Ceiling</p>
-                            <Chip color="secondary" size="sm">{roofLabels[record.roofType] || record.roofType}</Chip>
+                            <Chip color="secondary" size="sm">
+                                {roofLabels[record.roofType] || record.roofType}
+                            </Chip>
                         </div>
                         <div>
                             <p className="text-sm text-default-500 mb-1">Temperature</p>
@@ -147,15 +162,21 @@ export default function DetailAcoustics() {
                     <div className="grid grid-cols-3 gap-4">
                         <div>
                             <p className="text-sm text-default-500 mb-1">Floor Material</p>
-                            <Chip size="sm" variant="flat">{materialLabels[record.floorMaterial] || record.floorMaterial}</Chip>
+                            <Chip size="sm" variant="flat">
+                                {materialLabels[record.floorMaterial] || record.floorMaterial}
+                            </Chip>
                         </div>
                         <div>
                             <p className="text-sm text-default-500 mb-1">Ceiling Material</p>
-                            <Chip size="sm" variant="flat">{materialLabels[record.ceilingMaterial] || record.ceilingMaterial}</Chip>
+                            <Chip size="sm" variant="flat">
+                                {materialLabels[record.ceilingMaterial] || record.ceilingMaterial}
+                            </Chip>
                         </div>
                         <div>
                             <p className="text-sm text-default-500 mb-1">Wall Material</p>
-                            <Chip size="sm" variant="flat">{materialLabels[record.wallMaterial] || record.wallMaterial}</Chip>
+                            <Chip size="sm" variant="flat">
+                                {materialLabels[record.wallMaterial] || record.wallMaterial}
+                            </Chip>
                         </div>
                     </div>
                 </CardBody>
@@ -163,7 +184,9 @@ export default function DetailAcoustics() {
 
             {/* Reverberation Time */}
             <Card className="mb-6">
-                <CardHeader><h2 className="text-xl font-semibold">Reverberation Time (RT60)</h2></CardHeader>
+                <CardHeader>
+                    <h2 className="text-xl font-semibold">Reverberation Time (RT60)</h2>
+                </CardHeader>
                 <CardBody>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-6">
                         <div>
@@ -185,7 +208,9 @@ export default function DetailAcoustics() {
 
                     <div className="mb-4">
                         <div className="flex justify-between mb-2">
-                            <span className="text-sm text-default-500">RT60 vs Optimal Range for {purposeLabels[record.roomPurpose]}</span>
+                            <span className="text-sm text-default-500">
+                                RT60 vs Optimal Range for {purposeLabels[record.roomPurpose]}
+                            </span>
                             <Chip color={rt60Color} size="sm">
                                 {getRT60StatusLabel(metrics.rt60Status)}
                             </Chip>
@@ -193,7 +218,10 @@ export default function DetailAcoustics() {
                         <Progress value={rt60Progress} color={rt60Color} className="mb-2" size="lg" />
                         <div className="flex justify-between text-xs text-default-400">
                             <span>0s</span>
-                            <span>Optimal: {metrics.optimalRT60Range.min}s - {metrics.optimalRT60Range.max}s (ideal: {metrics.optimalRT60Range.ideal}s)</span>
+                            <span>
+                                Optimal: {metrics.optimalRT60Range.min}s - {metrics.optimalRT60Range.max}s (ideal:{" "}
+                                {metrics.optimalRT60Range.ideal}s)
+                            </span>
                             <span>{(metrics.optimalRT60Range.max * 1.5).toFixed(1)}s</span>
                         </div>
                     </div>
@@ -202,7 +230,9 @@ export default function DetailAcoustics() {
 
             {/* Frequency-Dependent RT60 */}
             <Card className="mb-6">
-                <CardHeader><h2 className="text-xl font-semibold">Frequency-Dependent Analysis</h2></CardHeader>
+                <CardHeader>
+                    <h2 className="text-xl font-semibold">Frequency-Dependent Analysis</h2>
+                </CardHeader>
                 <CardBody>
                     <div className="overflow-x-auto">
                         <table className="w-full">
@@ -218,9 +248,15 @@ export default function DetailAcoustics() {
                                 {FREQ_BANDS.map((freq) => (
                                     <tr key={freq} className="border-b border-default-100">
                                         <td className="p-3 font-medium">{freq} Hz</td>
-                                        <td className="p-3">{metrics.frequencyMetrics[freq].rt60Sabine.toFixed(2)} s</td>
-                                        <td className="p-3">{metrics.frequencyMetrics[freq].rt60Eyring.toFixed(2)} s</td>
-                                        <td className="p-3">{metrics.frequencyMetrics[freq].totalAbsorption.toFixed(1)} m²</td>
+                                        <td className="p-3">
+                                            {metrics.frequencyMetrics[freq].rt60Sabine.toFixed(2)} s
+                                        </td>
+                                        <td className="p-3">
+                                            {metrics.frequencyMetrics[freq].rt60Eyring.toFixed(2)} s
+                                        </td>
+                                        <td className="p-3">
+                                            {metrics.frequencyMetrics[freq].totalAbsorption.toFixed(1)} m²
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -231,7 +267,9 @@ export default function DetailAcoustics() {
 
             {/* Speech Intelligibility & Clarity */}
             <Card className="mb-6">
-                <CardHeader><h2 className="text-xl font-semibold">Speech Intelligibility & Clarity</h2></CardHeader>
+                <CardHeader>
+                    <h2 className="text-xl font-semibold">Speech Intelligibility & Clarity</h2>
+                </CardHeader>
                 <CardBody>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         <div>
@@ -268,7 +306,9 @@ export default function DetailAcoustics() {
 
             {/* Advanced Parameters */}
             <Card className="mb-6">
-                <CardHeader><h2 className="text-xl font-semibold">Advanced Acoustic Parameters</h2></CardHeader>
+                <CardHeader>
+                    <h2 className="text-xl font-semibold">Advanced Acoustic Parameters</h2>
+                </CardHeader>
                 <CardBody>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
@@ -292,10 +332,13 @@ export default function DetailAcoustics() {
 
             {/* Room Modes */}
             <Card className="mb-6">
-                <CardHeader><h2 className="text-xl font-semibold">Room Modes (Axial)</h2></CardHeader>
+                <CardHeader>
+                    <h2 className="text-xl font-semibold">Room Modes (Axial)</h2>
+                </CardHeader>
                 <CardBody>
                     <p className="text-sm text-default-500 mb-4">
-                        Modes below {metrics.schroederFrequency.toFixed(0)} Hz are in the modal region and may cause uneven bass response.
+                        Modes below {metrics.schroederFrequency.toFixed(0)} Hz are in the modal region and may cause
+                        uneven bass response.
                     </p>
                     <div className="overflow-x-auto">
                         <table className="w-full">
@@ -314,7 +357,13 @@ export default function DetailAcoustics() {
                                         <td className="p-3">{mode.type}</td>
                                         <td className="p-3 font-mono">{mode.indices}</td>
                                         <td className="p-3">
-                                            <Chip color={mode.frequency < metrics.schroederFrequency ? "warning" : "success"} size="sm" variant="flat">
+                                            <Chip
+                                                color={
+                                                    mode.frequency < metrics.schroederFrequency ? "warning" : "success"
+                                                }
+                                                size="sm"
+                                                variant="flat"
+                                            >
                                                 {mode.frequency < metrics.schroederFrequency ? "Modal" : "Diffuse"}
                                             </Chip>
                                         </td>
@@ -328,30 +377,53 @@ export default function DetailAcoustics() {
 
             {/* Recommendations */}
             <Card className="mb-6">
-                <CardHeader><h2 className="text-xl font-semibold">Recommendations</h2></CardHeader>
+                <CardHeader>
+                    <h2 className="text-xl font-semibold">Recommendations</h2>
+                </CardHeader>
                 <CardBody>
                     <div className="bg-default-100 rounded-lg p-4">
                         <ul className="space-y-2 text-sm">
                             {metrics.rt60Status === "too_reverberant" && (
-                                <li>• <strong>Reduce RT60:</strong> Add absorption (acoustic panels, heavy curtains, carpet) to reduce reverberation.</li>
+                                <li>
+                                    • <strong>Reduce RT60:</strong> Add absorption (acoustic panels, heavy curtains,
+                                    carpet) to reduce reverberation.
+                                </li>
                             )}
                             {metrics.rt60Status === "too_dry" && (
-                                <li>• <strong>Increase RT60:</strong> Reduce absorption or add reflective surfaces for more liveliness.</li>
+                                <li>
+                                    • <strong>Increase RT60:</strong> Reduce absorption or add reflective surfaces for
+                                    more liveliness.
+                                </li>
                             )}
                             {metrics.stiEstimate < 0.6 && (
-                                <li>• <strong>Improve Speech Intelligibility:</strong> Consider adding absorption to reduce RT60 and improve clarity.</li>
+                                <li>
+                                    • <strong>Improve Speech Intelligibility:</strong> Consider adding absorption to
+                                    reduce RT60 and improve clarity.
+                                </li>
                             )}
                             {metrics.bassRatio > 1.3 && (
-                                <li>• <strong>Bass Buildup:</strong> Add bass traps in corners to control low-frequency accumulation.</li>
+                                <li>
+                                    • <strong>Bass Buildup:</strong> Add bass traps in corners to control low-frequency
+                                    accumulation.
+                                </li>
                             )}
                             {metrics.bassRatio < 0.8 && (
-                                <li>• <strong>Lacking Warmth:</strong> Reduce low-frequency absorption or add resonant absorbers tuned to mid frequencies.</li>
+                                <li>
+                                    • <strong>Lacking Warmth:</strong> Reduce low-frequency absorption or add resonant
+                                    absorbers tuned to mid frequencies.
+                                </li>
                             )}
-                            {metrics.roomModes.filter(m => m.frequency < metrics.schroederFrequency).length > 5 && (
-                                <li>• <strong>Modal Issues:</strong> Consider bass traps and diffusers to address room modes below {metrics.schroederFrequency.toFixed(0)} Hz.</li>
+                            {metrics.roomModes.filter((m) => m.frequency < metrics.schroederFrequency).length > 5 && (
+                                <li>
+                                    • <strong>Modal Issues:</strong> Consider bass traps and diffusers to address room
+                                    modes below {metrics.schroederFrequency.toFixed(0)} Hz.
+                                </li>
                             )}
                             {metrics.rt60Status === "optimal" && metrics.stiEstimate >= 0.6 && (
-                                <li>• <strong>Good acoustic balance:</strong> The room is well-suited for its intended purpose.</li>
+                                <li>
+                                    • <strong>Good acoustic balance:</strong> The room is well-suited for its intended
+                                    purpose.
+                                </li>
                             )}
                         </ul>
                     </div>
@@ -360,7 +432,12 @@ export default function DetailAcoustics() {
 
             {/* Navigation */}
             <div className="flex gap-4 justify-center pt-4">
-                <Button color="default" variant="flat" startContent={<ArrowLeft size={20} />} onPress={() => navigate("/acoustics")}>
+                <Button
+                    color="default"
+                    variant="flat"
+                    startContent={<ArrowLeft size={20} />}
+                    onPress={() => navigate("/acoustics")}
+                >
                     Back to Acoustics
                 </Button>
             </div>
