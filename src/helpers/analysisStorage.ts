@@ -4,7 +4,7 @@ saveAnalysisHistory(history) - Saves history to localStorage
 clearAnalysisHistory() - Removes history from localStorage (available for future use)
 */
 
-import type { AnalysisRecord } from "../components/AnalysisHistoryTable";
+import type { AnalysisRecord } from "../components/meter/AnalysisHistoryTable";
 
 const storageKey: string = import.meta.env.VITE_STORAGE_KEY;
 const expectedHash: string = import.meta.env.VITE_STORAGE_KEY_HASH;

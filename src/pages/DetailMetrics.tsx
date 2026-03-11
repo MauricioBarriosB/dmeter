@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Activity, Waves, BarChart2, Zap, Volume2 } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip, Progress } from "@heroui/react";
-import type { AnalysisRecord } from "../components/AnalysisHistoryTable";
+import type { AnalysisRecord } from "../components/meter/AnalysisHistoryTable";
 import { loadAnalysisHistory } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
 import { formatDate, formatDuration, formatFrequency } from "../helpers/spectrumPeaksHelper";
-import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import UnauthorizedAlert from "../components/globals/UnauthorizedAlert";
 import {
     calculateCrestFactor,
     calculateDynamicRange,

@@ -4,7 +4,7 @@ import { ArrowLeft, Waves } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip, Progress, Divider } from "@heroui/react";
 import { loadAcousticsHistory, type AcousticsRecord } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
-import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import UnauthorizedAlert from "../components/globals/UnauthorizedAlert";
 import {
     FREQ_BANDS,
     purposeLabels,

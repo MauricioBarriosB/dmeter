@@ -18,8 +18,8 @@ import {
 import { type InstrumentsReportRecord } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
 import { usePersistentInstrumentsHistory } from "../hooks/usePersistentInstrumentsHistory";
-import InstrumentsHistoryTable from "../components/IntrumentsHistoryTable";
-import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import InstrumentsHistoryTable from "../components/instruments/IntrumentsHistoryTable";
+import UnauthorizedAlert from "../components/globals/UnauthorizedAlert";
 import instrumentsConfigJson from "../data/instrumentsConfig.json";
 
 type CategoryColor = "secondary" | "danger" | "warning" | "success" | "primary" | "default";

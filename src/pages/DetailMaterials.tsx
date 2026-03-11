@@ -4,7 +4,7 @@ import { ArrowLeft, FileText, Hammer } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
 import { loadMaterialsHistory, type MaterialsReportRecord } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
-import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import UnauthorizedAlert from "../components/globals/UnauthorizedAlert";
 import materialDataJson from "../data/materialData.json";
 
 const formatDate = (isoString: string) => {

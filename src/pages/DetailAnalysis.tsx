@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, BarChart3 } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
-import type { AnalysisRecord } from "../components/AnalysisHistoryTable";
+import type { AnalysisRecord } from "../components/meter/AnalysisHistoryTable";
 import { loadAnalysisHistory } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
 import { formatDate, formatDuration, getDbColor, getPaddedSpectrumPeaks } from "../helpers/spectrumPeaksHelper";
-import LicenseInvalid from "../components/LicenseInvalid";
-import FrequencyPeaksTable from "../components/FrequencyPeaksTable";
-import SpectrumAnalyzerGraphic from "../components/SpectrumAnalyzerGraphic";
+import LicenseInvalid from "../components/globals/LicenseInvalid";
+import FrequencyPeaksTable from "../components/meter/FrequencyPeaksTable";
+import SpectrumAnalyzerGraphic from "../components/meter/SpectrumAnalyzerGraphic";
 
 export default function DetailAnalysis() {
     const { id } = useParams<{ id: string }>();

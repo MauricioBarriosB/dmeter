@@ -18,8 +18,8 @@ import {
 import { type MaterialsReportRecord } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
 import { usePersistentMaterialsHistory } from "../hooks/usePersistentMaterialsHistory";
-import MaterialsHistoryTable from "../components/MaterialsHistoryTable";
-import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import MaterialsHistoryTable from "../components/materials/MaterialsHistoryTable";
+import UnauthorizedAlert from "../components/globals/UnauthorizedAlert";
 import materialsConfigJson from "../data/materialsConfig.json";
 
 type CategoryColor = "secondary" | "danger" | "warning" | "success" | "primary" | "default";

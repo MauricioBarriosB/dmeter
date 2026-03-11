@@ -5,7 +5,7 @@ import { loadAcousticsHistory, saveAcousticsHistory, type AcousticsRecord } from
 import { validateLicense } from "../helpers/licenseValidator";
 import AcousticsForm from "../components/AcousticsForm";
 import AcousticsHistoryTable from "../components/AcousticsHistoryTable";
-import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import UnauthorizedAlert from "../components/globals/UnauthorizedAlert";
 
 export default function Acoustics() {
     const [history, setHistory] = useState<AcousticsRecord[]>([]);

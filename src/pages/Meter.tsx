@@ -2,14 +2,14 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { Play, Square, AudioWaveform, HelpCircle } from "lucide-react";
 import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Input, useDisclosure } from "@heroui/react";
 import AudioMotionAnalyzer from "audiomotion-analyzer";
-import SpectrumAnalyzer from "../components/SpectrumAnalyzer";
-import RealTimeValuesPanel from "../components/RealTimeValuesPanel";
-import AnalysisHistoryTable from "../components/AnalysisHistoryTable";
-import type { AnalysisRecord, FrequencyPeak } from "../components/AnalysisHistoryTable";
+import SpectrumAnalyzer from "../components/meter/SpectrumAnalyzer";
+import RealTimeValuesPanel from "../components/meter/RealTimeValuesPanel";
+import AnalysisHistoryTable from "../components/meter/AnalysisHistoryTable";
+import type { AnalysisRecord, FrequencyPeak } from "../components/meter/AnalysisHistoryTable";
 import { loadAnalysisHistory, saveAnalysisHistory } from "../helpers/analysisStorage";
 import { validateLicense } from "../helpers/licenseValidator";
 import { calculateDecibels } from "../helpers/decibelsHelper";
-import UnauthorizedAlert from "../components/UnauthorizedAlert";
+import UnauthorizedAlert from "../components/globals/UnauthorizedAlert";
 
 interface RealTimeData {
     currentDb: number;
