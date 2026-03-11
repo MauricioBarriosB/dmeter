@@ -1049,6 +1049,39 @@ export default function Home() {
                             </div>
                         </CardBody>
                     </Card>
+
+                    {/* Report Management */}
+                    <Card className="bg-default-50 lg:col-span-2">
+                        <CardHeader className="pb-2">
+                            <h3 className="font-semibold flex items-center gap-2">
+                                <Database size={20} className="text-warning" />
+                                Report Management
+                            </h3>
+                        </CardHeader>
+                        <Divider />
+                        <CardBody className="pt-4">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div className="p-4 rounded-lg bg-success/10 border border-success/20">
+                                    <h4 className="font-medium text-success mb-2">Create & Edit</h4>
+                                    <p className="text-sm text-default-600">
+                                        Generate new instrument reports or edit existing ones with full form validation.
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-warning/10 border border-warning/20">
+                                    <h4 className="font-medium text-warning mb-2">Persistent Storage</h4>
+                                    <p className="text-sm text-default-600">
+                                        All reports automatically saved to localStorage for persistence across sessions.
+                                    </p>
+                                </div>
+                                <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
+                                    <h4 className="font-medium text-primary mb-2">History & Review</h4>
+                                    <p className="text-sm text-default-600">
+                                        View complete report history with ensemble type, genre, and selected instruments.
+                                    </p>
+                                </div>
+                            </div>
+                        </CardBody>
+                    </Card>
                 </div>
             </section>
         </div>
