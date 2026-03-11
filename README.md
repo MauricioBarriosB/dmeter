@@ -2,7 +2,8 @@
 
 - Analyze audio input from your microphone with real-time decibel monitoring. Track current, peak, average, and range dB values while viewing a live frequency spectrum visualization.
 - Calculate room acoustics with professional RT60, speech intelligibility metrics, and frequency-dependent analysis for audio engineers and acoustic consultants.
-- Generate comprehensive materials reports for building professional acoustic spaces with 12 build types, 15 acoustic treatment options, and 19 insulation materials.
+- Generate comprehensive materials reports for building professional acoustic spaces with 12 build types and 59 materials across 8 categories.
+- Create instrument lists for musical ensembles with 12 ensemble types, 14 genres, and 100+ instruments across 8 categories.
 - All analysis sessions and reports are automatically saved for review and comparison.
 
 [https://mauriciobarriosb.github.io/dmeter](https://mauriciobarriosb.github.io/dmeter)
@@ -149,7 +150,7 @@ The analysis provides automatic recommendations based on:
 
 # Materials Features
 
-Generate comprehensive material lists for building audio studios, home studios, rehearsal rooms, and professional acoustic spaces. Choose from 12 build types and 34 specialized materials.
+Generate comprehensive material lists for building audio studios, home studios, rehearsal rooms, and professional acoustic spaces. Choose from 12 build types and 59 specialized materials across 8 categories.
 
 ### 12 Build Types:
 
@@ -157,23 +158,23 @@ Generate comprehensive material lists for building audio studios, home studios, 
 - Broadcast Studio, Podcast Room, Voiceover Booth, Mixing Room
 - Mastering Suite, Live Room, Isolation Booth, Home Theater
 
-### 15 Acoustic Treatment Options:
+### Acoustic Treatment (22 Materials)
 
-| Category     | Materials                                                                            |
-| ------------ | ------------------------------------------------------------------------------------ |
-| Panels       | Acoustic Foam, Fabric-Wrapped Panels, Wooden Slats, Perforated Wood                  |
-| Bass Control | Bass Traps, Corner Bass Traps                                                        |
-| Diffusion    | Diffuser Panels                                                                      |
-| Ceiling      | Acoustic Tiles, Cloud Panels                                                         |
-| Portable     | Vocal Booth, Reflection Filter, Isolation Pads, Decoupling Mounts, Acoustic Curtains |
+| Category           | Count | Materials                                                                    |
+| ------------------ | ----- | ---------------------------------------------------------------------------- |
+| Absorption Panels  | 5     | Acoustic Foam, Fabric-Wrapped Panels, Wooden Slats, Perforated Wood, Fabric  |
+| Bass Control       | 4     | Bass Traps, Corner Bass Traps, Helmholtz Resonators, Membrane Absorbers      |
+| Diffusion          | 4     | Diffuser Panels, QRD Diffusers, Skyline Diffusers, Polycylindrical Diffusers |
+| Ceiling & Portable | 9     | Ceiling Tiles, Cloud Panels, Baffles, Curtains, Gobos, Vocal Booth, more     |
 
-### 19 Insulation & Soundproofing Materials:
+### Construction & Soundproofing (37 Materials)
 
-| Category        | Materials                                                                                                         |
-| --------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Wall Insulation | Rockwool, Fiberglass, Mass Loaded Vinyl, Green Glue, Resilient Channels, Soundproof Drywall, Double Layer Drywall |
-| Floor & Ceiling | Floating Floor System, Carpet with Acoustic Underlay, Rubber Flooring, Suspended Acoustic Ceiling                 |
-| Openings & HVAC | Soundproof Door, Door Seals, Window Plugs, Double Glazing, Studio Glass, Acoustic Ventilation, Cable Management   |
+| Category          | Count | Materials                                                                          |
+| ----------------- | ----- | ---------------------------------------------------------------------------------- |
+| Wall Systems      | 12    | Concrete Blocks, Stud Walls, Plywood, MDF, Rockwool, Fiberglass, MLV, Green Glue   |
+| Sealing & Opening | 10    | Acoustic Caulk, Sealants, Weatherstripping, Door Seals, Soundproof Doors, Glazing  |
+| Floor & Vibration | 9     | Carpet Underlay, Rubber/Cork Flooring, Neoprene Pads, Spring Isolators, Drum Riser |
+| Ceiling & HVAC    | 6     | Suspended Ceiling, Isolation Hangers, Duct Silencers, Flexible Duct, Ventilation   |
 
 ### 17 Surface Materials - Absorption Analysis:
 
@@ -210,3 +211,39 @@ Generate comprehensive material lists for building audio studios, home studios, 
 | Diffuser Panel        | 0.15 - 0.60                  |
 
 > Absorption coefficients vary by frequency (125Hz - 4kHz). Higher values indicate more sound absorption.
+
+---
+
+# Instruments Features
+
+Generate comprehensive instrument lists for musical ensembles, bands, and orchestras. Select your ensemble type, genre, and choose from a wide variety of instruments.
+
+### 12 Ensemble Types:
+
+- Symphony Orchestra, Big Band, Jazz Quartet, String Quartet
+- Rock Band, Choir, Chamber Orchestra, Wind Ensemble
+- Brass Band, Marching Band, Pop/Electronic, World Music Ensemble
+
+### 14 Musical Genres:
+
+- Classical, Jazz, Rock, Pop, Blues, Country, Electronic
+- Folk, R&B/Soul, Metal, Reggae, Latin, Hip Hop, World Music
+
+### 100+ Instruments Across 8 Categories:
+
+| Category      | Count | Instruments                                                                         |
+| ------------- | ----- | ----------------------------------------------------------------------------------- |
+| Rock & Metal  | 25    | Electric/Lead/Rhythm Guitars, Bass, Drum Kit components, Amplifiers, Pedals        |
+| Strings       | 11    | Violin, Viola, Cello, Double Bass, Acoustic/Classical Guitar, Harp, Banjo, Mandolin |
+| Woodwinds     | 7     | Flute, Clarinet, Oboe, Bassoon, Saxophone, Recorder, Piccolo                        |
+| Brass         | 6     | Trumpet, Trombone, French Horn, Tuba, Cornet, Euphonium                             |
+| Percussion    | 15    | Drum Kit, Timpani, Xylophone, Marimba, Vibraphone, Congas, Bongos, Cajon            |
+| Keyboards     | 6     | Piano, Organ, Synthesizer, Electric Piano, Harpsichord, Accordion                   |
+| Electronic    | 6     | Drum Machine, Sampler, DJ Mixer, Turntable, Effects Processor, MIDI Controller      |
+| Ethnic        | 28    | Sitar, Tabla, Erhu, Koto, Djembe, Kalimba, Didgeridoo, Oud, Bouzouki, Bagpipes      |
+
+### Report Management:
+
+- Create, edit, and delete instrument reports
+- All reports saved to localStorage for persistence
+- View report history with ensemble type, genre, and selected instruments
