@@ -1,0 +1,188 @@
+/*
+loadAnalysisHistory() - Loads and parses history from localStorage
+saveAnalysisHistory(history) - Saves history to localStorage
+clearAnalysisHistory() - Removes history from localStorage (available for future use)
+*/
+
+import type { AnalysisRecord } from "../components/meter/AnalysisHistoryTable";
+
+const storageKey: string = import.meta.env.VITE_STORAGE_KEY;
+const expectedHash: string = import.meta.env.VITE_STORAGE_KEY_HASH;
+
+let validationState: "pending" | "valid" | "invalid" = "pending";
+
+async function hashKey(key: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(key);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function validateStorageKey(): Promise<boolean> {
+    if (validationState === "valid") return true;
+    if (validationState === "invalid") return false;
+
+    const hash = await hashKey(storageKey);
+    validationState = hash === expectedHash ? "valid" : "invalid";
+
+    if (validationState === "invalid") {
+        console.error("Invalid storage key - access denied");
+    }
+    return validationState === "valid";
+}
+
+export async function loadAnalysisHistory(): Promise<AnalysisRecord[]> {
+    if (!(await validateStorageKey())) return [];
+
+    const stored = localStorage.getItem(storageKey);
+    if (stored) {
+        try {
+            return JSON.parse(stored) as AnalysisRecord[];
+        } catch {
+            console.error("Failed to parse stored history");
+            return [];
+        }
+    }
+    return [];
+}
+
+export async function saveAnalysisHistory(history: AnalysisRecord[]): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.setItem(storageKey, JSON.stringify(history));
+}
+
+export async function clearAnalysisHistory(): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.removeItem(storageKey);
+}
+
+// Acoustics Analysis Storage
+export interface AcousticsRecord {
+    id: string;
+    analysisName: string;
+    // Room Dimensions
+    roomHeight: string;
+    roomWidth: string;
+    roomDepth: string;
+    // Room Configuration
+    roomPurpose: string;
+    roofType: string;
+    // Multi-surface Materials
+    floorMaterial: string;
+    ceilingMaterial: string;
+    wallMaterial: string;
+    // Environmental Factors
+    temperature: string;
+    humidity: string;
+    occupancy: string;
+    // Additional Parameters
+    windowArea: string;
+    doorCount: string;
+    date: string;
+}
+
+const acousticsStorageKey = `${storageKey}_acoustics`;
+
+export async function loadAcousticsHistory(): Promise<AcousticsRecord[]> {
+    if (!(await validateStorageKey())) return [];
+
+    const stored = localStorage.getItem(acousticsStorageKey);
+    if (stored) {
+        try {
+            return JSON.parse(stored) as AcousticsRecord[];
+        } catch {
+            console.error("Failed to parse stored acoustics history");
+            return [];
+        }
+    }
+    return [];
+}
+
+export async function saveAcousticsHistory(history: AcousticsRecord[]): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.setItem(acousticsStorageKey, JSON.stringify(history));
+}
+
+export async function clearAcousticsHistory(): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.removeItem(acousticsStorageKey);
+}
+
+// Materials Reports Storage
+export interface MaterialsReportRecord {
+    id: string;
+    reportName: string;
+    buildType: string;
+    buildTypeLabel: string;
+    selectedMaterials: string[];
+    selectedMaterialsLabels: string[];
+    createdAt: string;
+}
+
+const materialsStorageKey = `${storageKey}_materials`;
+
+export async function loadMaterialsHistory(): Promise<MaterialsReportRecord[]> {
+    if (!(await validateStorageKey())) return [];
+
+    const stored = localStorage.getItem(materialsStorageKey);
+    if (stored) {
+        try {
+            return JSON.parse(stored) as MaterialsReportRecord[];
+        } catch {
+            console.error("Failed to parse stored materials history");
+            return [];
+        }
+    }
+    return [];
+}
+
+export async function saveMaterialsHistory(history: MaterialsReportRecord[]): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.setItem(materialsStorageKey, JSON.stringify(history));
+}
+
+export async function clearMaterialsHistory(): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.removeItem(materialsStorageKey);
+}
+
+// Instruments Reports Storage
+export interface InstrumentsReportRecord {
+    id: string;
+    reportName: string;
+    ensembleType: string;
+    ensembleTypeLabel: string;
+    genre: string;
+    genreLabel: string;
+    selectedInstruments: string[];
+    selectedInstrumentsLabels: string[];
+    createdAt: string;
+}
+
+const instrumentsStorageKey = `${storageKey}_instruments`;
+
+export async function loadInstrumentsHistory(): Promise<InstrumentsReportRecord[]> {
+    if (!(await validateStorageKey())) return [];
+
+    const stored = localStorage.getItem(instrumentsStorageKey);
+    if (stored) {
+        try {
+            return JSON.parse(stored) as InstrumentsReportRecord[];
+        } catch {
+            console.error("Failed to parse stored instruments history");
+            return [];
+        }
+    }
+    return [];
+}
+
+export async function saveInstrumentsHistory(history: InstrumentsReportRecord[]): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.setItem(instrumentsStorageKey, JSON.stringify(history));
+}
+
+export async function clearInstrumentsHistory(): Promise<void> {
+    if (!(await validateStorageKey())) return;
+    localStorage.removeItem(instrumentsStorageKey);
+}
