@@ -83,7 +83,7 @@ export default function DetailAcoustics() {
     const rt60Color = getRT60StatusColor(metrics.rt60Status);
 
     return (
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="mb-8">
                 <Button

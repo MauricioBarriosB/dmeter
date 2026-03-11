@@ -75,7 +75,7 @@ export default function DetailAnalysis() {
     const paddedPeaks = getPaddedSpectrumPeaks(record.spectrumPeaks);
 
     return (
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="mb-8">
                 <Button
