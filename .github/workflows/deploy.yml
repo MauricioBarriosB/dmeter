@@ -41,6 +41,8 @@ jobs:
                   VITE_VALID_LICENSE_HASH: ${{ secrets.VITE_VALID_LICENSE_HASH }}
                   VITE_STORAGE_KEY: ${{ secrets.VITE_STORAGE_KEY }}
                   VITE_STORAGE_KEY_HASH: ${{ secrets.VITE_STORAGE_KEY_HASH }}
+                  VITE_APP_API_URL: ${{ secrets.VITE_APP_API_URL }}
+                  VITE_APP_API_SECRET: ${{ secrets.VITE_APP_API_SECRET }}
 
             - name: Setup Pages
               uses: actions/configure-pages@v5
