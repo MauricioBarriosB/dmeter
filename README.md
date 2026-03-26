@@ -1,12 +1,162 @@
 # DMETER - React + TypeScript + Vite
 
+- Professional audio file analysis with FFT spectrum, LUFS loudness, stereo correlation, and mastering recommendations for 96+ genres and 65+ distribution formats.
 - Analyze audio input from your microphone with real-time decibel monitoring. Track current, peak, average, and range dB values while viewing a live frequency spectrum visualization.
 - Calculate room acoustics with professional RT60, speech intelligibility metrics, and frequency-dependent analysis for audio engineers and acoustic consultants.
 - Generate comprehensive materials reports for building professional acoustic spaces with 12 build types and 59 materials across 8 categories.
 - Create instrument lists for musical ensembles with 12 ensemble types, 14 genres, and 100+ instruments across 8 categories.
 - All analysis sessions and reports are automatically saved for review and comparison.
+- All analyzed audio is neither saved nor stored in a database; once the analysis is complete, the audio is completely detached from the application.
 
 [https://mauriciobarriosb.github.io/dmeter](https://mauriciobarriosb.github.io/dmeter)
+
+---
+
+# Audio File Analysis Features
+
+Professional audio file analysis for mastering engineers and music producers. Upload audio files and get comprehensive frequency spectrum, loudness metrics, stereo analysis, and distribution-specific recommendations.
+
+### Supported Audio Formats:
+
+- MP3, WAV, OGG, FLAC, AAC, M4A
+- Maximum file size: 50MB
+- Uses Web Audio API for high-quality decoding
+
+### 96+ Music Genres:
+
+| Category       | Genres                                                                         |
+| -------------- | ------------------------------------------------------------------------------ |
+| Rock & Metal   | Rock, Hard Rock, Progressive, Alternative, Indie, Punk, Grunge, Metal variants |
+| Pop & Dance    | Pop, Synth Pop, Electro Pop, K-Pop, J-Pop, Dance Pop                           |
+| Electronic     | EDM, House, Techno, Trance, Dubstep, Drum & Bass, Ambient, Synthwave           |
+| Hip Hop/Urban  | Hip Hop, Trap, Drill, Lo-Fi, Boom Bap, R&B, Neo Soul, Funk, Disco              |
+| Jazz & Blues   | Jazz, Smooth Jazz, Bebop, Fusion, Blues, Delta Blues, Chicago Blues            |
+| Classical      | Classical, Baroque, Romantic, Orchestral, Opera, Film Score, Video Game Music  |
+| Country & Folk | Country, Americana, Bluegrass, Folk, Indie Folk, Celtic                        |
+| World          | Reggae, Latin, Salsa, Reggaeton, Bossa Nova, Flamenco, Afrobeat                |
+
+### 65+ Media Distribution Formats:
+
+| Distribution Type     | Formats                                                                        |
+| --------------------- | ------------------------------------------------------------------------------ |
+| Physical Distribution | CD, Vinyl 12"/7"/10", Cassette, MiniDisc, SACD, DVD-Audio, Blu-ray, DAT        |
+| Platform / Streaming  | Spotify, Apple Music, YouTube, Tidal, Amazon Music, Deezer, SoundCloud, TikTok |
+| Digital Download      | WAV 16/24/32-bit, FLAC, ALAC, MP3, AAC, OGG, Opus, DSD64/128/256, MQA          |
+| Broadcast             | FM/AM Radio, Digital Radio, TV Broadcast, Cinema, Podcast, Audiobook           |
+| Sync / Media          | Film, TV Series, Documentary, Commercials, Video Games, Corporate, E-Learning  |
+| Live / Performance    | Live PA, Club/DJ, Festival, Concert Hall, Arena, Theater, House of Worship     |
+
+### Frequency Spectrum Analysis:
+
+- **Custom FFT Algorithm** - 8192-point Cooley-Tukey radix-2 FFT with Hanning window
+- **Averaged Spectrum** - Multiple overlapping windows for accurate representation
+- **Frequency Response Chart** - SVG visualization with logarithmic frequency scale (20Hz-20kHz)
+- **Octave Band Analysis** - 10 bands: 31.5Hz, 63Hz, 125Hz, 250Hz, 500Hz, 1kHz, 2kHz, 4kHz, 8kHz, 16kHz
+
+### Spectral Metrics:
+
+| Metric            | Description                                     |
+| ----------------- | ----------------------------------------------- |
+| Spectral Centroid | Center of mass - indicates perceived brightness |
+| Spectral Rolloff  | Frequency below which 85% of energy exists      |
+| Spectral Flatness | Tonal (0%) to noise-like (100%) ratio           |
+| Spectral Spread   | Standard deviation around centroid              |
+| Spectral Skewness | Asymmetry of spectrum distribution              |
+| Spectral Kurtosis | Peakedness of spectrum                          |
+
+### Frequency Balance Analysis:
+
+| Band       | Range      | Description             |
+| ---------- | ---------- | ----------------------- |
+| Sub-bass   | 20-60 Hz   | Rumble, sub frequencies |
+| Bass       | 60-250 Hz  | Kick, bass instruments  |
+| Low-mid    | 250-500 Hz | Body, warmth            |
+| Mid        | 500-2 kHz  | Vocals, instruments     |
+| Upper-mid  | 2-4 kHz    | Presence, clarity       |
+| Presence   | 4-6 kHz    | Definition, attack      |
+| Brilliance | 6-20 kHz   | Air, sparkle, harmonics |
+
+### Loudness Metrics (Professional Standards):
+
+| Metric         | Description                                    |
+| -------------- | ---------------------------------------------- |
+| Peak dB        | Maximum sample amplitude                       |
+| True Peak      | Inter-sample peak detection                    |
+| RMS dB         | Average loudness level                         |
+| LUFS           | Integrated loudness (EBU R128 / ITU-R BS.1770) |
+| Loudness Range | LRA - dynamic variation in loudness            |
+| Dynamic Range  | Difference between peak and average            |
+| PSR            | Peak to Short-term Loudness Ratio              |
+| Headroom       | Distance from 0 dBFS                           |
+| Clipping %     | Percentage of clipped samples                  |
+
+### Platform LUFS Targets:
+
+| Platform     | Target LUFS  | Notes                  |
+| ------------ | ------------ | ---------------------- |
+| Spotify      | -14 LUFS     | Normalization enabled  |
+| Apple Music  | -16 LUFS     | Sound Check            |
+| YouTube      | -14 LUFS     | Loudness normalization |
+| Tidal        | -14 LUFS     | Reference level        |
+| TV Broadcast | -23/-24 LUFS | EBU R128 / ATSC A/85   |
+| Cinema       | -24 LUFS     | Dolby reference        |
+| Podcast      | -16 LUFS     | Speech optimized       |
+| CD (Loud)    | -9 LUFS      | No normalization       |
+| Vinyl        | -14 LUFS     | Physical limitations   |
+
+### Stereo Analysis:
+
+| Metric             | Description                                |
+| ------------------ | ------------------------------------------ |
+| Stereo Correlation | Phase coherence (-1 to +1, ideal: 0.5-1.0) |
+| Stereo Width       | Perceived stereo image (0-100%)            |
+| L/R Peak Balance   | Individual channel peak levels             |
+| L/R RMS Balance    | Individual channel average levels          |
+| Phase Coherence    | Overall phase relationship                 |
+
+### Temporal Analysis:
+
+| Metric          | Description                                 |
+| --------------- | ------------------------------------------- |
+| Duration        | File length in minutes:seconds.milliseconds |
+| Sample Rate     | Hz (44.1kHz, 48kHz, 96kHz, etc.)            |
+| Bit Depth       | 16-bit, 24-bit, 32-bit float                |
+| Channels        | Mono, Stereo                                |
+| Estimated BPM   | Tempo detection via onset analysis          |
+| BPM Confidence  | Reliability of tempo estimate               |
+| Transient Count | Number of detected transients               |
+| Zero Crossing   | Signal characteristic analysis              |
+
+### Harmonic Analysis:
+
+- **Fundamental Frequency** - Detected via autocorrelation
+- **Harmonic Series** - First 8 harmonics with magnitudes
+- **THD Estimate** - Total Harmonic Distortion percentage
+- **Noise Floor** - Background noise level estimation
+
+### Genre-Specific Mastering Targets:
+
+| Genre Category | LUFS Range | Dynamic Range | Description                   |
+| -------------- | ---------- | ------------- | ----------------------------- |
+| Metal          | -10 to -6  | 4-8 dB        | Aggressive, wall of sound     |
+| Rock           | -12 to -9  | 6-10 dB       | Punchy, controlled dynamics   |
+| Pop/Electronic | -12 to -8  | 6-10 dB       | Polished, commercial loudness |
+| Hip Hop        | -11 to -8  | 5-9 dB        | Hard-hitting, bass-forward    |
+| Jazz           | -18 to -12 | 10-18 dB      | Preserve natural dynamics     |
+| Classical      | -24 to -16 | 12-25 dB      | Maximum dynamic range         |
+| Ambient        | -20 to -14 | 12-20 dB      | Gentle, spacious              |
+| Spoken Word    | -19 to -14 | 8-14 dB       | Clear, consistent speech      |
+
+### Professional Recommendations:
+
+The analysis provides automatic recommendations based on:
+
+- LUFS comparison to platform targets
+- Dynamic range assessment for genre
+- Stereo correlation warnings (phase issues)
+- Clipping and true peak alerts
+- Frequency balance suggestions
+- Headroom recommendations
 
 ---
 
@@ -231,22 +381,22 @@ Generate comprehensive instrument lists for musical ensembles, bands, and orches
 
 ### 100+ Instruments Across 8 Categories:
 
-| Category      | Count | Instruments                                                                         |
-| ------------- | ----- | ----------------------------------------------------------------------------------- |
-| Rock & Metal  | 25    | Electric/Lead/Rhythm Guitars, Bass, Drum Kit components, Amplifiers, Pedals        |
-| Strings       | 11    | Violin, Viola, Cello, Double Bass, Acoustic/Classical Guitar, Harp, Banjo, Mandolin |
-| Woodwinds     | 7     | Flute, Clarinet, Oboe, Bassoon, Saxophone, Recorder, Piccolo                        |
-| Brass         | 6     | Trumpet, Trombone, French Horn, Tuba, Cornet, Euphonium                             |
-| Percussion    | 15    | Drum Kit, Timpani, Xylophone, Marimba, Vibraphone, Congas, Bongos, Cajon            |
-| Keyboards     | 6     | Piano, Organ, Synthesizer, Electric Piano, Harpsichord, Accordion                   |
-| Electronic    | 6     | Drum Machine, Sampler, DJ Mixer, Turntable, Effects Processor, MIDI Controller      |
-| Ethnic        | 28    | Sitar, Tabla, Erhu, Koto, Djembe, Kalimba, Didgeridoo, Oud, Bouzouki, Bagpipes      |
+| Category     | Count | Instruments                                                                         |
+| ------------ | ----- | ----------------------------------------------------------------------------------- |
+| Rock & Metal | 25    | Electric/Lead/Rhythm Guitars, Bass, Drum Kit components, Amplifiers, Pedals         |
+| Strings      | 11    | Violin, Viola, Cello, Double Bass, Acoustic/Classical Guitar, Harp, Banjo, Mandolin |
+| Woodwinds    | 7     | Flute, Clarinet, Oboe, Bassoon, Saxophone, Recorder, Piccolo                        |
+| Brass        | 6     | Trumpet, Trombone, French Horn, Tuba, Cornet, Euphonium                             |
+| Percussion   | 15    | Drum Kit, Timpani, Xylophone, Marimba, Vibraphone, Congas, Bongos, Cajon            |
+| Keyboards    | 6     | Piano, Organ, Synthesizer, Electric Piano, Harpsichord, Accordion                   |
+| Electronic   | 6     | Drum Machine, Sampler, DJ Mixer, Turntable, Effects Processor, MIDI Controller      |
+| Ethnic       | 28    | Sitar, Tabla, Erhu, Koto, Djembe, Kalimba, Didgeridoo, Oud, Bouzouki, Bagpipes      |
 
 ### Report Management:
 
-| Feature            | Description                                                                 |
-| ------------------ | --------------------------------------------------------------------------- |
-| Create & Edit      | Generate new instrument reports or edit existing ones with form validation  |
-| Persistent Storage | All reports automatically saved to localStorage across browser sessions     |
-| History & Review   | View complete report history with ensemble type, genre, and instruments     |
-| Delete & Clear     | Remove individual reports or clear entire history with confirmation         |
+| Feature            | Description                                                                |
+| ------------------ | -------------------------------------------------------------------------- |
+| Create & Edit      | Generate new instrument reports or edit existing ones with form validation |
+| Persistent Storage | All reports automatically saved to localStorage across browser sessions    |
+| History & Review   | View complete report history with ensemble type, genre, and instruments    |
+| Delete & Clear     | Remove individual reports or clear entire history with confirmation        |
