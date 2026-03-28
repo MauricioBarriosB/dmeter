@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Container, Hammer } from "lucide-react";
+import { ArrowLeft, Container, Hammer, Pencil } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip, Spinner } from "@heroui/react";
 import { fetchMaterialsReport } from "@services/apiCrud";
 import type { MaterialsReportRecord } from "../types";
@@ -158,14 +158,23 @@ export default function DetailMaterials() {
     return (
         <div className="max-w-7xl mx-auto">
             <div className="mb-8">
-                <Button
-                    variant="light"
-                    startContent={<ArrowLeft size={20} />}
-                    onPress={() => navigate("/materials")}
-                    className="mb-4"
-                >
-                    Back to Materials Reports
-                </Button>
+                <div className="flex gap-2 mb-4">
+                    <Button
+                        variant="light"
+                        startContent={<ArrowLeft size={20} />}
+                        onPress={() => navigate("/materials")}
+                    >
+                        Back to Materials Reports
+                    </Button>
+                    <Button
+                        color="primary"
+                        variant="flat"
+                        startContent={<Pencil size={18} />}
+                        onPress={() => navigate(`/materials?edit=${id}`)}
+                    >
+                        Edit Report
+                    </Button>
+                </div>
                 <div className="flex items-center gap-3 mb-3">
                     <Container size={40} className="text-primary" />
                     <div>
@@ -328,6 +337,14 @@ export default function DetailMaterials() {
                     onPress={() => navigate("/materials")}
                 >
                     Back to Materials Reports
+                </Button>
+                <Button
+                    color="primary"
+                    variant="flat"
+                    startContent={<Pencil size={18} />}
+                    onPress={() => navigate(`/materials?edit=${id}`)}
+                >
+                    Edit Report
                 </Button>
             </div>
         </div>

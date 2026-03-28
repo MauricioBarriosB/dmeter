@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Drum, Users } from "lucide-react";
+import { ArrowLeft, Drum, Pencil, Users } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
 import { fetchInstrumentsReport } from "@services/apiCrud";
 import type { InstrumentsReportRecord } from "../types";
@@ -144,14 +144,23 @@ export default function DetailInstruments() {
     return (
         <div className="max-w-7xl mx-auto">
             <div className="mb-8">
-                <Button
-                    variant="light"
-                    startContent={<ArrowLeft size={20} />}
-                    onPress={() => navigate("/instruments")}
-                    className="mb-4"
-                >
-                    Back to Instruments Reports
-                </Button>
+                <div className="flex gap-2 mb-4">
+                    <Button
+                        variant="light"
+                        startContent={<ArrowLeft size={20} />}
+                        onPress={() => navigate("/instruments")}
+                    >
+                        Back to Instruments Reports
+                    </Button>
+                    <Button
+                        color="primary"
+                        variant="flat"
+                        startContent={<Pencil size={18} />}
+                        onPress={() => navigate(`/instruments?edit=${id}`)}
+                    >
+                        Edit Report
+                    </Button>
+                </div>
                 <div className="flex items-center gap-3 mb-3">
                     <Drum size={40} className="text-primary" />
                     <div>
@@ -330,6 +339,14 @@ export default function DetailInstruments() {
                     onPress={() => navigate("/instruments")}
                 >
                     Back to Instruments Reports
+                </Button>
+                <Button
+                    color="primary"
+                    variant="flat"
+                    startContent={<Pencil size={18} />}
+                    onPress={() => navigate(`/instruments?edit=${id}`)}
+                >
+                    Edit Report
                 </Button>
             </div>
         </div>

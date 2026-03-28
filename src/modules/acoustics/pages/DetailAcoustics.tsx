@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Waves } from "lucide-react";
+import { ArrowLeft, Pencil, Waves } from "lucide-react";
 import { Button, Card, CardBody, CardHeader, Chip, Progress, Divider } from "@heroui/react";
 import { fetchAcousticsReport } from "@services/apiCrud";
 import type { AcousticsRecord, AcousticMetrics, AcousticsConfig } from "../types";
@@ -102,14 +102,23 @@ export default function DetailAcoustics() {
         <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="mb-8">
-                <Button
-                    variant="light"
-                    startContent={<ArrowLeft size={20} />}
-                    onPress={() => navigate("/acoustics")}
-                    className="mb-4"
-                >
-                    Back to Acoustics
-                </Button>
+                <div className="flex gap-2 mb-4">
+                    <Button
+                        variant="light"
+                        startContent={<ArrowLeft size={20} />}
+                        onPress={() => navigate("/acoustics")}
+                    >
+                        Back to Acoustics
+                    </Button>
+                    <Button
+                        color="primary"
+                        variant="flat"
+                        startContent={<Pencil size={18} />}
+                        onPress={() => navigate(`/acoustics?edit=${id}`)}
+                    >
+                        Edit Report
+                    </Button>
+                </div>
                 <div className="flex items-center gap-3 mb-3">
                     <Waves size={40} className="text-primary" />
                     <div>
@@ -455,6 +464,14 @@ export default function DetailAcoustics() {
                     onPress={() => navigate("/acoustics")}
                 >
                     Back to Acoustics
+                </Button>
+                <Button
+                    color="primary"
+                    variant="flat"
+                    startContent={<Pencil size={18} />}
+                    onPress={() => navigate(`/acoustics?edit=${id}`)}
+                >
+                    Edit Report
                 </Button>
             </div>
         </div>
