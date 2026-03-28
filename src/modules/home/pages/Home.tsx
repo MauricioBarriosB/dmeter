@@ -123,29 +123,38 @@ export default function Home() {
                     </div>
                 ) : (
                     // Login/Register buttons for non-authenticated users
-                    <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-10">
-                        <Button
-                            as={Link}
-                            to="/login"
-                            color="primary"
-                            size="lg"
-                            variant="shadow"
-                            className="font-semibold text-xl px-12 py-8 w-full sm:w-auto"
-                            startContent={<LogIn size={24} />}
-                        >
-                            Sign In
-                        </Button>
-                        <Button
-                            as={Link}
-                            to="/register"
-                            color="secondary"
-                            size="lg"
-                            variant="shadow"
-                            className="font-semibold text-xl px-12 py-8 w-full sm:w-auto"
-                            startContent={<UserPlus size={24} />}
-                        >
-                            Create Account
-                        </Button>
+                    <div className="flex flex-col justify-center items-center gap-6 mt-10">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center">
+                            Join DMeter Today
+                        </h2>
+                        <p className="text-default-500 text-center max-w-lg text-base sm:text-lg">
+                            Create a free account to access powerful audio analysis tools, real-time metering, acoustic
+                            measurements, and much more.
+                        </p>
+                        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mt-2">
+                            <Button
+                                as={Link}
+                                to="/login"
+                                color="primary"
+                                size="lg"
+                                variant="shadow"
+                                className="font-semibold text-xl px-12 py-8 w-full sm:w-auto"
+                                startContent={<LogIn size={24} />}
+                            >
+                                Sign In
+                            </Button>
+                            <Button
+                                as={Link}
+                                to="/register"
+                                color="secondary"
+                                size="lg"
+                                variant="shadow"
+                                className="font-semibold text-xl px-12 py-8 w-full sm:w-auto"
+                                startContent={<UserPlus size={24} />}
+                            >
+                                Create Account
+                            </Button>
+                        </div>
                     </div>
                 )}
             </div>

@@ -12,7 +12,7 @@ import {
     DropdownItem,
     DropdownSection,
 } from "@heroui/react";
-import { Mic, Menu, X, Home, Waves, Container, Drum, Music4, User, LogOut, Settings, LayoutDashboard } from "lucide-react";
+import { Mic, Menu, X, Home, Waves, Container, Drum, Music4, User, LogOut, Settings, LayoutDashboard, Mail } from "lucide-react";
 import { useAuthContext } from "@modules/user/context/AuthContext";
 
 // Nav items that require authentication
@@ -32,7 +32,7 @@ interface LayoutProps {
     children: React.ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children }: Readonly<LayoutProps>) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
@@ -52,8 +52,11 @@ export default function Layout({ children }: LayoutProps) {
         navigate("/login");
     };
 
-    // Combine nav items based on auth state
-    const navItems = isAuthenticated ? [...publicNavItems, ...protectedNavItems] : publicNavItems;
+    // Combine nav items based on auth state — Contact is public but placed after Instruments
+    const contactItem = { name: "Contact", href: "/contact", icon: Mail };
+    const navItems = isAuthenticated
+        ? [...publicNavItems, ...protectedNavItems, contactItem]
+        : [...publicNavItems, contactItem];
 
     return (
         <div

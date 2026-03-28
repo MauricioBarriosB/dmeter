@@ -54,7 +54,7 @@ export default function Contact() {
                         </div>
                         <h2 className="text-2xl font-bold text-foreground">Visit Our Website</h2>
                         <p className="text-default-500">
-                            Explore our full catalog of professional training courses, certifications, and educational
+                            Explore our catalog of several demo aplications, mvp's , certifications, and educational
                             resources.
                         </p>
                         <Button
