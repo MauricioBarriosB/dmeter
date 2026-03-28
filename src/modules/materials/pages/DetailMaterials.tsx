@@ -167,8 +167,7 @@ export default function DetailMaterials() {
                         Back to Materials Reports
                     </Button>
                     <Button
-                        color="primary"
-                        variant="flat"
+                        variant="light"
                         startContent={<Pencil size={18} />}
                         onPress={() => navigate(`/materials?edit=${id}`)}
                     >
@@ -339,7 +338,7 @@ export default function DetailMaterials() {
                     Back to Materials Reports
                 </Button>
                 <Button
-                    color="primary"
+                    color="default"
                     variant="flat"
                     startContent={<Pencil size={18} />}
                     onPress={() => navigate(`/materials?edit=${id}`)}

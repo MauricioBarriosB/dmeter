@@ -532,4 +532,5 @@ npm run format     # Run Prettier
 # Contact and Support
 
 - Website: [capacitaenlinea.cl](https://capacitaenlinea.cl/)
-- Email: [mbarrios@capacitaenlinea.cl](mailto:mbarrios@capacitaenlinea.cl)
+- Email contact info: [info@capacitaenlinea.cl](mailto:info@capacitaenlinea.cl)
+- Email support: [mbarrios@capacitaenlinea.cl](mailto:mbarrios@capacitaenlinea.cl)

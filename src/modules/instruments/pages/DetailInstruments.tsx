@@ -153,8 +153,7 @@ export default function DetailInstruments() {
                         Back to Instruments Reports
                     </Button>
                     <Button
-                        color="primary"
-                        variant="flat"
+                        variant="light"
                         startContent={<Pencil size={18} />}
                         onPress={() => navigate(`/instruments?edit=${id}`)}
                     >
@@ -341,7 +340,7 @@ export default function DetailInstruments() {
                     Back to Instruments Reports
                 </Button>
                 <Button
-                    color="primary"
+                    color="default"
                     variant="flat"
                     startContent={<Pencil size={18} />}
                     onPress={() => navigate(`/instruments?edit=${id}`)}

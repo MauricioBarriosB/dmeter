@@ -34,14 +34,14 @@ export default function Contact() {
                         </p>
                         <Button
                             as="a"
-                            href="mailto:mbarrios@capacitaenlinea.cl"
+                            href="mailto:info@capacitaenlinea.cl"
                             color="primary"
                             variant="shadow"
                             size="lg"
                             className="font-semibold mt-2"
                             startContent={<MessageCircle size={20} />}
                         >
-                            mbarrios@capacitaenlinea.cl
+                            info@capacitaenlinea.cl
                         </Button>
                     </CardBody>
                 </Card>

@@ -111,8 +111,7 @@ export default function DetailAcoustics() {
                         Back to Acoustics
                     </Button>
                     <Button
-                        color="primary"
-                        variant="flat"
+                        variant="light"
                         startContent={<Pencil size={18} />}
                         onPress={() => navigate(`/acoustics?edit=${id}`)}
                     >
@@ -466,7 +465,7 @@ export default function DetailAcoustics() {
                     Back to Acoustics
                 </Button>
                 <Button
-                    color="primary"
+                    color="default"
                     variant="flat"
                     startContent={<Pencil size={18} />}
                     onPress={() => navigate(`/acoustics?edit=${id}`)}
