@@ -526,14 +526,9 @@ Serves the `dist/` folder locally to preview the production build.
 npm run lint       # Run ESLint
 npm run format     # Run Prettier
 ```
+---
 
-### Tech Stack
+# Contact
 
-- **React 19** + **TypeScript 5.9**
-- **Vite 7** — build tool & dev server
-- **Tailwind CSS 4** — utility-first styling
-- **HeroUI** — component library
-- **Framer Motion** — animations
-- **React Router DOM 7** — client-side routing
-- **Axios** — HTTP client
-- **audiomotion-analyzer** — real-time audio spectrum visualization
+- Website: [capacitaenlinea.cl](https://capacitaenlinea.cl/)
+- Email: [mbarrios@capacitaenlinea.cl](mailto:mbarrios@capacitaenlinea.cl)
