@@ -10,7 +10,8 @@ type InstrumentCategoryType =
     | "Percussion"
     | "Keyboards"
     | "Electronic"
-    | "Ethnic";
+    | "Ethnic"
+    | "Vocals";
 
 interface InstrumentProperties {
     category: InstrumentCategoryType;
@@ -36,6 +37,7 @@ const categoryColors: Record<InstrumentCategoryType, string> = {
     Keyboards: "#71717a",
     Electronic: "#006FEE",
     Ethnic: "#f5a524",
+    Vocals: "#f31260",
 };
 
 // Orchestra positioning zones (as percentage from center-bottom where director stands)
@@ -50,6 +52,7 @@ const categoryZones: Record<InstrumentCategoryType, { xMin: number; xMax: number
     Electronic: { xMin: -45, xMax: -30, yMin: 20, yMax: 40 },
     "Rock & Metal": { xMin: -35, xMax: 35, yMin: 30, yMax: 70 },
     Ethnic: { xMin: -30, xMax: 30, yMin: 50, yMax: 70 },
+    Vocals: { xMin: -15, xMax: 15, yMin: 5, yMax: 25 },
 };
 
 export default function InstrumentLocationChart({

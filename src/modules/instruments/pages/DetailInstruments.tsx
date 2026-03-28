@@ -24,7 +24,8 @@ type InstrumentCategoryType =
     | "Percussion"
     | "Keyboards"
     | "Electronic"
-    | "Ethnic";
+    | "Ethnic"
+    | "Vocals";
 
 interface InstrumentProperties {
     category: InstrumentCategoryType;
@@ -46,6 +47,7 @@ const categoryColors: Record<
     Keyboards: "default",
     Electronic: "primary",
     Ethnic: "warning",
+    Vocals: "danger",
 };
 
 const getFrequencyColor = (low: number, high: number): "success" | "warning" | "danger" | "default" => {
