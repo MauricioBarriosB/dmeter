@@ -526,9 +526,10 @@ Serves the `dist/` folder locally to preview the production build.
 npm run lint       # Run ESLint
 npm run format     # Run Prettier
 ```
+
 ---
 
-# Contact
+# Contact and Support
 
 - Website: [capacitaenlinea.cl](https://capacitaenlinea.cl/)
 - Email: [mbarrios@capacitaenlinea.cl](mailto:mbarrios@capacitaenlinea.cl)
