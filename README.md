@@ -400,3 +400,140 @@ Generate comprehensive instrument lists for musical ensembles, bands, and orches
 | Persistent Storage | All reports automatically saved to Data Base across browser sessions       |
 | History & Review   | View complete report history with ensemble type, genre, and instruments    |
 | Delete & Clear     | Remove individual reports or clear entire history with confirmation        |
+
+---
+
+# Project File Structure
+
+```
+dmeter/
+├── public/                          # Static assets
+│   ├── 404.html
+│   └── vite.svg
+├── src/
+│   ├── assets/                      # App assets (images, icons)
+│   ├── components/                  # Shared/global components
+│   │   ├── ApiErrorNotification.tsx
+│   │   ├── ConfirmDialog.tsx
+│   │   ├── Layout.tsx
+│   │   ├── LoadErrorCard.tsx
+│   │   ├── LoadingCard.tsx
+│   │   └── UnauthorizedAlert.tsx
+│   ├── modules/                     # Feature modules
+│   │   ├── acoustics/               # Space Acoustics module
+│   │   │   ├── components/
+│   │   │   ├── helpers/
+│   │   │   ├── hooks/
+│   │   │   ├── pages/
+│   │   │   └── types/
+│   │   ├── audio/                   # Audio File Analysis module
+│   │   │   ├── components/
+│   │   │   ├── helpers/
+│   │   │   ├── pages/
+│   │   │   └── types/
+│   │   ├── contact/                 # Contact page module
+│   │   │   └── pages/
+│   │   ├── home/                    # Home/landing page module
+│   │   │   ├── components/
+│   │   │   └── pages/
+│   │   ├── instruments/             # Instruments module
+│   │   │   ├── components/
+│   │   │   ├── hooks/
+│   │   │   ├── pages/
+│   │   │   └── types/
+│   │   ├── materials/               # Materials module
+│   │   │   ├── components/
+│   │   │   ├── hooks/
+│   │   │   ├── pages/
+│   │   │   └── types/
+│   │   ├── meter/                   # Audio Meter module
+│   │   │   ├── components/
+│   │   │   ├── helpers/
+│   │   │   ├── hooks/
+│   │   │   ├── pages/
+│   │   │   └── types/
+│   │   └── user/                    # User auth module
+│   │       ├── components/
+│   │       ├── context/
+│   │       ├── hooks/
+│   │       ├── pages/
+│   │       └── types/
+│   ├── services/                    # API services & config
+│   │   ├── apiAuth.ts
+│   │   ├── apiConfig.ts
+│   │   ├── apiCrud.ts
+│   │   └── licenseValidator.ts
+│   ├── types/                       # Global type declarations
+│   ├── App.tsx                      # Root component with routing
+│   ├── index.css                    # Global styles (Tailwind)
+│   └── main.tsx                     # App entry point
+├── .env                             # Environment variables
+├── eslint.config.js                 # ESLint configuration
+├── index.html                       # HTML entry point
+├── package.json                     # Dependencies & scripts
+├── tsconfig.json                    # TypeScript config
+├── tsconfig.app.json                # TypeScript config (app)
+├── tsconfig.node.json               # TypeScript config (node)
+└── vite.config.ts                   # Vite configuration
+```
+
+---
+
+# Build & Development
+
+### Prerequisites
+
+- Node.js (v18+)
+- npm
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the project root with the required variables (see `env.example` for reference).
+
+### Development Server
+
+```bash
+npm run dev
+```
+
+Starts the Vite dev server with hot module replacement.
+
+### Production Build
+
+```bash
+npm run build
+```
+
+Runs TypeScript type-checking (`tsc -b`) and then builds the app with Vite. Output goes to the `dist/` folder.
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+Serves the `dist/` folder locally to preview the production build.
+
+### Linting & Formatting
+
+```bash
+npm run lint       # Run ESLint
+npm run format     # Run Prettier
+```
+
+### Tech Stack
+
+- **React 19** + **TypeScript 5.9**
+- **Vite 7** — build tool & dev server
+- **Tailwind CSS 4** — utility-first styling
+- **HeroUI** — component library
+- **Framer Motion** — animations
+- **React Router DOM 7** — client-side routing
+- **Axios** — HTTP client
+- **audiomotion-analyzer** — real-time audio spectrum visualization
