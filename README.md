@@ -165,7 +165,7 @@ The analysis provides automatic recommendations based on:
 - Web Audio API - Captures microphone input with disabled echo cancellation, noise suppression, and auto gain for accurate readings
 - audiomotion-analyzer - Shows a real-time spectrum visualization with rainbow gradient, LED bars, and peak detection
 - Real-time panel - Displays Current dB, Peak dB, Average dB, Min dB, and Max dB with color-coded chips
-- localStorage persistence - All analysis records are saved and persist across browser sessions
+- Data Base persistence - All analysis records are saved and persist across browser sessions
 - History table - Shows all previous analyses with date, duration, and all dB values
 - Delete functionality - Delete individual records or clear all history
 
@@ -397,6 +397,6 @@ Generate comprehensive instrument lists for musical ensembles, bands, and orches
 | Feature            | Description                                                                |
 | ------------------ | -------------------------------------------------------------------------- |
 | Create & Edit      | Generate new instrument reports or edit existing ones with form validation |
-| Persistent Storage | All reports automatically saved to localStorage across browser sessions    |
+| Persistent Storage | All reports automatically saved to Data Base across browser sessions       |
 | History & Review   | View complete report history with ensemble type, genre, and instruments    |
 | Delete & Clear     | Remove individual reports or clear entire history with confirmation        |

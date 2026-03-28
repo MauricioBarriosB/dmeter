@@ -1,9 +1,20 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import path from "node:path";
 
 // https://vite.dev/config/
 export default defineConfig({
     base: "/dmeter/",
     plugins: [react(), tailwindcss()],
+    resolve: {
+        alias: {
+            "@": path.resolve(__dirname, "./src"),
+            "@components": path.resolve(__dirname, "./src/components"),
+            "@helpers": path.resolve(__dirname, "./src/helpers"),
+            "@modules": path.resolve(__dirname, "./src/modules"),
+            "@services": path.resolve(__dirname, "./src/services"),
+            "@types": path.resolve(__dirname, "./src/types"),
+        },
+    },
 });
