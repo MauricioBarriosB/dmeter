@@ -9,6 +9,7 @@ import UnauthorizedAlert from "@components/UnauthorizedAlert";
 import LoadErrorCard from "@components/LoadErrorCard";
 import LoadingCard from "@components/LoadingCard";
 import { fetchFromApi } from "@services/apiConfig";
+import InstrumentLocationChart from "../components/InstrumentLocationChart";
 
 const formatDate = (isoString: string) => {
     const date = new Date(isoString);
@@ -264,6 +265,12 @@ export default function DetailInstruments() {
                     </div>
                 </CardBody>
             </Card>
+
+            <InstrumentLocationChart
+                selectedInstruments={record.selectedInstruments}
+                selectedInstrumentsLabels={record.selectedInstrumentsLabels}
+                instrumentData={instrumentData}
+            />
 
             <Card className="mb-6">
                 <CardHeader>

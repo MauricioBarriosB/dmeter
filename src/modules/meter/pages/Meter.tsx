@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Play, Square, Mic, HelpCircle } from "lucide-react";
-import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Input, useDisclosure } from "@heroui/react";
+import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Input, useDisclosure, addToast } from "@heroui/react";
 import AudioMotionAnalyzer from "audiomotion-analyzer";
 import SpectrumAnalyzer from "../components/SpectrumAnalyzer";
 import RealTimeValuesPanel from "../components/RealTimeValuesPanel";
@@ -275,20 +275,39 @@ export default function Meter() {
         const frequencyBinCount = spectrumMaxRef.current.length;
         const frequencyResolution = sampleRate / (frequencyBinCount * 2);
 
-        // Create array with frequency and amplitude pairs
-        const peaks: FrequencyPeak[] = [];
+        // Define frequency bands with their peak quotas
+        const bands = [
+            { name: "sub-bass", min: 20, max: 60, quota: 3 },
+            { name: "bass", min: 60, max: 250, quota: 4 },
+            { name: "low-mids", min: 250, max: 500, quota: 3 },
+            { name: "mids", min: 500, max: 2000, quota: 4 },
+            { name: "high-mids", min: 2000, max: 8000, quota: 4 },
+            { name: "highs", min: 8000, max: 20000, quota: 2 },
+        ];
+
+        // Collect all peaks with significant amplitude
+        const allPeaks: FrequencyPeak[] = [];
         for (let i = 0; i < frequencyBinCount; i++) {
             const frequency = Math.round(i * frequencyResolution);
             const amplitude = Math.round(spectrumMaxRef.current[i] * 10) / 10;
-            // Only include frequencies with significant amplitude (above noise floor)
-            if (amplitude > -80) {
-                peaks.push({ frequency, amplitude });
+            if (amplitude > -80 && frequency >= 20) {
+                allPeaks.push({ frequency, amplitude });
             }
         }
 
-        // Sort by amplitude (highest first) and take top 20
-        peaks.sort((a, b) => b.amplitude - a.amplitude);
-        return peaks.slice(0, 20);
+        // Extract top peaks from each frequency band
+        const balancedPeaks: FrequencyPeak[] = [];
+        for (const band of bands) {
+            const bandPeaks = allPeaks
+                .filter((p) => p.frequency >= band.min && p.frequency < band.max)
+                .sort((a, b) => b.amplitude - a.amplitude)
+                .slice(0, band.quota);
+            balancedPeaks.push(...bandPeaks);
+        }
+
+        // Sort final result by amplitude (highest first)
+        balancedPeaks.sort((a, b) => b.amplitude - a.amplitude);
+        return balancedPeaks;
     }, []);
 
     const handleFinishAnalisis = () => {
@@ -318,7 +337,22 @@ export default function Meter() {
             maxDb: realTimeData.maxDb,
             spectrumPeaks,
         };
-        addRecord(record).catch((err) => console.error("Failed to save record:", err));
+        addRecord(record)
+            .then(() => {
+                addToast({
+                    title: "Analysis saved",
+                    description: `"${record.name}" has been saved successfully.`,
+                    color: "success",
+                });
+            })
+            .catch((err) => {
+                console.error("Failed to save record:", err);
+                addToast({
+                    title: "Save failed",
+                    description: "Failed to save the analysis. Please try again.",
+                    color: "danger",
+                });
+            });
 
         // Reset analysis name for next session
         setAnalysisName("");
@@ -348,11 +382,42 @@ export default function Meter() {
     };
 
     const handleDeleteRecord = (id: string) => {
-        deleteRecord(id).catch((err) => console.error("Failed to delete record:", err));
+        const record = history.find((r) => r.id === id);
+        deleteRecord(id)
+            .then(() => {
+                addToast({
+                    title: "Analysis deleted",
+                    description: record ? `"${record.name}" has been deleted.` : "Analysis has been deleted.",
+                    color: "success",
+                });
+            })
+            .catch((err) => {
+                console.error("Failed to delete record:", err);
+                addToast({
+                    title: "Delete failed",
+                    description: "Failed to delete the analysis. Please try again.",
+                    color: "danger",
+                });
+            });
     };
 
     const handleClearHistory = () => {
-        clearHistory().catch((err) => console.error("Failed to clear history:", err));
+        clearHistory()
+            .then(() => {
+                addToast({
+                    title: "History cleared",
+                    description: "All meter analyses have been deleted.",
+                    color: "success",
+                });
+            })
+            .catch((err) => {
+                console.error("Failed to clear history:", err);
+                addToast({
+                    title: "Clear failed",
+                    description: "Failed to clear history. Please try again.",
+                    color: "danger",
+                });
+            });
     };
 
     if (isValid === false) {

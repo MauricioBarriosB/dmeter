@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Music4, Play, HelpCircle } from "lucide-react";
-import { Button, Modal, ModalContent, ModalHeader, ModalBody, useDisclosure } from "@heroui/react";
+import { Button, Modal, ModalContent, ModalHeader, ModalBody, useDisclosure, addToast } from "@heroui/react";
 import { loadAudioHistory, saveAudioRecord, deleteAudioRecord, clearAudioHistory } from "../helpers/audioStorage";
 import { validateLicense, showUnauthorizedToast } from "@/services/licenseValidator";
 import AudioForm from "../components/AudioForm";
@@ -26,23 +26,66 @@ export default function Audio() {
     }, []);
 
     const handleFormSubmit = async (record: AudioRecord) => {
-        const saved = await saveAudioRecord(record);
-        if (saved) {
-            setHistory((prev) => [record, ...prev]);
+        try {
+            const saved = await saveAudioRecord(record);
+            if (saved) {
+                setHistory((prev) => [record, ...prev]);
+                addToast({
+                    title: "Analysis created",
+                    description: `"${record.reportName}" has been created successfully.`,
+                    color: "success",
+                });
+            }
+        } catch (err) {
+            console.error("Failed to save record:", err);
+            addToast({
+                title: "Creation failed",
+                description: "Failed to create the analysis. Please try again.",
+                color: "danger",
+            });
         }
     };
 
     const handleDeleteRecord = async (id: string) => {
-        const deleted = await deleteAudioRecord(id);
-        if (deleted) {
-            setHistory((prev) => prev.filter((record) => record.id !== id));
+        const record = history.find((r) => r.id === id);
+        try {
+            const deleted = await deleteAudioRecord(id);
+            if (deleted) {
+                setHistory((prev) => prev.filter((r) => r.id !== id));
+                addToast({
+                    title: "Analysis deleted",
+                    description: record ? `"${record.reportName}" has been deleted.` : "Analysis has been deleted.",
+                    color: "success",
+                });
+            }
+        } catch (err) {
+            console.error("Failed to delete record:", err);
+            addToast({
+                title: "Delete failed",
+                description: "Failed to delete the analysis. Please try again.",
+                color: "danger",
+            });
         }
     };
 
     const handleClearHistory = async () => {
-        const cleared = await clearAudioHistory();
-        if (cleared) {
-            setHistory([]);
+        try {
+            const cleared = await clearAudioHistory();
+            if (cleared) {
+                setHistory([]);
+                addToast({
+                    title: "History cleared",
+                    description: "All audio analyses have been deleted.",
+                    color: "success",
+                });
+            }
+        } catch (err) {
+            console.error("Failed to clear history:", err);
+            addToast({
+                title: "Clear failed",
+                description: "Failed to clear history. Please try again.",
+                color: "danger",
+            });
         }
     };
 

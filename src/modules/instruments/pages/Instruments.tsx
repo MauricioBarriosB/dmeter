@@ -15,6 +15,7 @@ import {
     ModalHeader,
     ModalBody,
     useDisclosure,
+    addToast,
 } from "@heroui/react";
 import type { InstrumentsReportRecord } from "../types";
 import { validateLicense, showUnauthorizedToast } from "@/services/licenseValidator";
@@ -140,10 +141,40 @@ export default function Instruments() {
         };
 
         if (editRecord) {
-            updateRecord(record).catch((err) => console.error("Failed to update record:", err));
+            updateRecord(record)
+                .then(() => {
+                    addToast({
+                        title: "Report updated",
+                        description: `"${record.reportName}" has been updated successfully.`,
+                        color: "success",
+                    });
+                })
+                .catch((err) => {
+                    console.error("Failed to update record:", err);
+                    addToast({
+                        title: "Update failed",
+                        description: "Failed to update the report. Please try again.",
+                        color: "danger",
+                    });
+                });
             setEditRecord(null);
         } else {
-            addRecord(record).catch((err) => console.error("Failed to add record:", err));
+            addRecord(record)
+                .then(() => {
+                    addToast({
+                        title: "Report created",
+                        description: `"${record.reportName}" has been created successfully.`,
+                        color: "success",
+                    });
+                })
+                .catch((err) => {
+                    console.error("Failed to add record:", err);
+                    addToast({
+                        title: "Creation failed",
+                        description: "Failed to create the report. Please try again.",
+                        color: "danger",
+                    });
+                });
         }
 
         setFormData(initialFormData);
@@ -160,14 +191,45 @@ export default function Instruments() {
     };
 
     const handleDeleteRecord = (id: string) => {
-        deleteRecord(id).catch((err) => console.error("Failed to delete record:", err));
+        const record = history.find((r) => r.id === id);
+        deleteRecord(id)
+            .then(() => {
+                addToast({
+                    title: "Report deleted",
+                    description: record ? `"${record.reportName}" has been deleted.` : "Report has been deleted.",
+                    color: "success",
+                });
+            })
+            .catch((err) => {
+                console.error("Failed to delete record:", err);
+                addToast({
+                    title: "Delete failed",
+                    description: "Failed to delete the report. Please try again.",
+                    color: "danger",
+                });
+            });
         if (editRecord?.id === id) {
             setEditRecord(null);
         }
     };
 
     const handleClearHistory = () => {
-        clearHistory().catch((err) => console.error("Failed to clear history:", err));
+        clearHistory()
+            .then(() => {
+                addToast({
+                    title: "History cleared",
+                    description: "All instruments reports have been deleted.",
+                    color: "success",
+                });
+            })
+            .catch((err) => {
+                console.error("Failed to clear history:", err);
+                addToast({
+                    title: "Clear failed",
+                    description: "Failed to clear history. Please try again.",
+                    color: "danger",
+                });
+            });
         setEditRecord(null);
     };
 
