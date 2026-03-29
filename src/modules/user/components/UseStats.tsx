@@ -65,7 +65,7 @@ export default function UseStats() {
     if (!stats) return null;
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {/* Total Reports */}
             <Card>
                 <CardBody className="gap-3">
@@ -121,29 +121,6 @@ export default function UseStats() {
                             <p className="text-sm text-default-500">Last Report</p>
                             <p className="text-sm font-medium">{formatDate(stats.lastReportDate)}</p>
                         </div>
-                    </div>
-                </CardBody>
-            </Card>
-
-            {/* Breakdown by Type */}
-            <Card>
-                <CardBody className="gap-3">
-                    <div className="flex items-center gap-2 mb-1">
-                        <BarChart3 size={16} className="text-default-500" />
-                        <p className="text-sm text-default-500">By Type</p>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        {Object.entries(stats.counts).map(([type, count]) => (
-                            <Chip
-                                key={type}
-                                color={typeColors[type]}
-                                variant="flat"
-                                size="sm"
-                                startContent={typeIcons[type]}
-                            >
-                                {typeLabels[type] ?? type}: {count}
-                            </Chip>
-                        ))}
                     </div>
                 </CardBody>
             </Card>
