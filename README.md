@@ -415,6 +415,8 @@ dmeter/
 │   ├── components/                  # Shared/global components
 │   │   ├── ApiErrorNotification.tsx
 │   │   ├── ConfirmDialog.tsx
+│   │   ├── DetailPageNav.tsx
+│   │   ├── HowToUse.tsx
 │   │   ├── Layout.tsx
 │   │   ├── LoadErrorCard.tsx
 │   │   ├── LoadingCard.tsx
