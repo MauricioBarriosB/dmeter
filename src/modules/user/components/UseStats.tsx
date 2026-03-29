@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardBody, Chip, Spinner } from "@heroui/react";
-import { BarChart3, TrendingUp, Clock, Hash, Mic, Waves, Container, Drum, Music4 } from "lucide-react";
+import { TrendingUp, Clock, Hash, Mic, Waves, Container, Drum, Music4 } from "lucide-react";
 import { fetchReportStats } from "@services/apiCrud";
 import type { ReportStats } from "../types";
 
