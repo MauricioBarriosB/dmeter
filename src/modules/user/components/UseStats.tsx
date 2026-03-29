@@ -20,14 +20,6 @@ const typeColors: Record<string, "primary" | "secondary" | "success" | "warning"
     audio: "warning",
 };
 
-const typeLabels: Record<string, string> = {
-    analysis: "Meter Analysis",
-    acoustics: "Acoustics",
-    materials: "Materials",
-    instruments: "Instruments",
-    audio: "Audio Analysis",
-};
-
 const formatDate = (dateString: string | null): string => {
     if (!dateString) return "No reports yet";
     try {
