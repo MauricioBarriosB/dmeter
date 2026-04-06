@@ -5,6 +5,7 @@
 - Calculate room acoustics with professional RT60, speech intelligibility metrics, and frequency-dependent analysis for audio engineers and acoustic consultants.
 - Generate comprehensive materials reports for building professional acoustic spaces with 12 build types and 59 materials across 8 categories.
 - Create instrument lists for musical ensembles with 12 ensemble types, 14 genres, and 100+ instruments across 8 categories.
+- Calculate precise reverb and delay times synced to your DAW tempo with BPM-aware pre-delay, note subdivisions, per-repeat decay analysis, and ready-to-use plugin presets for 30 track types and 13 time signatures.
 - All analysis sessions and reports are automatically saved for review and comparison.
 - All analyzed audio is neither saved nor stored in a database; once the analysis is complete, the audio is completely detached from the application.
 
@@ -403,6 +404,92 @@ Generate comprehensive instrument lists for musical ensembles, bands, and orches
 
 ---
 
+# Time Calculator Features
+
+Professional BPM-synced calculator for reverberation and delay times. Generates precise DAW plugin preset values, tempo-locked pre-delay options, note subdivisions, and per-repeat decay analysis based on your song's BPM and time signature.
+
+### 30 Track Types:
+
+| Category        | Track Types                                                                                       |
+| --------------- | ------------------------------------------------------------------------------------------------- |
+| Vocals          | Vocals (Lead), Backing Vocals, Screaming, Spoken Word                                             |
+| Guitars         | Clean Guitar, Acoustic Guitar, Crunch / Rhythm, Lead Guitar / Solo, High Gain / Metal, Drop Tuning / Djent |
+| Bass            | Bass Guitar, Distorted Bass, Slap Bass, Synth Bass / Sub                                          |
+| Drums           | Kick Drum, Snare Drum, Toms, Overheads / Cymbals, Hi-Hat, Drum Bus, Percussion                   |
+| Keys & Synths   | Piano / Keys, Organ, Synth Pad, Synth Lead                                                       |
+| Orchestral      | Strings, Brass / Horns, Woodwinds                                                                 |
+| Other           | Sound FX, Master Bus                                                                              |
+
+### 12 Reverb Environments:
+
+- Concert Hall, Large Hall, Chamber, Room, Small Room, Plate
+- Spring, Cathedral, Arena / Stadium, Warehouse, Bathroom / Tile, Ambient
+
+### 7 Delay Types:
+
+- Mono, Stereo, Ping Pong, Tape, Analog, Digital, Modulated
+
+### 13 Time Signatures:
+
+- 2/2 (Cut Time), 2/4, 3/4 (Waltz), 4/4 (Common Time), 5/4, 6/4, 7/4
+- 3/8, 5/8, 6/8, 7/8, 9/8, 12/8
+
+### Reverb Calculation Engine:
+
+| Feature                  | Description                                                              |
+| ------------------------ | ------------------------------------------------------------------------ |
+| BPM-Synced Reverb Time   | RT60 computed as a musical fraction of bar length from BPM + time sig    |
+| Auto Pre-Delay           | 1/32 note synced to BPM, updates instantly on input change               |
+| Environment Bar Fraction | Each environment maps to a reverb duration relative to bar length        |
+| Room Size & Damping      | Scale the computed reverb time (0.5x-1.5x size, 0.65x-1.0x damping)     |
+| Musical Fit              | Finds the closest note value the RT60 matches (e.g. "Dotted 1/2")       |
+| Reverb Tail in Bars      | Shows how many bars the reverb tail spans at current BPM                 |
+| Pre-Delay Options Table  | BPM-synced options (1/64 to 1/8 note) with recommended pick             |
+
+### Delay Calculation Engine:
+
+| Feature               | Description                                                       |
+| --------------------- | ----------------------------------------------------------------- |
+| Note-Synced Delay      | Delay time from note subdivision (1/4, 1/8, dotted, triplet)     |
+| Per-Repeat Decay Table | Amplitude in dB and %, audibility markers, for each repeat        |
+| Total Decay Time       | Sum of all repeats with feedback applied                          |
+| Feedback Modeling      | Geometric amplitude decay per repeat based on feedback percentage |
+
+### DAW Plugin Preset (generated per report):
+
+| Parameter    | Reverb                          | Delay                     |
+| ------------ | ------------------------------- | ------------------------- |
+| Pre-Delay    | 1/32 note (BPM-synced)         | —                         |
+| Decay Time   | RT60 in seconds                 | Delay time in ms          |
+| Size         | Room size %                     | —                         |
+| Damping      | HF absorption %                 | —                         |
+| Diffusion    | Reflection density %            | —                         |
+| High Cut     | Per track type recommendation   | Per track type             |
+| Low Cut      | Per track type recommendation   | Per track type             |
+| Wet/Dry      | Per track type recommendation   | Per track type             |
+| Feedback     | —                               | Per delay type             |
+| Note Sync    | —                               | Selected note value        |
+| Stereo Spread| —                               | Ping pong spread %         |
+
+### Complete Note Subdivision Table:
+
+Every report includes a full tempo grid with 14 note values + bar lengths, showing ms, seconds, and Hz (for LFO sync):
+
+- Whole, Dotted Half, Half, Triplet Half, Dotted Quarter, Quarter, Triplet Quarter
+- Dotted Eighth, Eighth, Triplet Eighth, Dotted Sixteenth, Sixteenth, Triplet Sixteenth, Thirty-Second
+- 1 Bar, 2 Bars, 4 Bars (based on actual time signature)
+
+### Report Management:
+
+| Feature            | Description                                                                    |
+| ------------------ | ------------------------------------------------------------------------------ |
+| Create & Edit      | Generate new time reports or edit existing ones with auto-computed defaults     |
+| Persistent Storage | All reports automatically saved to database across sessions                    |
+| Detail Reports     | DAW presets, note subdivisions, pre-delay options, user vs recommended tables   |
+| History & Review   | View complete report history with track type, effect, BPM, and time signature  |
+
+---
+
 # Project File Structure
 
 ```
@@ -445,6 +532,12 @@ dmeter/
 │   │   │   └── types/
 │   │   ├── materials/               # Materials module
 │   │   │   ├── components/
+│   │   │   ├── hooks/
+│   │   │   ├── pages/
+│   │   │   └── types/
+│   │   ├── time/                    # Time Calculator module
+│   │   │   ├── components/
+│   │   │   ├── helpers/
 │   │   │   ├── hooks/
 │   │   │   ├── pages/
 │   │   │   └── types/
